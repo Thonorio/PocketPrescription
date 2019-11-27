@@ -11,18 +11,36 @@ import os
 
 class MedicationTableViewController: UITableViewController {
 
-    var medication = [Medication]()
+    var medicationCollection = [Medication]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /* testing listing medication and saving the content
         guard let medication1 = Medication(name: "Paracetamol", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
             fatalError("Unable to instantiate meal1")
         }
+        guard let medication2 = Medication(name: "Weed", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
+            fatalError("Unable to instantiate meal1")
+        }
+        guard let medication3 = Medication(name: "AXIX", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
+            fatalError("Unable to instantiate meal1")
+        }
+        guard let medication4 = Medication(name: "LSD", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
+            fatalError("Unable to instantiate meal1")
+        }
         
-        medication += [medication1]
+        medicationCollection += [medication1, medication2, medication3, medication4]
         
         saveMedication()
+        */
+        
+        /* loading medication, throwing an erro because of file location
+        if let savedMedication = loadMedication() {
+            print(savedMedication)
+        } else {
+            //loadSampleMedication()
+        }
+        */
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,22 +48,36 @@ class MedicationTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    private func loadMedication() -> [Medication]? {
+        do {
+            let codedData = try Data(contentsOf: Medication.ArchiveURL)
+            let medicationCollection = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(codedData) as? [Medication]
+            
+            os_log("Medication successfully loaded.", log: OSLog.default, type: .debug)
+            
+            return medicationCollection;
+        } catch {
+            os_log("Failed to load medication...", log: OSLog.default, type: .error)
+            return nil
+        }
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return medicationCollection.count
     }
 
     private func saveMedication() {
           do {
-              let data = try NSKeyedArchiver.archivedData(withRootObject: medication, requiringSecureCoding: false)
+              let data = try NSKeyedArchiver.archivedData(withRootObject: medicationCollection, requiringSecureCoding: false)
               
               try data.write(to: Medication.ArchiveURL)
               
@@ -56,15 +88,22 @@ class MedicationTableViewController: UITableViewController {
           }
       }
     
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "MedicationViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MedicationViewCell else {
+            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+        }
+        
+        // Fetches the appropriate medication for the data source layout.
+        let medication = medicationCollection[indexPath.row]
+        cell.medicationName.text = medication.name
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

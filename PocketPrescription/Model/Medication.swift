@@ -24,6 +24,7 @@ class Medication: NSObject, NSCoding {
         static let packageQuantity = "packageQuantity"
         static let category = "category"
         static let levelOfImportance = "levelOfImportance"
+        // adicionar imagem que o med pode ter
     }
     
     init?(name: String, packageQuantity: Int, category: String, levelOfImportance: LevelOfImportance) {
@@ -56,22 +57,15 @@ class Medication: NSObject, NSCoding {
     }
     
     func encode(with coder: NSCoder) {
+        
+        //print(Medication.ArchiveURL)
         coder.encode(name, forKey: PropertyKey.name)
         coder.encode(packageQuantity, forKey: PropertyKey.packageQuantity)
         coder.encode(category, forKey: PropertyKey.category)
-        coder.encode(levelOfImportance, forKey: PropertyKey.levelOfImportance)
+        //coder.encode(levelOfImportance, forKey: PropertyKey.levelOfImportance)
     }
     
-     private func loadMedication() -> [Medication]? { do {
-            let codedData = try Data(contentsOf: Medication.ArchiveURL)
-            let medication = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(codedData) as? [Medication]
-                os_log("Medication successfully loaded.", log: OSLog.default, type: .debug)
-                return medication;
-            } catch {
-                os_log("Failed to load medication...", log: OSLog.default, type: .error)
-                return nil
-            }
-    }
+     
     
   
 }
