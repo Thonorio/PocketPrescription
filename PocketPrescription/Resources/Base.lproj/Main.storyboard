@@ -331,7 +331,7 @@
         <!--Medication-->
         <scene sceneID="7n6-m6-tnb">
             <objects>
-                <tableViewController id="CoH-GA-CVY" sceneMemberID="viewController">
+                <tableViewController id="CoH-GA-CVY" customClass="MedicationTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8mB-kj-hK5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -342,7 +342,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="54" id="dFa-vs-haf" customClass="MedicationViewCell" customModule="PocketPrescription" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MedicationViewCell" rowHeight="54" id="dFa-vs-haf" customClass="MedicationViewCell" customModule="PocketPrescription" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dFa-vs-haf" id="Hej-s1-lQm">
@@ -491,7 +491,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Alerts" id="CiD-c4-rf0">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="CPf-3T-gCg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CPf-3T-gCg">
                             <connections>
                                 <segue destination="6UW-3c-KNo" kind="show" id="xnv-4b-zL8"/>
                             </connections>
