@@ -23,6 +23,7 @@
 		A63B09DE238708D200ED6F25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A63B09DC238708D200ED6F25 /* LaunchScreen.storyboard */; };
 		A63B09E62387167A00ED6F25 /* MedicationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B09E52387167A00ED6F25 /* MedicationViewCell.swift */; };
 		A63B09E82387234B00ED6F25 /* AlertsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B09E72387234B00ED6F25 /* AlertsViewCell.swift */; };
+		A6B9729F239057EE003BBF48 /* AddMedicationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		A63B09DF238708D200ED6F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A63B09E52387167A00ED6F25 /* MedicationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationViewCell.swift; sourceTree = "<group>"; };
 		A63B09E72387234B00ED6F25 /* AlertsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewCell.swift; sourceTree = "<group>"; };
+		A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				A63B09D2238708D000ED6F25 /* ViewController.swift */,
 				A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */,
+				A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B9729F239057EE003BBF48 /* AddMedicationTableViewController.swift in Sources */,
 				A63B09E62387167A00ED6F25 /* MedicationViewCell.swift in Sources */,
 				A615CCF2238877BD00E4EB4B /* LevelOfImportance.swift in Sources */,
 				A615CCF0238874DD00E4EB4B /* Location.swift in Sources */,

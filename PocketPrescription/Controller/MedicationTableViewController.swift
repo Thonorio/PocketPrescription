@@ -62,6 +62,19 @@ class MedicationTableViewController: UITableViewController {
             return nil
         }
     }
+    
+    private func saveMedication() {
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: medicationCollection, requiringSecureCoding: false)
+            
+            try data.write(to: Medication.ArchiveURL)
+            
+            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+            
+        } catch {
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -74,19 +87,6 @@ class MedicationTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return medicationCollection.count
     }
-
-    private func saveMedication() {
-          do {
-              let data = try NSKeyedArchiver.archivedData(withRootObject: medicationCollection, requiringSecureCoding: false)
-              
-              try data.write(to: Medication.ArchiveURL)
-              
-              os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
-              
-          } catch {
-              os_log("Failed to save meals...", log: OSLog.default, type: .error)
-          }
-      }
     
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
