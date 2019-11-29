@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65374A9623919F8200152129 /* PharmacyViewController.swift */; };
 		A615CCE8238873DF00E4EB4B /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCE7238873DF00E4EB4B /* Medication.swift */; };
 		A615CCEA2388742400E4EB4B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCE92388742400E4EB4B /* Alert.swift */; };
 		A615CCEC2388743000E4EB4B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEB2388743000E4EB4B /* Person.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65374A9623919F8200152129 /* PharmacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyViewController.swift; sourceTree = "<group>"; };
 		A615CCE7238873DF00E4EB4B /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
 		A615CCE92388742400E4EB4B /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A615CCEB2388743000E4EB4B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				A63B09D2238708D000ED6F25 /* ViewController.swift */,
 				A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */,
+				65374A9623919F8200152129 /* PharmacyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				A615CCEE238874CD00E4EB4B /* Pharmacy.swift in Sources */,
 				A61B0E9D238EE5D8002DC8FA /* MedicationTableViewController.swift in Sources */,
 				A615CCEC2388743000E4EB4B /* Person.swift in Sources */,
+				65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */,
 				A615CCEA2388742400E4EB4B /* Alert.swift in Sources */,
 				A63B09D9238708D000ED6F25 /* PocketPrescription.xcdatamodeld in Sources */,
 			);
