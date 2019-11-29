@@ -15,7 +15,7 @@ class MedicationTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /* testing listing medication and saving the content
+        //testing listing medication and saving the content
         guard let medication1 = Medication(name: "Paracetamol", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
             fatalError("Unable to instantiate meal1")
         }
@@ -32,15 +32,16 @@ class MedicationTableViewController: UITableViewController {
         medicationCollection += [medication1, medication2, medication3, medication4]
         
         saveMedication()
-        */
         
-        /* loading medication, throwing an erro because of file location
+        
+        //loading medication, throwing an erro because of file location
         if let savedMedication = loadMedication() {
-            print(savedMedication)
+            //print(savedMedication)
         } else {
             //loadSampleMedication()
         }
-        */
+        
+        tableView.tableFooterView = UIView()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
