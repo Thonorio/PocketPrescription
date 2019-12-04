@@ -16,30 +16,11 @@ class MedicationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //testing listing medication and saving the content
-        guard let medication1 = Medication(name: "Paracetamol", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
-            fatalError("Unable to instantiate meal1")
-        }
-        guard let medication2 = Medication(name: "Weed", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
-            fatalError("Unable to instantiate meal1")
-        }
-        guard let medication3 = Medication(name: "AXIX", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
-            fatalError("Unable to instantiate meal1")
-        }
-        guard let medication4 = Medication(name: "LSD", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
-            fatalError("Unable to instantiate meal1")
-        }
-        
-        medicationCollection += [medication1, medication2, medication3, medication4]
-        
-        saveMedication()
-        
-        
+       
         //loading medication, throwing an erro because of file location
-        if let savedMedication = loadMedication() {
-            //print(savedMedication)
-        } else {
-            //loadSampleMedication()
-        }
+        
+        loadMedication()
+
         
         tableView.tableFooterView = UIView()
         
@@ -57,6 +38,11 @@ class MedicationTableViewController: UITableViewController {
             
             os_log("Medication successfully loaded.", log: OSLog.default, type: .debug)
             
+            //DON´T GET ANITHING NIL
+           /* for element in medicationCollection!  {
+              print(element)
+            }*/
+            
             return medicationCollection;
         } catch {
             os_log("Failed to load medication...", log: OSLog.default, type: .error)
@@ -64,18 +50,6 @@ class MedicationTableViewController: UITableViewController {
         }
     }
     
-    private func saveMedication() {
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: medicationCollection, requiringSecureCoding: false)
-            
-            try data.write(to: Medication.ArchiveURL)
-            
-            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
-            
-        } catch {
-            os_log("Failed to save meals...", log: OSLog.default, type: .error)
-        }
-    }
 
     // MARK: - Table view data source
 

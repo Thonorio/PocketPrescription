@@ -7,24 +7,61 @@
 //
 
 import UIKit
+import os
+import MessageUI
 
 class AddMedicationTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var imgAddMedication: UIImageView!
     @IBOutlet weak var nameAddMedication: UITextField!
     @IBOutlet weak var categoryAddMedication: UITextField!
+    @IBOutlet var tableViewConTroller: UITableViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        self.tableView.register(
+            AddMedicationHeaderFooterView.self,
+            forHeaderFooterViewReuseIdentifier:
+                AddMedicationHeaderFooterView.reuseIdentifier
+        )
+        
         tableView.tableFooterView = UIView()
     }
+    
+    @IBAction func okConfirmMedication(_ sender: Any) {
+     
+        guard let medicationTobeAdded = Medication(name: "Paracetamol", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
+           fatalError("Unable to instantiate meal1")
+        }
+        saveMedication(medicationTobeAdded)
+    }
+    
+    private func saveMedication(_ medication: Medication) {
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: medication, requiringSecureCoding: false)
+            
+            try data.write(to: Medication.ArchiveURL)
+            
+            os_log("Medication successfully saved.", log: OSLog.default, type: .debug)
+            
+        } catch {
+            os_log("Failed to save medications...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        self.resignFirstResponder()
+    }
+    
+    
+    
 
     // MARK: - Table view data source
 /*

@@ -24,6 +24,7 @@
 		A63B09E62387167A00ED6F25 /* MedicationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B09E52387167A00ED6F25 /* MedicationViewCell.swift */; };
 		A63B09E82387234B00ED6F25 /* AlertsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B09E72387234B00ED6F25 /* AlertsViewCell.swift */; };
 		A6B9729F239057EE003BBF48 /* AddMedicationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */; };
+		A6F2065523984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A63B09E52387167A00ED6F25 /* MedicationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationViewCell.swift; sourceTree = "<group>"; };
 		A63B09E72387234B00ED6F25 /* AlertsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewCell.swift; sourceTree = "<group>"; };
 		A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationTableViewController.swift; sourceTree = "<group>"; };
+		A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddMedicationHeaderFooterView.swift; path = PocketPrescription/View/AddMedicationHeaderFooterView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		A615CCE423886FE100E4EB4B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */,
 				A63B09E52387167A00ED6F25 /* MedicationViewCell.swift */,
 			);
 			path = View;
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6B9729F239057EE003BBF48 /* AddMedicationTableViewController.swift in Sources */,
+				A6F2065523984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift in Sources */,
 				A63B09E62387167A00ED6F25 /* MedicationViewCell.swift in Sources */,
 				A615CCF2238877BD00E4EB4B /* LevelOfImportance.swift in Sources */,
 				A615CCF0238874DD00E4EB4B /* Location.swift in Sources */,
