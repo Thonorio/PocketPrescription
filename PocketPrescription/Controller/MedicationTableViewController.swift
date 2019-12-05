@@ -8,49 +8,40 @@
 
 import UIKit
 import os
+import CoreData
 
 class MedicationTableViewController: UITableViewController {
 
-    var medicationCollection = [Medication]()
+    @IBOutlet weak var medicationTableView: UITableView!
+    var medications: [NSManagedObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //testing listing medication and saving the content
-       
-        //loading medication, throwing an erro because of file location
-        
-        loadMedication()
-
-        
-        tableView.tableFooterView = UIView()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.loadMedication();
+        //tableView.tableFooterView = UIView()
     }
     
-    private func loadMedication() -> [Medication]? {
+    override func viewWillAppear(_ animated: Bool) {
+        self.loadMedication();
+    }
+    
+     func loadMedication(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Medication")
+        request.returnsObjectsAsFaults = false
         do {
-            let codedData = try Data(contentsOf: Medication.ArchiveURL)
-            let medicationCollection = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(codedData) as? [Medication]
+            let result = try context.fetch(request)
             
-            os_log("Medication successfully loaded.", log: OSLog.default, type: .debug)
+            // forcing it to be casted to NSManagedObject
+            medications = (result as? [NSManagedObject])!
             
-            //DON´T GET ANITHING NIL
-           /* for element in medicationCollection!  {
-              print(element)
-            }*/
-            
-            return medicationCollection;
         } catch {
-            os_log("Failed to load medication...", log: OSLog.default, type: .error)
-            return nil
+            print("Failed")
         }
     }
     
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,23 +51,23 @@ class MedicationTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return medicationCollection.count
+        return medications.count
     }
     
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // Table view cells are reused and should be dequeued using a cell identifier.
+      
         let cellIdentifier = "MedicationViewCell"
-        
+               
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MedicationViewCell else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
-        
+        print("ok")
         // Fetches the appropriate medication for the data source layout.
-        let medication = medicationCollection[indexPath.row]
-        cell.medicationName.text = medication.name
-        
+        let medication = medications[indexPath.row]
+        print(medication.value(forKey: "name") as? String)
+        cell.medicationName.text = medication.value(forKey: "name") as? String
+
         return cell
     }
 

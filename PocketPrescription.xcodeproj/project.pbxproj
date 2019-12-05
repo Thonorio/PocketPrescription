@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A615CCE8238873DF00E4EB4B /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCE7238873DF00E4EB4B /* Medication.swift */; };
 		A615CCEA2388742400E4EB4B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCE92388742400E4EB4B /* Alert.swift */; };
 		A615CCEC2388743000E4EB4B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEB2388743000E4EB4B /* Person.swift */; };
 		A615CCEE238874CD00E4EB4B /* Pharmacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCED238874CD00E4EB4B /* Pharmacy.swift */; };
@@ -28,7 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A615CCE7238873DF00E4EB4B /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
 		A615CCE92388742400E4EB4B /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A615CCEB2388743000E4EB4B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		A615CCED238874CD00E4EB4B /* Pharmacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pharmacy.swift; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 		A615CCE323886FDB00E4EB4B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A615CCE7238873DF00E4EB4B /* Medication.swift */,
 				A615CCE92388742400E4EB4B /* Alert.swift */,
 				A615CCEB2388743000E4EB4B /* Person.swift */,
 				A615CCED238874CD00E4EB4B /* Pharmacy.swift */,
@@ -211,7 +208,6 @@
 				A63B09E62387167A00ED6F25 /* MedicationViewCell.swift in Sources */,
 				A615CCF2238877BD00E4EB4B /* LevelOfImportance.swift in Sources */,
 				A615CCF0238874DD00E4EB4B /* Location.swift in Sources */,
-				A615CCE8238873DF00E4EB4B /* Medication.swift in Sources */,
 				A63B09E82387234B00ED6F25 /* AlertsViewCell.swift in Sources */,
 				A63B09D3238708D000ED6F25 /* ViewController.swift in Sources */,
 				A63B09CF238708D000ED6F25 /* AppDelegate.swift in Sources */,

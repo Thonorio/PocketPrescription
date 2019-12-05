@@ -9,6 +9,7 @@
 import UIKit
 import os
 import MessageUI
+import CoreData
 
 class AddMedicationTableViewController: UITableViewController {
     
@@ -20,12 +21,6 @@ class AddMedicationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         self.tableView.register(
             AddMedicationHeaderFooterView.self,
             forHeaderFooterViewReuseIdentifier:
@@ -35,26 +30,25 @@ class AddMedicationTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
-    @IBAction func okConfirmMedication(_ sender: Any) {
-     
-        guard let medicationTobeAdded = Medication(name: "Paracetamol", packageQuantity: 1, category: "algo", levelOfImportance: LevelOfImportance.normalImportance ) else {
-           fatalError("Unable to instantiate meal1")
+    @IBAction func okAddMedication(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Medication", in: context)
+        let newMedication = NSManagedObject(entity: entity!, insertInto: context)
+        
+        //default is wrong
+        newMedication.setValue(nameAddMedication.text ?? "No info Found" , forKey: "name")
+        newMedication.setValue(categoryAddMedication.text ?? "No info Found", forKey: "category")
+        newMedication.setValue("high", forKey: "levelOfImportance")
+        
+        do {
+           try context.save()
+          } catch {
+           print("Failed saving")
         }
-        saveMedication(medicationTobeAdded)
     }
     
-    private func saveMedication(_ medication: Medication) {
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: medication, requiringSecureCoding: false)
-            
-            try data.write(to: Medication.ArchiveURL)
-            
-            os_log("Medication successfully saved.", log: OSLog.default, type: .debug)
-            
-        } catch {
-            os_log("Failed to save medications...", log: OSLog.default, type: .error)
-        }
-    }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
         self.resignFirstResponder()
