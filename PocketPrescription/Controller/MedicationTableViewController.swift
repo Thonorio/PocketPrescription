@@ -14,18 +14,26 @@ class MedicationTableViewController: UITableViewController {
 
     @IBOutlet weak var medicationTableView: UITableView!
     var medications: [NSManagedObject] = []
+    var refresher: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadMedication();
+        self.loadData()
+        
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(MedicationTableViewController.updateInformation), for: UIControl.Event.valueChanged)
+        tableView.addSubview(refresher)
         //tableView.tableFooterView = UIView()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.loadMedication();
+
+    @objc func updateInformation(){
+        self.loadData()
+        refresher.endRefreshing()
+        tableView.reloadData()
     }
     
-     func loadMedication(){
+    func loadData(){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
@@ -41,6 +49,9 @@ class MedicationTableViewController: UITableViewController {
             print("Failed")
         }
     }
+    
+    @IBAction func unwindToThisViewController(sender: UIStoryboardSegue) {}
+    
     
     // MARK: - Table view data source
 
@@ -62,10 +73,8 @@ class MedicationTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MedicationViewCell else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
-        print("ok")
         // Fetches the appropriate medication for the data source layout.
         let medication = medications[indexPath.row]
-        print(medication.value(forKey: "name") as? String)
         cell.medicationName.text = medication.value(forKey: "name") as? String
 
         return cell

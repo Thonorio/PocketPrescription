@@ -508,6 +508,7 @@
                         <barButtonItem key="rightBarButtonItem" title="OK" id="lhU-Bb-HPi">
                             <connections>
                                 <action selector="okAddMedication:" destination="QFT-oH-4Rx" id="Pfs-J5-xyf"/>
+                                <segue destination="kVd-gC-Uct" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="crM-gC-WzK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -517,6 +518,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KY5-eB-aRj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="kVd-gC-Uct" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2530.434782608696" y="1043.9732142857142"/>
         </scene>
