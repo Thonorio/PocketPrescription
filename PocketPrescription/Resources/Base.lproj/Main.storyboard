@@ -437,6 +437,7 @@
                                     <segment title="Second"/>
                                 </segments>
                                 <connections>
+                                    <action selector="segmentedControl:" destination="nau-C5-9g2" eventType="valueChanged" id="kop-pB-4gD"/>
                                     <action selector="switchViews:" destination="F6s-kA-4hr" eventType="valueChanged" id="asv-nv-M57"/>
                                 </connections>
                             </segmentedControl>
@@ -476,6 +477,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcY-U9-Dmq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="nau-C5-9g2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1650.7246376811595" y="-1235.4910714285713"/>
         </scene>

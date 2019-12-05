@@ -10,16 +10,37 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBAction func segmentedControl(_ sender: Any) {
+    
+    }
+    
     let locationManager = CLLocationManager()
     let regionMeters: Double = 3000
+    let searchRadius: CLLocationDistance = 3000
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
-
+        let request = MKLocalSearch.Request()
+           request.naturalLanguageQuery = "pharmacy"
+        request.region = mapView.region
+        let search = MKLocalSearch(request: request)
+        
+        search.start(completionHandler: {(response, error) in
+            
+            for item in response!.mapItems {
+                let aux = MKPointAnnotation()
+                aux.title = item.name
+                aux.coordinate = CLLocationCoordinate2D(latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
+                self.mapView.addAnnotation(aux)
+            }
+        })
+        
+        print(search)
     }
     
     func setupLocationManager(){
