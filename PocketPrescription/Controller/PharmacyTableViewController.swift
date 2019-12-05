@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PharmacyTableViewController: UITableViewController {
+class PharmacyTableViewController: UIViewController {
 
     let pharmacyAux = Pharmacy(pharmacyName : "Rodigres",pharmacyStreet : "rua da escola", pharmacyState : "Aberta", pharmacyPhoneNumber : 919191911)
     
@@ -16,8 +16,8 @@ class PharmacyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "PharmacyCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "pharmacyCell")
+        //let nib = UINib(nibName: "PharmacyCell", bundle: nil)
+        //tableView.register(nib, forCellReuseIdentifier: "pharmacyCell")
         
        
         // Uncomment the following line to preserve selection between presentations
@@ -30,7 +30,7 @@ class PharmacyTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     
-    
+    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1//dataPharmacyTest.count()
@@ -39,7 +39,7 @@ class PharmacyTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
-    }
+    }*/
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
