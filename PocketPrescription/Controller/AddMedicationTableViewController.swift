@@ -31,15 +31,18 @@ class AddMedicationTableViewController: UITableViewController {
     }
     
     @IBAction func okAddMedication(_ sender: Any) {
+
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.entity(forEntityName: "Medication", in: context)
         let newMedication = NSManagedObject(entity: entity!, insertInto: context)
         
+       
         //default is wrong
-        newMedication.setValue(nameAddMedication.text ?? "No info Found" , forKey: "name")
-        newMedication.setValue(categoryAddMedication.text ?? "No info Found", forKey: "category")
+        newMedication.setValue(nameAddMedication.text , forKey: "name")
+        newMedication.setValue(categoryAddMedication.text , forKey: "category")
         newMedication.setValue("high", forKey: "levelOfImportance")
         
         do {
