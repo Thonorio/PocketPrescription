@@ -10,13 +10,16 @@ import Foundation
 
 class Pharmacy {
     
-    var name: String
-    var phoneNumber: UInt8
-    var email: String
+    var pharmacyName: String
+    var pharmacyStreet: String
+    var pharmacyState: String
+    var pharmacyPhoneNumber: UInt64
     
-    init() {
-        name = ""
-        phoneNumber = 0
-        email = ""
+    init(pharmacyName : String,pharmacyStreet : String, pharmacyState : String, pharmacyPhoneNumber : UInt64) {
+        
+        self.pharmacyName = pharmacyName
+        self.pharmacyStreet = pharmacyStreet
+        self.pharmacyState = pharmacyState
+        self.pharmacyPhoneNumber = pharmacyPhoneNumber
     }
 }
