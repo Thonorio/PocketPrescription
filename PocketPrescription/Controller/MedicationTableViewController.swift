@@ -15,6 +15,8 @@ class MedicationTableViewController: UITableViewController {
     @IBOutlet weak var medicationTableView: UITableView!
     var medications: [NSManagedObject] = []
     var refresher: UIRefreshControl!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    lazy var context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,21 +41,18 @@ class MedicationTableViewController: UITableViewController {
     }
     
     func loadData(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Medication")
         request.returnsObjectsAsFaults = false
+        
         do {
             let result = try context.fetch(request)
-            
-            // forcing it to be casted to NSManagedObject
             medications = (result as? [NSManagedObject])!
             
         } catch {
             print("Failed")
         }
     }
+    
     
     @IBAction func unwindToThisViewController(sender: UIStoryboardSegue) {}
     
@@ -83,6 +82,21 @@ class MedicationTableViewController: UITableViewController {
         cell.medicationName.text = medication.value(forKey: "name") as? String
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let commit = medications[indexPath.row]
+            context.delete(commit)
+            medications.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .bottom)
+
+            do {
+               try context.save()
+              } catch {
+               print("Failed saving")
+            }
+        }
     }
 
     /*
