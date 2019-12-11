@@ -27,6 +27,11 @@ class MedicationTableViewController: UITableViewController {
         //tableView.tableFooterView = UIView()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateInformation()
+    }
+    
     @objc func updateInformation(){
         self.loadData()
         refresher.endRefreshing()
