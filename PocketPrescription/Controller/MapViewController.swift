@@ -23,43 +23,50 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let regionMeters: Double = 3000
     let searchRadius: CLLocationDistance = 3000
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
          //default is wrong
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Pharmacy", in: context)
-        let pharmacy = NSManagedObject(entity: entity!, insertInto: context)
-        
         checkLocationServices()
         let request = MKLocalSearch.Request()
-           request.naturalLanguageQuery = "pharmacy"
+        request.naturalLanguageQuery = "pharmacy"
         request.region = mapView.region
         let search = MKLocalSearch(request: request)
         
         search.start(completionHandler: {(response, error) in
+            self.savePharmacys(response!.mapItems)
             
             for item in response!.mapItems {
                 let aux = MKPointAnnotation()
-                pharmacy.setValue(item.name , forKey: "name")
                 aux.title = item.name
+                print("teste")
                 aux.coordinate = CLLocationCoordinate2D(latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
                 self.mapView.addAnnotation(aux)
+                
             }
         })
-        do {
-            print(context)
-           try context.save()
-            
-          } catch {
-           print("Failed saving")
-        }
     }
     
     func setupLocationManager(){
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func savePharmacys(_ pharmacys: [MKMapItem]){
+        let context = appDelegate.persistentContainer.viewContext
+       
+        for pharmacy in pharmacys {
+            let pharmacyEntity = NSEntityDescription.entity(forEntityName: "Pharmacy", in: context)!
+            let newPharmacy = NSManagedObject(entity: pharmacyEntity, insertInto: context)
+            newPharmacy.setValue(pharmacy.name, forKey: "name")
+        }
+        
+        do {
+            try context.save()
+            print("Success")
+        } catch {
+            print("Error saving: \(error)")
+        }
     }
     
     func centerViewOnUserLocation(){
