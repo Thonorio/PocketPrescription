@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tomás Honório Oliveira. All rights reserved.
 //
 
-enum LevelOfImportance {
-    case normalImportance
-    case greatImportance
+enum LevelOfImportance : String {
+    case normalImportance = "Normal Importance"
+    case greatImportance = "Great Importance"
 }

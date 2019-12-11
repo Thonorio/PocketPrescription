@@ -47,7 +47,7 @@ class Medication: NSObject, NSCoding {
             return nil
         }
         
-        guard let levelOfImportance = coder.decodeObject(forKey: PropertyKey.levelOfImportance) as? LevelOfImportance else {
+        guard let levelOfImportance = LevelOfImportance(rawValue: coder.decodeObject(forKey: PropertyKey.levelOfImportance) as! String) else {
             os_log("Unable to decode the levelOfImportance for a Medication object.", log: OSLog.default, type: .debug)
             return nil
         }
@@ -57,15 +57,10 @@ class Medication: NSObject, NSCoding {
     }
     
     func encode(with coder: NSCoder) {
-        
         //print(Medication.ArchiveURL)
         coder.encode(name, forKey: PropertyKey.name)
         coder.encode(packageQuantity, forKey: PropertyKey.packageQuantity)
         coder.encode(category, forKey: PropertyKey.category)
-        //coder.encode(levelOfImportance, forKey: PropertyKey.levelOfImportance)
+        coder.encode(levelOfImportance.rawValue, forKey: PropertyKey.levelOfImportance)
     }
-    
-     
-    
-  
 }

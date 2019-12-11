@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A615CCE8238873DF00E4EB4B /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCE7238873DF00E4EB4B /* Medication.swift */; };
 		A615CCEA2388742400E4EB4B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCE92388742400E4EB4B /* Alert.swift */; };
 		A615CCEC2388743000E4EB4B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEB2388743000E4EB4B /* Person.swift */; };
 		A615CCEE238874CD00E4EB4B /* Pharmacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCED238874CD00E4EB4B /* Pharmacy.swift */; };
@@ -23,10 +22,11 @@
 		A63B09DE238708D200ED6F25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A63B09DC238708D200ED6F25 /* LaunchScreen.storyboard */; };
 		A63B09E62387167A00ED6F25 /* MedicationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B09E52387167A00ED6F25 /* MedicationViewCell.swift */; };
 		A63B09E82387234B00ED6F25 /* AlertsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B09E72387234B00ED6F25 /* AlertsViewCell.swift */; };
+		A6B9729F239057EE003BBF48 /* AddMedicationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */; };
+		A6F2065523984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A615CCE7238873DF00E4EB4B /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
 		A615CCE92388742400E4EB4B /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A615CCEB2388743000E4EB4B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		A615CCED238874CD00E4EB4B /* Pharmacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pharmacy.swift; sourceTree = "<group>"; };
@@ -44,6 +44,8 @@
 		A63B09DF238708D200ED6F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A63B09E52387167A00ED6F25 /* MedicationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationViewCell.swift; sourceTree = "<group>"; };
 		A63B09E72387234B00ED6F25 /* AlertsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewCell.swift; sourceTree = "<group>"; };
+		A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationTableViewController.swift; sourceTree = "<group>"; };
+		A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddMedicationHeaderFooterView.swift; path = PocketPrescription/View/AddMedicationHeaderFooterView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,6 @@
 		A615CCE323886FDB00E4EB4B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A615CCE7238873DF00E4EB4B /* Medication.swift */,
 				A615CCE92388742400E4EB4B /* Alert.swift */,
 				A615CCEB2388743000E4EB4B /* Person.swift */,
 				A615CCED238874CD00E4EB4B /* Pharmacy.swift */,
@@ -73,6 +74,7 @@
 		A615CCE423886FE100E4EB4B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */,
 				A63B09E52387167A00ED6F25 /* MedicationViewCell.swift */,
 			);
 			path = View;
@@ -83,6 +85,7 @@
 			children = (
 				A63B09D2238708D000ED6F25 /* ViewController.swift */,
 				A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */,
+				A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -200,10 +203,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B9729F239057EE003BBF48 /* AddMedicationTableViewController.swift in Sources */,
+				A6F2065523984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift in Sources */,
 				A63B09E62387167A00ED6F25 /* MedicationViewCell.swift in Sources */,
 				A615CCF2238877BD00E4EB4B /* LevelOfImportance.swift in Sources */,
 				A615CCF0238874DD00E4EB4B /* Location.swift in Sources */,
-				A615CCE8238873DF00E4EB4B /* Medication.swift in Sources */,
 				A63B09E82387234B00ED6F25 /* AlertsViewCell.swift in Sources */,
 				A63B09D3238708D000ED6F25 /* ViewController.swift in Sources */,
 				A63B09CF238708D000ED6F25 /* AppDelegate.swift in Sources */,
