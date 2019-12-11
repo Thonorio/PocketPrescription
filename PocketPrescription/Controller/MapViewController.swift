@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate {
 
@@ -21,9 +22,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let locationManager = CLLocationManager()
     let regionMeters: Double = 3000
     let searchRadius: CLLocationDistance = 3000
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         //default is wrong
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Pharmacy", in: context)
+        let pharmacy = NSManagedObject(entity: entity!, insertInto: context)
+        
         checkLocationServices()
         let request = MKLocalSearch.Request()
            request.naturalLanguageQuery = "pharmacy"
@@ -34,13 +42,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
             for item in response!.mapItems {
                 let aux = MKPointAnnotation()
+                pharmacy.setValue(item.name , forKey: "name")
                 aux.title = item.name
                 aux.coordinate = CLLocationCoordinate2D(latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
                 self.mapView.addAnnotation(aux)
             }
         })
-        
-        print(search)
+        do {
+            print(context)
+           try context.save()
+            
+          } catch {
+           print("Failed saving")
+        }
     }
     
     func setupLocationManager(){

@@ -26,11 +26,13 @@ class PharmacyCell: UITableViewCell {
         }
     
     func cellInit(pharmacy : Pharmacy){
+        /*
         self.pharmacyNameLabel.text = pharmacy.pharmacyName
         self.pharmacyStreetLabel.text = pharmacy.pharmacyStreet
         self.pharmacyStateLabel.text = pharmacy.pharmacyState
         // falta o phone number, mas aqui nao é mostrado
         self.pharmacyDistanceLabel.text = "10" // por calcular
+ */
     }
     
 }

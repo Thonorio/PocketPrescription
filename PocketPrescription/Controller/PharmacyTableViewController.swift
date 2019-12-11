@@ -10,7 +10,7 @@ import UIKit
 
 class PharmacyTableViewController: UIViewController {
 
-    let pharmacyAux = Pharmacy(pharmacyName : "Rodigres",pharmacyStreet : "rua da escola", pharmacyState : "Aberta", pharmacyPhoneNumber : 919191911)
+    //let pharmacyAux = Pharmacy(pharmacyName : "Rodigres",pharmacyStreet : "rua da escola", pharmacyState : "Aberta", pharmacyPhoneNumber : 919191911)
     
     
     override func viewDidLoad() {
