@@ -17,6 +17,8 @@ class AddMedicationTableViewController: UITableViewController {
     @IBOutlet weak var nameAddMedication: UITextField!
     @IBOutlet weak var categoryAddMedication: UITextField!
     @IBOutlet var tableViewConTroller: UITableViewController!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    lazy var context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +32,7 @@ class AddMedicationTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
-    @IBAction func okAddMedication(_ sender: Any) {
-
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
+    @IBAction func okAddMedication(_ sender: Any) {        
         let entity = NSEntityDescription.entity(forEntityName: "Medication", in: context)
         let newMedication = NSManagedObject(entity: entity!, insertInto: context)
         
