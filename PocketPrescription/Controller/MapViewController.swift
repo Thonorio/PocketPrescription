@@ -39,10 +39,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             for item in response!.mapItems {
                 let aux = MKPointAnnotation()
                 aux.title = item.name
-                print("teste")
+                print(item)
+    
                 aux.coordinate = CLLocationCoordinate2D(latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
                 self.mapView.addAnnotation(aux)
-                
             }
         })
     }
@@ -51,14 +51,43 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
-    
+    func cleanPharmacys(_ context: NSManagedObjectContext){
+        
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Pharmacy.fetchRequest()
+        // Configure Fetch Request
+        fetchRequest.includesPropertyValues = false
+
+        do {
+            let items = try context.fetch(fetchRequest) as! [NSManagedObject]
+
+            for item in items {
+                context.delete(item)
+            }
+
+            // Save Changes
+            try context.save()
+
+        } catch {
+            // Error Handling
+            // ...
+        }
+    }
     func savePharmacys(_ pharmacys: [MKMapItem]){
         let context = appDelegate.persistentContainer.viewContext
-       
+        self.cleanPharmacys(context)
+    
         for pharmacy in pharmacys {
             let pharmacyEntity = NSEntityDescription.entity(forEntityName: "Pharmacy", in: context)!
             let newPharmacy = NSManagedObject(entity: pharmacyEntity, insertInto: context)
             newPharmacy.setValue(pharmacy.name, forKey: "name")
+            newPharmacy.setValue(pharmacy.isCurrentLocation, forKey: "isCurrentLocation")
+            newPharmacy.setValue(pharmacy.phoneNumber, forKey: "phoneNumber")
+            newPharmacy.setValue(pharmacy.placemark.countryCode, forKey: "countryCode")
+            newPharmacy.setValue(pharmacy.placemark.coordinate.latitude, forKey: "latitude")
+            newPharmacy.setValue(pharmacy.placemark.coordinate.longitude, forKey: "longitude")
+            newPharmacy.setValue(pharmacy.url!.absoluteURL.absoluteString, forKey: "url")
+            newPharmacy.setValue(pharmacy.placemark.locality, forKey: "locality")
+            newPharmacy.setValue(pharmacy.placemark.subLocality, forKey: "subLocality")
         }
         
         do {
@@ -67,6 +96,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         } catch {
             print("Error saving: \(error)")
         }
+
     }
     
     func centerViewOnUserLocation(){
