@@ -779,7 +779,7 @@
         <!--Select Medication-->
         <scene sceneID="qZP-Ch-ncm">
             <objects>
-                <tableViewController id="had-gJ-MYe" sceneMemberID="viewController">
+                <tableViewController id="had-gJ-MYe" customClass="MedicationInclusionTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DyN-tj-5pe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -790,7 +790,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="54" id="vlM-yG-DdP" customClass="MedicationViewCell" customModule="PocketPrescription" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MedicationInclusionViewCell" rowHeight="54" id="vlM-yG-DdP" customClass="MedicationInclusionViewCell" customModule="PocketPrescription" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vlM-yG-DdP" id="eaB-wJ-0GA">
@@ -810,23 +810,20 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IqP-0W-JcC">
-                                            <rect key="frame" x="343" y="12" width="51" height="30"/>
-                                        </switch>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="IqP-0W-JcC" secondAttribute="trailing" constant="22" id="17r-PL-RjM"/>
-                                        <constraint firstItem="IqP-0W-JcC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XnY-3k-Dbm" secondAttribute="trailing" constant="8" symbolic="YES" id="6fc-68-hBh"/>
                                         <constraint firstItem="n1i-2E-Jo4" firstAttribute="centerY" secondItem="XnY-3k-Dbm" secondAttribute="centerY" id="HEP-Je-aOk"/>
                                         <constraint firstItem="n1i-2E-Jo4" firstAttribute="centerY" secondItem="eaB-wJ-0GA" secondAttribute="centerY" id="cdN-jG-pap"/>
                                         <constraint firstItem="n1i-2E-Jo4" firstAttribute="leading" secondItem="eaB-wJ-0GA" secondAttribute="leading" constant="20" id="gHc-3S-DbG"/>
                                         <constraint firstAttribute="trailing" secondItem="n1i-2E-Jo4" secondAttribute="trailing" constant="343" id="hEi-Q9-oDc"/>
                                         <constraint firstItem="XnY-3k-Dbm" firstAttribute="top" secondItem="eaB-wJ-0GA" secondAttribute="top" constant="17" id="oFN-Oe-IBK"/>
-                                        <constraint firstItem="n1i-2E-Jo4" firstAttribute="centerY" secondItem="IqP-0W-JcC" secondAttribute="centerY" id="ruT-GF-7TF"/>
-                                        <constraint firstItem="IqP-0W-JcC" firstAttribute="top" secondItem="eaB-wJ-0GA" secondAttribute="top" constant="12" id="uGz-K1-GEo"/>
                                         <constraint firstItem="XnY-3k-Dbm" firstAttribute="leading" secondItem="n1i-2E-Jo4" secondAttribute="trailing" constant="8" id="zdC-vO-9Po"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="medicationImg" destination="n1i-2E-Jo4" id="k13-4Q-Lh3"/>
+                                    <outlet property="medicationName" destination="XnY-3k-Dbm" id="gBc-Mp-6hL"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
