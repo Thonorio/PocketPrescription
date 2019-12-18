@@ -10,7 +10,12 @@ import UIKit
 import os
 import CoreData
 
-class MedicationInclusionTableViewController: UITableViewController {
+class MedicationInclusionTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var callback :((String, Bool)->())?
     
     var medications: [NSManagedObject] = []
     var refresher: UIRefreshControl!
@@ -25,6 +30,8 @@ class MedicationInclusionTableViewController: UITableViewController {
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(MedicationTableViewController.updateInformation), for: UIControl.Event.valueChanged)
         tableView.addSubview(refresher)
+        
+        searchBar.delegate=self
         //tableView.tableFooterView = UIView()
     }
 
@@ -33,8 +40,25 @@ class MedicationInclusionTableViewController: UITableViewController {
         updateInformation()
     }
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if !searchText.isEmpty {
+            var predicate: NSPredicate = NSPredicate()
+            predicate = NSPredicate(format: "name contains[c] '\(searchText)'")
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let managedObjectContext = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Medication")
+            fetchRequest.predicate = predicate
+            do {
+                medications = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+            } catch let error as NSError {
+                print("Could not fetch. \(error)")
+            }
+        }
+        tableView.reloadData()
+    }
+    
     @objc func updateInformation(){
-    self.loadData()
+        self.loadData()
         refresher.endRefreshing()
         tableView.reloadData()
     }
@@ -51,8 +75,9 @@ class MedicationInclusionTableViewController: UITableViewController {
            print("Failed")
         }
     }
-
-
+    
+   
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -68,83 +93,32 @@ class MedicationInclusionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        // Cell identifier
         let cellIdentifier = "MedicationInclusionViewCell"
               
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MedicationInclusionViewCell else {
+        // If cell is of the expected type
+        guard let currentCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MedicationInclusionViewCell else {
            fatalError("The dequeued cell is not an instance of MedicationInclusionViewCell.")
         }
         
-        // Fetches the appropriate medication for the data source layout.
-        let medication = medications[indexPath.row]
-        cell.medicationName.text = medication.value(forKey: "name") as? String
+        // Atributes medication based on the inde
+        let medicationInfo = medications[indexPath.row]
+        currentCell.medicationName.text = medicationInfo.value(forKey: "name") as? String
 
-        //Switch State
+        // Add beavor to switch
         let medicationSwitch = UISwitch(frame: .zero)
-        medicationSwitch.setOn(false, animated: true)
         medicationSwitch.tag = indexPath.row
-        medicationSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
-        cell.accessoryView = medicationSwitch
         
-        return cell
+        // Make a reponse when it switches
+        medicationSwitch.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        
+        // Add the cell to the cels existing in the view
+        currentCell.accessoryView = medicationSwitch
+        
+        return currentCell
     }
-
     
-    @objc func switchChanged (_ sender: UISwitch!){
-        print("Sender: \(sender.tag), Value: \(sender.isOn)")
+    @objc func switchChanged (_ cellSwitch: UISwitch!){
+        callback?((medications[cellSwitch.tag].value(forKey: "name") as? String)!, cellSwitch.isOn)
     }
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

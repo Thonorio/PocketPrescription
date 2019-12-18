@@ -671,6 +671,9 @@
                                         <constraint firstAttribute="height" constant="216" id="SMO-8i-a1w"/>
                                         <constraint firstAttribute="width" constant="414" id="VEa-Se-Uvv"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="datePickerChanged:" destination="dQQ-es-twU" eventType="valueChanged" id="CaM-u9-wka"/>
+                                    </connections>
                                 </datePicker>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -745,23 +748,6 @@
                                             <segue destination="had-gJ-MYe" kind="show" id="nFS-z1-iMj"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="BFt-wd-WG2" style="IBUITableViewCellStyleDefault" id="7xR-Me-QEw">
-                                        <rect key="frame" x="0.0" y="374.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7xR-Me-QEw" id="WVc-UM-cNe">
-                                            <rect key="frame" x="0.0" y="0.0" width="382.5" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Sound" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BFt-wd-WG2">
-                                                    <rect key="frame" x="20" y="0.0" width="354.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -770,7 +756,13 @@
                             <outlet property="delegate" destination="dQQ-es-twU" id="SOS-DF-JkK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="eTr-zO-w4A"/>
+                    <navigationItem key="navigationItem" id="eTr-zO-w4A">
+                        <barButtonItem key="rightBarButtonItem" title="OK" id="CXw-j0-R6y">
+                            <connections>
+                                <action selector="okAddAlert:" destination="dQQ-es-twU" id="pWt-c4-P0c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sks-T5-BnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -832,6 +824,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select Medication" id="0u0-pE-oP8"/>
+                    <connections>
+                        <outlet property="searchBar" destination="g2V-Wy-4am" id="NE1-4a-Tjl"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mai-7N-ga9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
