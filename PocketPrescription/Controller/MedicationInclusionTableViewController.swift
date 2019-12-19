@@ -41,18 +41,23 @@ class MedicationInclusionTableViewController: UITableViewController, UISearchBar
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        var predicate: NSPredicate = NSPredicate()
+        
         if !searchText.isEmpty {
-            var predicate: NSPredicate = NSPredicate()
             predicate = NSPredicate(format: "name contains[c] '\(searchText)'")
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-            let managedObjectContext = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Medication")
-            fetchRequest.predicate = predicate
-            do {
-                medications = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
-            } catch let error as NSError {
-                print("Could not fetch. \(error)")
-            }
+        }else {
+            predicate = NSPredicate(value: true)
+        }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedObjectContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Medication")
+        fetchRequest.predicate = predicate
+        
+        do {
+            medications = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch. \(error)")
         }
         tableView.reloadData()
     }
