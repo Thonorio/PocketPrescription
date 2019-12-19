@@ -11,9 +11,11 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UITableViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    var pharmacys: [NSManagedObject] = []
+    
     
     @IBAction func segmentedControl(_ sender: Any) {
     
@@ -25,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+          super.viewDidLoad()
          //default is wrong
         checkLocationServices()
         let request = MKLocalSearch.Request()
@@ -35,6 +37,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         search.start(completionHandler: {(response, error) in
             self.savePharmacys(response!.mapItems)
+            self.loadData()
             
             for item in response!.mapItems {
                 let aux = MKPointAnnotation()
@@ -99,6 +102,23 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     }
     
+    func loadData(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Pharmacy")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            
+            // forcing it to be casted to NSManagedObject
+            pharmacys = (result as? [NSManagedObject])!
+            
+        } catch {
+            print("Failed")
+        }
+    }
+    
     func centerViewOnUserLocation(){
         if let location = locationManager.location?.coordinate{
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters)
@@ -136,6 +156,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         
+           let cellIdentifier = "PharmacyViewCell"
+                  
+           guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PharmacyCell else {
+               fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+           }
+           // Fetches the appropriate medication for the data source layout.
+           let pharmacy = pharmacys[indexPath.row]
+          cell.name.text = pharmacy.value(forKey: "name") as? String
+
+           return cell
+       }
 }
 
 extension MapViewController: CLLocationManagerDelegate{
@@ -150,4 +183,5 @@ extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
+
 }

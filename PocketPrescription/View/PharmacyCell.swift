@@ -9,10 +9,8 @@
 import UIKit
 
 class PharmacyCell: UITableViewCell {
-    @IBOutlet weak var pharmacyNameLabel: UILabel!
-    @IBOutlet weak var pharmacyStreetLabel: UILabel!
-    @IBOutlet weak var pharmacyStateLabel: UILabel!
-    @IBOutlet weak var pharmacyDistanceLabel: UILabel!
+    
+    @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

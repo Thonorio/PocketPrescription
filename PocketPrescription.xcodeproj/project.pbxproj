@@ -10,7 +10,6 @@
 		65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65374A9623919F8200152129 /* PharmacyViewController.swift */; };
 		6552D0F92398456800B0AFFA /* PharmacyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552D0F72398456800B0AFFA /* PharmacyCell.swift */; };
 		6552D0FA2398456800B0AFFA /* PharmacyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6552D0F82398456800B0AFFA /* PharmacyCell.xib */; };
-		6552D0FC239852A600B0AFFA /* PharmacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */; };
 		A615CCEA2388742400E4EB4B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCE92388742400E4EB4B /* Alert.swift */; };
 		A615CCEC2388743000E4EB4B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEB2388743000E4EB4B /* Person.swift */; };
 		A615CCF0238874DD00E4EB4B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEF238874DD00E4EB4B /* Location.swift */; };
@@ -35,7 +34,6 @@
 		65374A9623919F8200152129 /* PharmacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyViewController.swift; sourceTree = "<group>"; };
 		6552D0F72398456800B0AFFA /* PharmacyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyCell.swift; sourceTree = "<group>"; };
 		6552D0F82398456800B0AFFA /* PharmacyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PharmacyCell.xib; sourceTree = "<group>"; };
-		6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyTableViewController.swift; sourceTree = "<group>"; };
 		A615CCE92388742400E4EB4B /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A615CCEB2388743000E4EB4B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		A615CCEF238874DD00E4EB4B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 				A63B09D2238708D000ED6F25 /* ViewController.swift */,
 				A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */,
 				65374A9623919F8200152129 /* PharmacyViewController.swift */,
-				6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */,
 				A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */,
 			);
 			path = Controller;
@@ -237,7 +234,6 @@
 				A63B09E82387234B00ED6F25 /* AlertsViewCell.swift in Sources */,
 				A63B09D3238708D000ED6F25 /* ViewController.swift in Sources */,
 				A63B09CF238708D000ED6F25 /* AppDelegate.swift in Sources */,
-				6552D0FC239852A600B0AFFA /* PharmacyTableViewController.swift in Sources */,
 				A63B09D1238708D000ED6F25 /* SceneDelegate.swift in Sources */,
 				A61B0E9D238EE5D8002DC8FA /* MedicationTableViewController.swift in Sources */,
 				E5BE818B23998AB400F9E014 /* MapViewController.swift in Sources */,
