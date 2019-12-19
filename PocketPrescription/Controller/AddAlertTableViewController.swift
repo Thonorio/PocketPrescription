@@ -11,12 +11,15 @@ import CoreData
 
 class AddAlertTableViewController: UITableViewController {
 
+    
+    @IBOutlet weak var nameAddAlert: UITextField!
+    var datePiker :  Date?
+    
     var medicationInclusionViewCell:MedicationInclusionViewCell?
-    var datePiker : String?
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
-    lazy var entity = NSEntityDescription.entity(forEntityName: "Medication", in: context)
+    lazy var entity = NSEntityDescription.entity(forEntityName: "Alert", in: context)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,22 +39,17 @@ class AddAlertTableViewController: UITableViewController {
     @IBAction func okAddAlert(_ sender: Any) {
         let newAlert = NSManagedObject(entity: entity!, insertInto: context)
                
-       /* newAlert.setValue(nameAddMedication.text , forKey: "name")
-        newAlert.setValue(categoryAddMedication.text , forKey: "repeat")
-        newAlert.setValue(datePiker! , forKey: "schedule")
-         */
+        newAlert.setValue(nameAddAlert.text , forKey: "name")
+        newAlert.setValue(datePiker! , forKey: "scheduleDate")
         
         // Add foren key to cor data so it supports medication
-        newAlert.setValue("high", forKey: "medication")
+        //newAlert.setValue("high", forKey: "medication")
                
        saveToCoreData()
     }
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, YYYY"
-        datePiker! = dateFormatter.string(from: sender.date)
-        print(datePiker)
+        datePiker = sender.date
     }
     
     func saveToCoreData(){

@@ -13,7 +13,6 @@
 		6552D0FC239852A600B0AFFA /* PharmacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */; };
 		A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */; };
 		A613509F23A4393E000DAC02 /* MedicationInclusionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A613509E23A4393E000DAC02 /* MedicationInclusionViewCell.swift */; };
-		A615CCEA2388742400E4EB4B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCE92388742400E4EB4B /* Alert.swift */; };
 		A615CCEC2388743000E4EB4B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEB2388743000E4EB4B /* Person.swift */; };
 		A615CCEE238874CD00E4EB4B /* Pharmacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCED238874CD00E4EB4B /* Pharmacy.swift */; };
 		A615CCF0238874DD00E4EB4B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEF238874DD00E4EB4B /* Location.swift */; };
@@ -42,7 +41,6 @@
 		6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyTableViewController.swift; sourceTree = "<group>"; };
 		A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionTableViewController.swift; sourceTree = "<group>"; };
 		A613509E23A4393E000DAC02 /* MedicationInclusionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionViewCell.swift; sourceTree = "<group>"; };
-		A615CCE92388742400E4EB4B /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A615CCEB2388743000E4EB4B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		A615CCED238874CD00E4EB4B /* Pharmacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pharmacy.swift; sourceTree = "<group>"; };
 		A615CCEF238874DD00E4EB4B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				A63B09D7238708D000ED6F25 /* PocketPrescription.xcdatamodeld */,
-				A615CCE92388742400E4EB4B /* Alert.swift */,
 				A615CCEB2388743000E4EB4B /* Person.swift */,
 				A615CCED238874CD00E4EB4B /* Pharmacy.swift */,
 				A615CCEF238874DD00E4EB4B /* Location.swift */,
@@ -259,7 +256,6 @@
 				A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */,
 				A615CCEC2388743000E4EB4B /* Person.swift in Sources */,
 				65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */,
-				A615CCEA2388742400E4EB4B /* Alert.swift in Sources */,
 				A63B09D9238708D000ED6F25 /* PocketPrescription.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
