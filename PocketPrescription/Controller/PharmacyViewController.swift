@@ -218,6 +218,9 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
                 return cell
             }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+    }
 
 
             // UITableViewDelegate Functions

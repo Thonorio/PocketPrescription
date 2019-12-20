@@ -10,8 +10,8 @@ import UIKit
 
 class PharmacyCell: UITableViewCell {
     
-    @IBOutlet weak var name: UILabel!
-    
+
+    @IBOutlet weak var pharmacyName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,13 +24,12 @@ class PharmacyCell: UITableViewCell {
         }
     
     func cellInit(pharmacy : Pharmacy){
-        /*
-        self.pharmacyNameLabel.text = pharmacy.pharmacyName
-        self.pharmacyStreetLabel.text = pharmacy.pharmacyStreet
-        self.pharmacyStateLabel.text = pharmacy.pharmacyState
+        
+        self.pharmacyName.text = pharmacy.name
+     /*   self.street.text = pharmacy.subLocality
+        self.phoneNumber.text = pharmacy.phoneNumber
         // falta o phone number, mas aqui nao é mostrado
-        self.pharmacyDistanceLabel.text = "10" // por calcular
- */
+        self.distance.text = "10" // por calcular*/
     }
     
 }
