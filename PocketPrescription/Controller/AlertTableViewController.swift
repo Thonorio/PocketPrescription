@@ -1,25 +1,24 @@
 //
-//  MedicationTableViewController.swift
+//  AlertCollectionViewController.swift
 //  PocketPrescription
 //
-//  Created by Tomás Honório Oliveira on 27/11/2019.
+//  Created by Tomás Honório Oliveira on 20/12/2019.
 //  Copyright © 2019 Tomás Honório Oliveira. All rights reserved.
 //
 
 import UIKit
-import os
 import CoreData
+import os
 
-class MedicationTableViewController: UITableViewController {
-
-    @IBOutlet weak var medicationTableView: UITableView!
+class AlertTableViewController: UITableViewController {
     
-    var medications: [NSManagedObject] = []
+    var alerts: [NSManagedObject] = []
     
     var refresher: UIRefreshControl!
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadData()
@@ -30,29 +29,29 @@ class MedicationTableViewController: UITableViewController {
         tableView.addSubview(refresher)
         tableView.tableFooterView = UIView()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateInformation()
+    }
+    
+    func loadData(){
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Alert")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            alerts = (result as? [NSManagedObject])!
+            
+        } catch {
+            print("Failed")
+        }
     }
     
     @objc func updateInformation(){
         self.loadData()
         refresher.endRefreshing()
         tableView.reloadData()
-    }
-    
-    func loadData(){
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Medication")
-        request.returnsObjectsAsFaults = false
-        
-        do {
-            let result = try context.fetch(request)
-            medications = (result as? [NSManagedObject])!
-            
-        } catch {
-            print("Failed")
-        }
     }
     
     func saveToCoreData(){
@@ -64,8 +63,8 @@ class MedicationTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToThisViewController(sender: UIStoryboardSegue) {}
-    
-    // MARK: - Table view data source
+
+    // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -74,19 +73,19 @@ class MedicationTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return medications.count
+        return alerts.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       
-        let cellIdentifier = "MedicationViewCell"
+        let cellIdentifier = "AlertViewCell"
                
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MedicationViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AlertViewCell else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         // Fetches the appropriate medication for the data source layout.
-        let medication = medications[indexPath.row]
-        cell.medicationName.text = medication.value(forKey: "name") as? String
+        let alert = alerts[indexPath.row]
+        cell.alertName.text = alert.value(forKey: "name") as? String
 
         return cell
     }
@@ -95,14 +94,13 @@ class MedicationTableViewController: UITableViewController {
         if editingStyle == .delete{
             
             //Remove Core Data
-            context.delete(medications[indexPath.row])
+            context.delete(alerts[indexPath.row])
             
             //Remove from list
-            medications.remove(at: indexPath.row)
+            alerts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
 
             saveToCoreData()
         }
     }
-    
 }

@@ -9,9 +9,9 @@
 import UIKit
 import os
 import CoreData
+import UserNotifications
 
 class MedicationInclusionTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
-    
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -25,14 +25,33 @@ class MedicationInclusionTableViewController: UITableViewController, UISearchBar
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadData()
-
+        
+        // Refresher
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(MedicationTableViewController.updateInformation), for: UIControl.Event.valueChanged)
         tableView.addSubview(refresher)
-        
         searchBar.delegate=self
-        //tableView.tableFooterView = UIView()
+        
+        
+        let center = UNUserNotificationCenter.current()
+        var content = UNMutableNotificationContent()
+        
+        content.title = "Testing"
+        
+        let date = Date(timeIntervalSinceNow: 10)
+        
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .hour, .minute, .second], from: date)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "content", content: content, trigger: trigger)
+        
+        center.add(request){ (error) in
+        }
+        
+        // Asure only the tables with value are displayed
+        tableView.tableFooterView = UIView()
     }
 
     override func viewDidAppear(_ animated: Bool) {

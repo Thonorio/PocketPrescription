@@ -8,8 +8,12 @@
 
 import UIKit
 
-class AlertsViewCell: UITableViewCell {
+class AlertViewCell: UITableViewCell {
 
+    @IBOutlet weak var alertName: UILabel!
+    @IBOutlet weak var alertState: UISwitch!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

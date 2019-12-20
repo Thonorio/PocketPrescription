@@ -333,13 +333,15 @@
         <scene sceneID="7n6-m6-tnb">
             <objects>
                 <tableViewController id="CoH-GA-CVY" customClass="MedicationTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8mB-kj-hK5">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8mB-kj-hK5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="R9Z-Fl-7g8">
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="R9Z-Fl-7g8">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
@@ -350,8 +352,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ecx-j3-3hj">
-                                            <rect key="frame" x="20" y="8" width="55" height="39"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bandage" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ecx-j3-3hj">
+                                            <rect key="frame" x="20" y="7.5" width="55" height="39.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="39" id="l01-Ad-vTd"/>
                                                 <constraint firstAttribute="width" constant="55" id="qAl-v3-2b2"/>
@@ -594,13 +596,13 @@
         <!--Alerts-->
         <scene sceneID="dtd-rn-CGo">
             <objects>
-                <tableViewController id="9qJ-Yo-Us9" sceneMemberID="viewController">
+                <tableViewController id="9qJ-Yo-Us9" customClass="AlertTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Hc-Mq-I0J">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="54" id="S9b-Ey-w3I" customClass="MedicationViewCell" customModule="PocketPrescription" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlertViewCell" rowHeight="54" id="S9b-Ey-w3I" customClass="AlertViewCell" customModule="PocketPrescription" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S9b-Ey-w3I" id="hqZ-eL-KUf">
@@ -634,6 +636,10 @@
                                         <constraint firstItem="2aa-yp-X4I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7V6-Fi-XbU" secondAttribute="trailing" constant="8" symbolic="YES" id="xbB-M2-NNJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="alertName" destination="7V6-Fi-XbU" id="FpR-ad-NYt"/>
+                                    <outlet property="alertState" destination="2aa-yp-X4I" id="reb-v6-Bsb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -692,7 +698,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M8Y-pG-YiO">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M8Y-pG-YiO">
                                                     <rect key="frame" x="20" y="4" width="374" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -929,6 +935,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bandage" catalog="system" width="64" height="58"/>
         <image name="camera-icon" width="1024" height="1024"/>
         <image name="clock" catalog="system" width="64" height="62"/>
         <image name="info" catalog="system" width="44" height="64"/>
