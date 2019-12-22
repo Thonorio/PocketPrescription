@@ -33,23 +33,6 @@ class MedicationInclusionTableViewController: UITableViewController, UISearchBar
         tableView.addSubview(refresher)
         searchBar.delegate=self
         
-        
-        let center = UNUserNotificationCenter.current()
-        var content = UNMutableNotificationContent()
-        
-        content.title = "Testing"
-        
-        let date = Date(timeIntervalSinceNow: 10)
-        
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .hour, .minute, .second], from: date)
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: "content", content: content, trigger: trigger)
-        
-        center.add(request){ (error) in
-        }
-        
         // Asure only the tables with value are displayed
         tableView.tableFooterView = UIView()
     }
@@ -68,6 +51,7 @@ class MedicationInclusionTableViewController: UITableViewController, UISearchBar
         }else {
             predicate = NSPredicate(value: true)
         }
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedObjectContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Medication")
@@ -100,20 +84,17 @@ class MedicationInclusionTableViewController: UITableViewController, UISearchBar
         }
     }
     
-   
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-    // #warning Incomplete implementation, return the number of sections
-    return 1
+        // #warning Incomplete implementation, return the number of sections
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
-    return medications.count
+        // #warning Incomplete implementation, return the number of rows
+        return medications.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 

@@ -109,8 +109,8 @@
 			children = (
 				A62C4F4223AD3E8E00BB7972 /* AlertTableViewController.swift */,
 				A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */,
-				E5BE818A23998AB400F9E014 /* MapViewController.swift */,
 				A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */,
+				E5BE818A23998AB400F9E014 /* MapViewController.swift */,
 				65374A9623919F8200152129 /* PharmacyViewController.swift */,
 				6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */,
 				A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */,
