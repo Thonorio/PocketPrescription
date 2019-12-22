@@ -9,9 +9,9 @@
 import UIKit
 import os
 import CoreData
+import UserNotifications
 
 class MedicationInclusionTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
-    
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -25,14 +25,16 @@ class MedicationInclusionTableViewController: UITableViewController, UISearchBar
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadData()
-
+        
+        // Refresher
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(MedicationTableViewController.updateInformation), for: UIControl.Event.valueChanged)
         tableView.addSubview(refresher)
-        
         searchBar.delegate=self
-        //tableView.tableFooterView = UIView()
+        
+        // Asure only the tables with value are displayed
+        tableView.tableFooterView = UIView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -49,6 +51,7 @@ class MedicationInclusionTableViewController: UITableViewController, UISearchBar
         }else {
             predicate = NSPredicate(value: true)
         }
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedObjectContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Medication")
@@ -81,20 +84,17 @@ class MedicationInclusionTableViewController: UITableViewController, UISearchBar
         }
     }
     
-   
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-    // #warning Incomplete implementation, return the number of sections
-    return 1
+        // #warning Incomplete implementation, return the number of sections
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
-    return medications.count
+        // #warning Incomplete implementation, return the number of rows
+        return medications.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 

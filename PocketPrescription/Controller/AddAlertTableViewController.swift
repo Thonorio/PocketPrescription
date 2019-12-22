@@ -42,8 +42,6 @@ class AddAlertTableViewController: UITableViewController {
         newAlert.setValue(nameAddAlert.text , forKey: "name")
         newAlert.setValue(datePiker! , forKey: "scheduleDate")
         
-        // Add foren key to cor data so it supports medication
-        //newAlert.setValue("high", forKey: "medication")
                
        saveToCoreData()
     }
