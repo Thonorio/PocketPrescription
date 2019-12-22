@@ -11,8 +11,6 @@ import os
 import CoreData
 
 class MedicationTableViewController: UITableViewController {
-
-    @IBOutlet weak var medicationTableView: UITableView!
     
     var medications: [NSManagedObject] = []
     

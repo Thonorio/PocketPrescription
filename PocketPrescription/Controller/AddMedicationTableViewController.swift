@@ -54,7 +54,7 @@ class AddMedicationTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        okAddMedication(sender)
+        okAddMedication(sender as Any)
     }
     
     
