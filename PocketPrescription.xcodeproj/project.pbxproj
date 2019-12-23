@@ -35,6 +35,7 @@
 		E5BE818E2399BADB00F9E014 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BE818D2399BADB00F9E014 /* MapKit.framework */; };
 		FD335CB323B0591500CFBBAB /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD335CB123B0591500CFBBAB /* MedicationTableViewCell.swift */; };
 		FD335CB423B0591500CFBBAB /* MedicationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD335CB223B0591500CFBBAB /* MedicationTableViewCell.xib */; };
+		FD335CB623B0693300CFBBAB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD335CB523B0693300CFBBAB /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		E5BE818D2399BADB00F9E014 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FD335CB123B0591500CFBBAB /* MedicationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationTableViewCell.swift; sourceTree = "<group>"; };
 		FD335CB223B0591500CFBBAB /* MedicationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicationTableViewCell.xib; sourceTree = "<group>"; };
+		FD335CB523B0693300CFBBAB /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				A613509E23A4393E000DAC02 /* MedicationInclusionViewCell.swift */,
 				6552D0F72398456800B0AFFA /* PharmacyCell.swift */,
 				6552D0F82398456800B0AFFA /* PharmacyCell.xib */,
+				FD335CB523B0693300CFBBAB /* TabBarViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				A63B09D1238708D000ED6F25 /* SceneDelegate.swift in Sources */,
 				A61DA41C23A1847E0018CCDE /* AddAlertTableViewController.swift in Sources */,
 				A615CCEE238874CD00E4EB4B /* Pharmacy.swift in Sources */,
+				FD335CB623B0693300CFBBAB /* TabBarViewController.swift in Sources */,
 				A61B0E9D238EE5D8002DC8FA /* MedicationTableViewController.swift in Sources */,
 				E5BE818B23998AB400F9E014 /* MapViewController.swift in Sources */,
 				A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */,
