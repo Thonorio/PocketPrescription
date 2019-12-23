@@ -1,17 +1,17 @@
 //
-//  MedicationInclusionTableViewCell.swift
+//  AlertTableViewCell.swift
 //  PocketPrescription
 //
-//  Created by Tomás Honório Oliveira on 13/12/2019.
+//  Created by Tomas Honorio on 23/12/2019.
 //  Copyright © 2019 Tomás Honório Oliveira. All rights reserved.
 //
 
 import UIKit
 
-class MedicationInclusionViewCell: UITableViewCell {
+class AlertTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var medicationImg: UIImageView!
-    @IBOutlet weak var medicationName: UILabel!
+    @IBOutlet weak var alertLabel: UILabel!
+    @IBOutlet weak var alertState: UISwitch!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +23,9 @@ class MedicationInclusionViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func alertViewInit( _ name: String?, _ state: Bool){
+        alertLabel.text = name
+        //alertState.state = state
+    }
 }
