@@ -10,6 +10,10 @@ import UIKit
 
 class MedicationTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var medicationImg: UIImageView!
+    @IBOutlet weak var medicationLabel: UILabel!
+    @IBOutlet weak var medicationInformation: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,8 +21,10 @@ class MedicationTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    func medicationViewInit(_ imgName: String, _ name: String?, _ information: String){
+        //medicationImg.image = UIImage(named: imgName)
+        medicationLabel.text = name
+    }
 }
