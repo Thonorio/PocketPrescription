@@ -12,37 +12,42 @@ import UserNotifications
 
 class AddAlertTableViewController: UITableViewController, UNUserNotificationCenterDelegate {
 
+        
     //Outlets
-    @IBOutlet weak var nameAddAlert: UITextField!
+    @IBOutlet weak var addAlertDatePicker: UIDatePicker!
+    @IBOutlet weak var addAlertRepeatInterval: UILabel!
+    @IBOutlet weak var addAlertLabel: UILabel!
+    @IBOutlet weak var addAlertStartDate: UILabel!
+    @IBOutlet weak var addAlertEndDate: UILabel!
+    @IBOutlet weak var addAlertMedicationList: UILabel!
     
-    //to implement
-    //https://medium.com/@tharanit99/how-to-implement-a-inline-date-picker-in-ios-with-swift-4-9f8274460dbc
-    
-    // Variabels
-    var datePiker :  Date?
-    
-    var inputTexts: [String] = ["Start date", "End date", "Another date"]
-    var datePickerIndexPath: IndexPath?
+    // Vars
+    var selectedDate: Date!
+    let ENTITIE: String = "Alert"
     
     // Core Data
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
-    lazy var entity = NSEntityDescription.entity(forEntityName: "Alert", in: context)
+    lazy var entity = NSEntityDescription.entity(forEntityName: ENTITIE, in: context)    
     
     
     // MARK: - Life Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
+        loadData()
+        // Inicialize Date
+        selectedDate = self.getDataFormated()
+        
+        // Add Listener to the Date Picker
+        addAlertDatePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         
         // Configure User Notification Center
         UNUserNotificationCenter.current().delegate = self
-    }
-    
-
-    
-    
+        
+        // Limit Amount of Colls
+        tableView.tableFooterView = UIView()
+    }    
     
     // MARK: - Functionality
     
@@ -53,19 +58,50 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         self.createNotification()
         
         //Save info to Core Data
-        newAlert.setValue(nameAddAlert.text, forKey: "name")
-        newAlert.setValue(datePiker! , forKey: "scheduleDate")
+        newAlert.setValue(addAlertLabel.text, forKey: "name")
+       // newAlert.setValue(addAlertDatePicker! , forKey: "scheduleDate")
                
         self.saveToCoreData()
     }
-       
-    // Date Picker Listener
-    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
-        datePiker = sender.date
+    
+    // Function executed by the listener
+    @objc func dateChanged (){
+        selectedDate = self.getDataFormated()
+    }
+    
+    // Translate UIDataPiker into  Date
+    func getDataFormated () -> Date {
+        // Format to usable format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        // Return the Date
+        let dateAsString = dateFormatter.string(from: addAlertDatePicker.date)
+        return dateFormatter.date(from: dateAsString)!
     }
     
     
     // MARK: - Core Data
+    
+    func loadData() {
+        
+       // Create Fetch Request
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITIE)
+
+        request.predicate = NSPredicate(format: "name = %@", "Detail")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+               print(data.value(forKey: "name") as! String)
+          }
+            
+        } catch {
+            
+            print("Failed")
+        }
+    }
     
     func saveToCoreData(){
        do {
@@ -116,7 +152,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
        let notificationContent = UNMutableNotificationContent()
        
        // Configure Notification Content
-       notificationContent.title = nameAddAlert.text ?? "Something went Wrong"
+       notificationContent.title = addAlertLabel.text ?? "Something went Wrong"
        notificationContent.body = "Remeber to take: "
 
        // Add Trigger
