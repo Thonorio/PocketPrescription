@@ -19,6 +19,9 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
     let ENTITIE: String = "Alert"
     var alerts: [NSManagedObject] = []
     
+    
+    // MARK: - Life Cicle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                
@@ -41,6 +44,8 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         alerts = self.loadData(ENTITIE)
         tableView.reloadData()
     }
+    
+    // MARK: - Functionality
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         alerts = self.searchInformation(textDidChange: searchText, ENTITIE)

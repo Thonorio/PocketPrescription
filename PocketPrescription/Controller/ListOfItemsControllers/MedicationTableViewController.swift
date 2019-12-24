@@ -44,6 +44,8 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
         tableView.reloadData()
     }
     
+    // MARK: - Functionality
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         medications = self.searchInformation(textDidChange: searchText, ENTITIE)
         tableView.reloadData()

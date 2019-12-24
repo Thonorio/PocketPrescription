@@ -112,11 +112,10 @@
 			isa = PBXGroup;
 			children = (
 				FD335CB723B06E1F00CFBBAB /* ListOfItemsControllers */,
+				FD37B45523B1A22B0086C287 /* FixedSizeTableControllers */,
 				E5BE818A23998AB400F9E014 /* MapViewController.swift */,
 				65374A9623919F8200152129 /* PharmacyViewController.swift */,
 				6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */,
-				A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */,
-				A61DA41B23A1847E0018CCDE /* AddAlertTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,6 +198,15 @@
 				A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */,
 			);
 			path = ListOfItemsControllers;
+			sourceTree = "<group>";
+		};
+		FD37B45523B1A22B0086C287 /* FixedSizeTableControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A61DA41B23A1847E0018CCDE /* AddAlertTableViewController.swift */,
+				A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */,
+			);
+			path = FixedSizeTableControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

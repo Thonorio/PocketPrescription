@@ -29,6 +29,9 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     lazy var context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
     lazy var entity = NSEntityDescription.entity(forEntityName: "Alert", in: context)
     
+    
+    // MARK: - Life Cicle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
@@ -36,6 +39,12 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         // Configure User Notification Center
         UNUserNotificationCenter.current().delegate = self
     }
+    
+
+    
+    
+    
+    // MARK: - Functionality
     
     @IBAction func okAddAlert(_ sender: Any) {
         let newAlert = NSManagedObject(entity: entity!, insertInto: context)
@@ -54,6 +63,18 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         datePiker = sender.date
     }
+    
+    
+    // MARK: - Core Data
+    
+    func saveToCoreData(){
+       do {
+          try context.save()
+         } catch {
+          print("Failed saving")
+       }
+    }
+    
     
     // MARK: - Notifications
     
@@ -127,15 +148,5 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
              print(medication)
              print(state)
         }
-    }
-    
-    // MARK: - Core Data
-    
-    func saveToCoreData(){
-       do {
-          try context.save()
-         } catch {
-          print("Failed saving")
-       }
     }
 }

@@ -41,10 +41,16 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
        medications = self.loadData(ENTITIE)
        tableView.reloadData()
     }
+    
+    // MARK: - Functionality
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
        medications = self.searchInformation(textDidChange: searchText, ENTITIE)
        tableView.reloadData()
+    }
+    
+    @objc func switchChanged (_ cellSwitch: UISwitch!){
+        callback?((medications[cellSwitch.tag].value(forKey: "name") as? String)!, cellSwitch.isOn)
     }
     
     // MARK: - Table view data source
@@ -69,9 +75,5 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
         cell.medicationState.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
         
         return cell
-    }
-    
-    @objc func switchChanged (_ cellSwitch: UISwitch!){
-        callback?((medications[cellSwitch.tag].value(forKey: "name") as? String)!, cellSwitch.isOn)
     }
 }

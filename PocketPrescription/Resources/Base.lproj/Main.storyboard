@@ -283,7 +283,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MIF-g8-He9"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" landscapeImage="house.fill" largeContentSizeImage="Home" id="41G-i8-OmD"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" landscapeImage="house.fill" id="41G-i8-OmD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmn-81-NWk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -314,7 +314,7 @@
         <scene sceneID="4yG-K2-tEa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0m8-NS-14F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" landscapeImage="gear" largeContentSizeImage="Settings" id="hFf-8x-LEt"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" landscapeImage="gear" id="hFf-8x-LEt"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nLZ-Nb-pEc">
@@ -764,7 +764,7 @@
         <scene sceneID="zVQ-x1-3Iy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y3i-Uc-siP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alerts" image="bell.fill" catalog="system" landscapeImage="bell.fill" largeContentSizeImage="Alerts" id="D4f-er-rOw"/>
+                    <tabBarItem key="tabBarItem" title="Alerts" image="bell.fill" catalog="system" landscapeImage="bell.fill" id="D4f-er-rOw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qS9-5f-ipp">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -857,9 +857,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Alerts" width="16" height="16"/>
-        <image name="Home" width="16" height="16"/>
-        <image name="Settings" width="16" height="16"/>
         <image name="bell.fill" catalog="system" width="64" height="62"/>
         <image name="camera-icon" width="1024" height="1024"/>
         <image name="gear" catalog="system" width="64" height="58"/>
