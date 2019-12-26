@@ -17,8 +17,9 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
        
     // Variables
     let ENTITIE: String = "Medication"
-    var callback :((String, Bool)->())?
+    var callback :((NSManagedObject, Bool)->())?
     var medications: [NSManagedObject] = []
+    var medications2: [NSManagedObject] = []
 
     override func viewDidLoad() {
        super.viewDidLoad()
@@ -50,7 +51,7 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
     }
     
     @objc func switchChanged (_ cellSwitch: UISwitch!){
-        callback?((medications[cellSwitch.tag].value(forKey: "name") as? String)!, cellSwitch.isOn)
+        callback?(medications[cellSwitch.tag], cellSwitch.isOn)
     }
     
     // MARK: - Table view data source
@@ -62,7 +63,6 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "medicationInclusionTableViewCell", for: indexPath) as? MedicationInclusionTableViewCell else {
             fatalError("The dequeued cell is not an instance of MedicationInclusionTableViewCell.")
         }
@@ -70,7 +70,10 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
         // Atributes medication based on the inde
         let medication = medications[indexPath.row]
         cell.medicationViewInit("testing", medication.value(forKey: "name") as? String, false)
-
+        
+        // Change cellSwitch tag to know row
+        cell.medicationState.tag = indexPath.row;
+        
         // Make a reponse when it switches
         cell.medicationState.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
         

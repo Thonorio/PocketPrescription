@@ -21,9 +21,10 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     @IBOutlet weak var addAlertEndDate: UILabel!
     @IBOutlet weak var addAlertMedicationList: UILabel!
     
-    // Vars
+    // Variables
     var selectedDate: Date!
     let ENTITIE: String = "Alert"
+    var medications: [NSManagedObject] = []
     
     // Core Data
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -35,7 +36,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+        self.loadData()
         // Inicialize Date
         selectedDate = self.getDataFormated()
         
@@ -53,13 +54,15 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     
     @IBAction func okAddAlert(_ sender: Any) {
         let newAlert = NSManagedObject(entity: entity!, insertInto: context)
-               
+            
         // Create Notification
         self.createNotification()
         
         //Save info to Core Data
         newAlert.setValue(addAlertLabel.text, forKey: "name")
-       // newAlert.setValue(addAlertDatePicker! , forKey: "scheduleDate")
+        for med in self.medications {
+            newAlert.setValue( NSSet(object: med), forKey: "medications")
+        }
                
         self.saveToCoreData()
     }
@@ -80,6 +83,24 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         return dateFormatter.date(from: dateAsString)!
     }
     
+    func alertEditLabel () {
+        // Create alert controller.
+        let alertController = UIAlertController(title: "Editing Label", message: nil, preferredStyle: .alert)
+
+        // COnfigure what to show inside it
+        alertController.addTextField { (textField) in
+            textField.text = "Add a Custom Label"
+        }
+
+        //  Grab the value from the text field
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alertController] (_) in
+            self.addAlertLabel.text = alertController?.textFields![0].text
+        }))
+
+        // Show allert
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     // MARK: - Core Data
     
@@ -94,7 +115,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         do {
             let result = try context.fetch(request)
             for data in result as! [NSManagedObject] {
-               print(data.value(forKey: "name") as! String)
+             //  print(data.value(forKey: "id") as! Int)
           }
             
         } catch {
@@ -110,7 +131,6 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
           print("Failed saving")
        }
     }
-    
     
     // MARK: - Notifications
     
@@ -172,17 +192,55 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
        completionHandler([.alert])
     }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        switch indexPath.row {
+            // Repeat
+            case 0:
+                self.alertEditLabel()
+            // Label
+            case 1:
+                self.alertEditLabel()
+            // Starts
+            case 2:
+                self.alertEditLabel()
+            // Ends
+            case 3:
+                self.alertEditLabel()
+            default:
+                return
+            }
+    }
 
     
     // MARK: - Interactions
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        
+        if segue.destination is MedicationInclusionTableViewController
+        {
+            print("sent")
+            let vc = segue.destination as? MedicationInclusionTableViewController
+            vc?.medications2 = self.medications
+        }
 
         let addOrSubtractMoneyVC = segue.destination as! MedicationInclusionTableViewController
         addOrSubtractMoneyVC.callback = { (medication, state) in
-             print(medication)
-             print(state)
+            let currentMedicationText = self.addAlertMedicationList.text ?? ""
+            let medicationName = medication.value(forKey: "name") as? String  ?? ""
+            
+            // Easier to read (Note: medication is an optional)
+            if state == true {
+                // Append to last spot
+                self.medications.append(medication)
+                self.addAlertMedicationList.text = currentMedicationText + " " + medicationName
+            }else{
+                // Remove filterd object
+                self.medications = self.medications.filter{ $0 != medication }
+                self.addAlertMedicationList.text = currentMedicationText.replacingOccurrences(of: medicationName, with: "")
+            }
         }
     }
 }

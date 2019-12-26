@@ -67,6 +67,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
 
         let alert = alerts[indexPath.row]
         cell.alertViewInit(alert.value(forKey: "name") as? String, true)
+        //print("id \(alerts[indexPath.row].objectID)")
 
         return cell
     }
