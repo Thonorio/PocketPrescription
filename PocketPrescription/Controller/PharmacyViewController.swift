@@ -25,33 +25,43 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
     let regionMeters: Double = 3000
     let searchRadius: CLLocationDistance = 3000
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var mapDataReponse: Any?
     
     // Life Cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTable()
+
+        // Tratar erro
+        self.checkLocationServices()
+        
+        self.fetchDataFromMap()
         
         self.loadData()
-
-        //default is wrong
-        checkLocationServices()
+       
+    }
+    
+    func fetchDataFromMap(){
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = "pharmacy"
         request.region = mapView.region
+
         let search = MKLocalSearch(request: request)
-        
+
         search.start(completionHandler: {(response, error) in
             self.savePharmacys(response!.mapItems)
-            self.loadData()
-            
-            for item in response!.mapItems {
-                let aux = MKPointAnnotation()
-                aux.title = item.name
-                
-                aux.coordinate = CLLocationCoordinate2D(latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
-                self.mapView.addAnnotation(aux)
-            }
+            self.mapDataReponse = response
         })
+    }
+    
+    func populateMap(_ response: MKLocalSearch.Response) {
+        for item in response.mapItems {
+            let aux = MKPointAnnotation()
+            aux.title = item.name
+            
+            aux.coordinate = CLLocationCoordinate2D(latitude: item.placemark.location!.coordinate.latitude, longitude: item.placemark.location!.coordinate.longitude)
+            self.mapView.addAnnotation(aux)
+        }
     }
     
     func setupTable() {
@@ -60,7 +70,6 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
         firstView.delegate = self
         firstView.register(nibName, forCellReuseIdentifier: "pharmacyTableViewCell")
         firstView.rowHeight = 74.0
-    
     }
     
     @IBAction func switchViews(_ sender: UISegmentedControl){
@@ -68,37 +77,36 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
             firstView.isHidden = false
             mapView.isHidden = true
         }else{
+            self.populateMap((self.mapDataReponse as? MKLocalSearch.Response)!)
             firstView.isHidden = true
             mapView.isHidden = false
         }
     }
-
     
     func setupLocationManager(){
-    locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
 
     func cleanPharmacys(_ context: NSManagedObjectContext){
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Pharmacy.fetchRequest()
+        // Configure Fetch Request
+        fetchRequest.includesPropertyValues = false
 
-    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Pharmacy.fetchRequest()
-    // Configure Fetch Request
-    fetchRequest.includesPropertyValues = false
+        do {
+            let items = try context.fetch(fetchRequest) as! [NSManagedObject]
 
-    do {
-        let items = try context.fetch(fetchRequest) as! [NSManagedObject]
+            for item in items {
+                context.delete(item)
+            }
 
-        for item in items {
-            context.delete(item)
+            // Save Changes
+            try context.save()
+
+        } catch {
+            // Error Handling
+            // ...
         }
-
-        // Save Changes
-        try context.save()
-
-    } catch {
-        // Error Handling
-        // ...
-    }
     }
 
     func savePharmacys(_ pharmacys: [MKMapItem]){
@@ -156,9 +164,8 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
         if CLLocationManager.locationServicesEnabled(){
             setupLocationManager()
             checkLocationAuthorization()
-           
         }else{
-            
+            print("Error")
         }
     }
 
