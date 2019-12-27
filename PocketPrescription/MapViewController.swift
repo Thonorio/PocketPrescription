@@ -5,7 +5,7 @@
 //  Created by Tomás Honório Oliveira on 05/12/2019.
 //  Copyright © 2019 Tomás Honório Oliveira. All rights reserved.
 //
-
+/*
 import UIKit
 import MapKit
 import CoreLocation
@@ -165,7 +165,7 @@ class MapViewController: UITableViewController, MKMapViewDelegate {
            }
            // Fetches the appropriate medication for the data source layout.
            let pharmacy = pharmacys[indexPath.row]
-          cell.name.text = pharmacy.value(forKey: "name") as? String
+            cell.name.text = pharmacy.value(forKey: "name") as? String
 
            return cell
        }
@@ -185,3 +185,4 @@ extension MapViewController: CLLocationManagerDelegate{
     }
 
 }
+*/
