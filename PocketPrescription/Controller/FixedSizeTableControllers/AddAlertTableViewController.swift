@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 import UserNotifications
 
-class AddAlertTableViewController: UITableViewController, UNUserNotificationCenterDelegate {
+class AddAlertTableViewController: UITableViewController, UNUserNotificationCenterDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+       
         
     //Outlets
     @IBOutlet weak var addAlertDatePicker: UIDatePicker!
@@ -25,6 +26,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     let ENTITIE: String = "Alert"
     var medications: [NSManagedObject] = []
     var alertSubmit: UIAlertAction?
+    var repeatIntervalHours: String?
     
     // Core Data
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -50,10 +52,8 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         tableView.tableFooterView = UIView()
     }
     
+    // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        
-        
-        
         switch indexPath.row {
             // Repeat
             case 0:
@@ -73,6 +73,26 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
             }
     }
     
+    
+     // MARK: - UIPikerView protocol implementacion
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        // Easier to read
+        let numberOfHoursInADay = 24
+        return numberOfHoursInADay
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(row + 1) Hours"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.repeatIntervalHours = "\(row + 1) Hours"
+    }
      
      // MARK: - Functionality
      
@@ -109,21 +129,21 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         viewController.preferredContentSize = CGSize(width: 250,height: 250)
 
         // Create and add data picker to view controller
-        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
-        datePicker.datePickerMode = .time
-        viewController.view.addSubview(datePicker)
+        let numberOfHoursPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
+        numberOfHoursPicker.delegate = self
+        viewController.view.addSubview(numberOfHoursPicker)
 
         // Add options
-        let editRadiusAlert = UIAlertController(title: "Repeat", message: nil, preferredStyle: .alert)
-        editRadiusAlert.setValue(viewController, forKey: "contentViewController")
-        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { [weak editRadiusAlert] (_) in
-            self.addAlertRepeatInterval.text = self.getDataFormatedAsString(datePicker.date, "HH:mm")
+        let edditRadiusAlert = UIAlertController(title: "Repeat Interval", message: nil, preferredStyle: .alert)
+        edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
+        edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
+            self.addAlertRepeatInterval.text = self.repeatIntervalHours
         }))
            
-        editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         // Present alert
-        self.present(editRadiusAlert, animated: true)
+        self.present(edditRadiusAlert, animated: true)
     }
     
     func alertEditLabel ()  {
@@ -140,7 +160,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         // Ok button starts as not enabled
         alertSubmit!.isEnabled = false
         
-        // Add the text filed to the alert
+        // Add the text field to the alert
         alertController.addTextField { (textField) in
             textField.placeholder = "Add a Custom Label"
             
@@ -167,16 +187,16 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         viewController.view.addSubview(datePicker)
         
         // Add options
-        let editRadiusAlert = UIAlertController(title: "Starting Date", message: nil, preferredStyle: .alert)
-        editRadiusAlert.setValue(viewController, forKey: "contentViewController")
-        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { [weak editRadiusAlert] (_) in
+        let edditRadiusAlert = UIAlertController(title: "Starting Date", message: nil, preferredStyle: .alert)
+        edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
+        edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
             self.addAlertStartDate.text = self.getDataFormatedAsString(datePicker.date, "dd/MM/yyyy")
         }))
             
-        editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         // Present alert
-        self.present(editRadiusAlert, animated: true)
+        self.present(edditRadiusAlert, animated: true)
     }
     
     func alertEditEndDate () {
@@ -190,16 +210,16 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         viewController.view.addSubview(datePicker)
 
         // Add options
-        let editRadiusAlert = UIAlertController(title: "Ending Date", message: nil, preferredStyle: .alert)
-        editRadiusAlert.setValue(viewController, forKey: "contentViewController")
-        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { [weak editRadiusAlert] (_) in
+        let edditRadiusAlert = UIAlertController(title: "Ending Date", message: nil, preferredStyle: .alert)
+        edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
+        edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
             self.addAlertEndDate.text = self.getDataFormatedAsString(datePicker.date, "dd/MM/yyyy")
         }))
           
-        editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         // Present alert
-        self.present(editRadiusAlert, animated: true)
+        self.present(edditRadiusAlert, animated: true)
     }
     
     
