@@ -590,6 +590,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Alerts" id="CiD-c4-rf0">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="Joo-uf-jkN">
+                            <connections>
+                                <action selector="alertEditMode:" destination="9qJ-Yo-Us9" id="JJM-mN-qvk"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CPf-3T-gCg">
                             <connections>
                                 <segue destination="dQQ-es-twU" kind="show" id="lSv-Um-w1b"/>
@@ -597,6 +602,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="alertEditMode" destination="Joo-uf-jkN" id="ZKM-oI-Ju5"/>
                         <outlet property="alertTableView" destination="0Hc-Mq-I0J" id="IN5-L8-z7h"/>
                         <outlet property="searchBar" destination="ZvW-15-0e1" id="ZRM-4z-p7O"/>
                     </connections>

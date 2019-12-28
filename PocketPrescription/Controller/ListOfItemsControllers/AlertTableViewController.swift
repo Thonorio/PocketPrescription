@@ -14,6 +14,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var alertTableView: UITableView!
+    @IBOutlet var alertEditMode: UIBarButtonItem!
     
     // Variables
     let ENTITIE: String = "Alert"
@@ -27,13 +28,12 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
                
         // Load Alerts info
         alerts = self.loadData(ENTITIE)
-
         // Cell registation
         let nibName = UINib(nibName: "AlertTableViewCell", bundle: nil)
         alertTableView.dataSource = self
         alertTableView.delegate = self
         alertTableView.register(nibName, forCellReuseIdentifier: "alertTableViewCell")
-                       
+        
         // Search Bar
         searchBar.delegate=self
         
@@ -51,7 +51,11 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         alerts = self.searchInformation(textDidChange: searchText, ENTITIE)
         tableView.reloadData()
     }
-  
+    
+    @IBAction func alertEditMode(_ sender: Any) {
+        super.setEditing(!self.isEditing , animated: true)
+    }
+    
     // MARK: - UICollectionViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,7 +68,14 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "alertTableViewCell", for: indexPath) as? AlertTableViewCell else {
             fatalError("The dequeued cell is not an instance of AlertTableViewCell.")
         }
-
+        
+        // Only selectable on eddit mode
+        tableView.allowsSelection = false
+        
+        // Edit mode configs
+        tableView.allowsSelectionDuringEditing = true
+        cell.editingAccessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        
         let alert = alerts[indexPath.row]
         cell.alertViewInit(alert.value(forKey: "name") as? String, true)
         //print("id \(alerts[indexPath.row].objectID)")
@@ -74,7 +85,6 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            
             //Remove Core Data
             context.delete(alerts[indexPath.row])
             
@@ -86,6 +96,9 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected cell \(indexPath.row)")
+    }
     
     // MARK: - Interactions
     @IBAction func unwindToThisViewController(sender: UIStoryboardSegue) {}
