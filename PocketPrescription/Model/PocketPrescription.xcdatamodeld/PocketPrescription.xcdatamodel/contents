@@ -16,11 +16,21 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Pharmacy" representedClassName="Pharmacy" syncable="YES" codeGenerationType="class"/>
+    <entity name="Pharmacy" representedClassName="Pharmacy" syncable="YES" codeGenerationType="class">
+        <attribute name="countryCode" optional="YES" attributeType="String"/>
+        <attribute name="isCurrentLocation" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="locality" optional="YES" attributeType="String"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="subLocality" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="Alert" positionX="-18" positionY="54" width="128" height="88"/>
         <element name="Medication" positionX="-18" positionY="27" width="128" height="103"/>
         <element name="Person" positionX="-18" positionY="54" width="128" height="88"/>
-        <element name="Pharmacy" positionX="-9" positionY="72" width="128" height="43"/>
+        <element name="Pharmacy" positionX="-9" positionY="72" width="128" height="178"/>
     </elements>
 </model>
