@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Alert" representedClassName="Alert" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Alert" representedClassName=".Alert" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="scheduleDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="medications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Medication" inverseName="alerts" inverseEntity="Medication"/>
     </entity>
     <entity name="Medication" representedClassName="Medication" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="levelOfImportance" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="alerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Alert" inverseName="medications" inverseEntity="Alert"/>
+    </entity>
+    <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Medication" positionX="-18" positionY="27" width="128" height="88"/>
-        <element name="Alert" positionX="-18" positionY="54" width="128" height="73"/>
+        <element name="Alert" positionX="-18" positionY="54" width="128" height="88"/>
+        <element name="Medication" positionX="-18" positionY="27" width="128" height="103"/>
+        <element name="Person" positionX="-18" positionY="54" width="128" height="88"/>
     </elements>
 </model>

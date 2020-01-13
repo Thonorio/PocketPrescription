@@ -29,9 +29,10 @@ class AddMedicationTableViewController: UITableViewController {
             forHeaderFooterViewReuseIdentifier:
                 AddMedicationHeaderFooterView.reuseIdentifier
         )
-        
         tableView.tableFooterView = UIView()
     }
+    
+    // MARK: - Functionality
     
     @IBAction func okAddMedication(_ sender: Any) {
         let newMedication = NSManagedObject(entity: entity!, insertInto: context)
@@ -44,6 +45,9 @@ class AddMedicationTableViewController: UITableViewController {
         saveToCoreData()
     }
     
+    
+    // MARK: - Core Data
+    
     func saveToCoreData(){
         do {
            try context.save()
@@ -52,16 +56,15 @@ class AddMedicationTableViewController: UITableViewController {
         }
     }
     
+    
+    // MARK: - Interactions
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        okAddMedication(sender)
+        okAddMedication(sender as Any)
     }
-    
     
     @IBAction func dismissKeyboard(_ sender: Any) {
         self.resignFirstResponder()
     }
-    
-
-    // MARK: - Table view data source
 }

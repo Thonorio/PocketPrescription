@@ -39,8 +39,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.mapView.addAnnotation(aux)
             }
         })
-        
-        print(search)
     }
     
     func setupLocationManager(){
