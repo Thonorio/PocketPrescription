@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65374A9623919F8200152129 /* PharmacyViewController.swift */; };
-		6552D0FC239852A600B0AFFA /* PharmacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */; };
 		A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */; };
 		A615CCF0238874DD00E4EB4B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEF238874DD00E4EB4B /* Location.swift */; };
 		A615CCF2238877BD00E4EB4B /* LevelOfImportance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCF1238877BD00E4EB4B /* LevelOfImportance.swift */; };
@@ -38,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		65374A9623919F8200152129 /* PharmacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyViewController.swift; sourceTree = "<group>"; };
-		6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyTableViewController.swift; sourceTree = "<group>"; };
 		A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionTableViewController.swift; sourceTree = "<group>"; };
 		A615CCEF238874DD00E4EB4B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A615CCF1238877BD00E4EB4B /* LevelOfImportance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelOfImportance.swift; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 				FD335CB723B06E1F00CFBBAB /* ListOfItemsControllers */,
 				FD37B45523B1A22B0086C287 /* FixedSizeTableControllers */,
 				65374A9623919F8200152129 /* PharmacyViewController.swift */,
-				6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -285,7 +282,6 @@
 				FD335CBE23B07EB800CFBBAB /* AlertTableViewCell.swift in Sources */,
 				A62C4F4323AD3E8E00BB7972 /* AlertTableViewController.swift in Sources */,
 				A63B09CF238708D000ED6F25 /* AppDelegate.swift in Sources */,
-				6552D0FC239852A600B0AFFA /* PharmacyTableViewController.swift in Sources */,
 				FD335CC223B0857800CFBBAB /* MedicationInclusionTableViewCell.swift in Sources */,
 				FD335CB923B06EF800CFBBAB /* ListOfItemsTableViewController.swift in Sources */,
 				A63B09D1238708D000ED6F25 /* SceneDelegate.swift in Sources */,
