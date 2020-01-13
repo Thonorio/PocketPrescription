@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="74" id="KGk-i7-Jjw" customClass="PharmacyTableViewCell" customModule="PocketPrescription" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clipart-farmacia-2-256x256-9306-2" translatesAutoresizingMaskIntoConstraints="NO" id="RJL-zr-rgO">
+                        <rect key="frame" x="16" y="16" width="45" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="qEt-7v-25R"/>
+                            <constraint firstAttribute="width" constant="45" id="tcg-4L-4rh"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuw-eN-tyq">
+                        <rect key="frame" x="69" y="38" width="66" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcC-Qp-53q">
+                        <rect key="frame" x="212" y="15" width="92" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0KW-fc-FkX">
+                        <rect key="frame" x="69" y="16" width="45" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCO-D4-07v">
+                        <rect key="frame" x="280" y="38" width="24" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0KW-fc-FkX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="3Pe-Nf-3cF"/>
+                    <constraint firstAttribute="trailing" secondItem="sCO-D4-07v" secondAttribute="trailing" constant="16" id="F96-OX-Zxc"/>
+                    <constraint firstItem="iuw-eN-tyq" firstAttribute="top" secondItem="0KW-fc-FkX" secondAttribute="bottom" constant="1" id="LKj-Yi-cUI"/>
+                    <constraint firstItem="iuw-eN-tyq" firstAttribute="leading" secondItem="RJL-zr-rgO" secondAttribute="trailing" constant="8" id="NXW-xW-Y6G"/>
+                    <constraint firstItem="sCO-D4-07v" firstAttribute="top" secondItem="YcC-Qp-53q" secondAttribute="bottom" constant="2" id="Prq-xJ-RMn"/>
+                    <constraint firstItem="YcC-Qp-53q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Qbi-4U-gsk"/>
+                    <constraint firstItem="RJL-zr-rgO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TYL-z2-fQP"/>
+                    <constraint firstItem="0KW-fc-FkX" firstAttribute="leading" secondItem="RJL-zr-rgO" secondAttribute="trailing" constant="8" id="bw8-DP-leG"/>
+                    <constraint firstItem="RJL-zr-rgO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="g75-4M-bNS"/>
+                    <constraint firstAttribute="trailing" secondItem="YcC-Qp-53q" secondAttribute="trailing" constant="16" id="hQN-HV-MQb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="pharmacyDistance" destination="sCO-D4-07v" id="yeX-Pk-B2P"/>
+                <outlet property="pharmacyLocation" destination="iuw-eN-tyq" id="VZZ-aw-lWl"/>
+                <outlet property="pharmacyName" destination="0KW-fc-FkX" id="MgG-l5-knX"/>
+                <outlet property="pharmacyPhoneNumber" destination="YcC-Qp-53q" id="14K-nM-ug9"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="143.30357142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="clipart-farmacia-2-256x256-9306-2" width="256" height="256"/>
+    </resources>
+</document>

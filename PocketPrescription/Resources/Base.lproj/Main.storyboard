@@ -500,39 +500,44 @@
                                     <action selector="switchViews:" destination="F6s-kA-4hr" eventType="valueChanged" id="asv-nv-M57"/>
                                 </connections>
                             </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSt-N3-N0z">
-                                <rect key="frame" x="0.0" y="151" width="414" height="745"/>
-                                <connections>
-                                    <segue destination="CRT-Sg-Yzz" kind="embed" id="Lj8-LR-t78"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3o-z4-GdP">
-                                <rect key="frame" x="0.0" y="151" width="414" height="745"/>
-                                <connections>
-                                    <segue destination="XwZ-YF-4aJ" kind="embed" id="rVV-Bk-yPu"/>
-                                </connections>
-                            </containerView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cqv-Sv-tKg">
+                                <rect key="frame" x="0.0" y="145" width="414" height="668"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pharmacyTableViewCell" rowHeight="74" id="NHK-df-ve1" customClass="PharmacyTableViewCell" customModule="PocketPrescription" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="74"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NHK-df-ve1" id="Xgn-Uy-Wql">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YXd-kp-dt9">
+                                <rect key="frame" x="0.0" y="145" width="414" height="668"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="RSt-N3-N0z" firstAttribute="trailing" secondItem="Rqm-0p-VW1" secondAttribute="trailing" id="22y-OS-ine"/>
-                            <constraint firstItem="RSt-N3-N0z" firstAttribute="top" secondItem="fzH-Hb-SCc" secondAttribute="bottom" constant="16" id="7UC-Te-7SB"/>
-                            <constraint firstItem="f3o-z4-GdP" firstAttribute="top" secondItem="fzH-Hb-SCc" secondAttribute="bottom" constant="16" id="Lhl-p4-3dU"/>
+                            <constraint firstItem="YXd-kp-dt9" firstAttribute="leading" secondItem="Rqm-0p-VW1" secondAttribute="leading" id="9XP-hx-d1R"/>
+                            <constraint firstItem="Rqm-0p-VW1" firstAttribute="trailing" secondItem="cqv-Sv-tKg" secondAttribute="trailing" id="Ceg-kc-9mf"/>
+                            <constraint firstItem="Rqm-0p-VW1" firstAttribute="bottom" secondItem="cqv-Sv-tKg" secondAttribute="bottom" id="MrK-vF-5jp"/>
                             <constraint firstItem="fzH-Hb-SCc" firstAttribute="centerX" secondItem="BVT-9x-Uq9" secondAttribute="centerX" id="Qum-eW-319"/>
-                            <constraint firstItem="f3o-z4-GdP" firstAttribute="leading" secondItem="Rqm-0p-VW1" secondAttribute="leading" id="S8o-ML-BRq"/>
-                            <constraint firstItem="f3o-z4-GdP" firstAttribute="trailing" secondItem="Rqm-0p-VW1" secondAttribute="trailing" id="afe-cw-eFc"/>
-                            <constraint firstAttribute="bottom" secondItem="RSt-N3-N0z" secondAttribute="bottom" id="cK8-tB-nWB"/>
+                            <constraint firstItem="Rqm-0p-VW1" firstAttribute="trailing" secondItem="YXd-kp-dt9" secondAttribute="trailing" id="RNs-43-JRk"/>
+                            <constraint firstItem="cqv-Sv-tKg" firstAttribute="top" secondItem="fzH-Hb-SCc" secondAttribute="bottom" constant="10" id="WVQ-1u-qsq"/>
                             <constraint firstItem="fzH-Hb-SCc" firstAttribute="top" secondItem="Rqm-0p-VW1" secondAttribute="top" constant="16" id="ifF-U2-hNa"/>
-                            <constraint firstAttribute="bottom" secondItem="f3o-z4-GdP" secondAttribute="bottom" id="l8j-6j-9Gj"/>
-                            <constraint firstItem="RSt-N3-N0z" firstAttribute="leading" secondItem="Rqm-0p-VW1" secondAttribute="leading" id="nmx-PS-0qQ"/>
+                            <constraint firstItem="Rqm-0p-VW1" firstAttribute="bottom" secondItem="YXd-kp-dt9" secondAttribute="bottom" id="pjo-uY-7Ef"/>
+                            <constraint firstItem="YXd-kp-dt9" firstAttribute="top" secondItem="fzH-Hb-SCc" secondAttribute="bottom" constant="10" id="s2w-hM-se9"/>
+                            <constraint firstItem="cqv-Sv-tKg" firstAttribute="leading" secondItem="Rqm-0p-VW1" secondAttribute="leading" id="zbo-3S-80Y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rqm-0p-VW1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Farmácia" id="OFZ-nn-YuY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="firstView" destination="f3o-z4-GdP" id="TZf-Im-1Xe"/>
-                        <outlet property="secondView" destination="RSt-N3-N0z" id="iN1-d4-RQT"/>
+                        <outlet property="firstView" destination="cqv-Sv-tKg" id="iX9-zb-etF"/>
+                        <outlet property="mapView" destination="YXd-kp-dt9" id="siF-vF-EJH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcY-U9-Dmq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -847,63 +852,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dUn-WI-abY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="753.62318840579712" y="1871.6517857142856"/>
-        </scene>
-        <!--Map View Controller-->
-        <scene sceneID="qMl-gS-JHt">
-            <objects>
-                <viewController id="CRT-Sg-Yzz" customClass="MapViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HLD-yY-gq5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="745"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOc-VP-oBR">
-                                <rect key="frame" x="0.0" y="44" width="414" height="701"/>
-                                <connections>
-                                    <outlet property="delegate" destination="CRT-Sg-Yzz" id="PCD-rX-d8y"/>
-                                </connections>
-                            </mapView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="DOc-VP-oBR" firstAttribute="leading" secondItem="S5B-eR-xkA" secondAttribute="leading" id="CGg-2T-DGj"/>
-                            <constraint firstItem="DOc-VP-oBR" firstAttribute="top" secondItem="S5B-eR-xkA" secondAttribute="top" id="fOc-VW-yqP"/>
-                            <constraint firstItem="S5B-eR-xkA" firstAttribute="trailing" secondItem="DOc-VP-oBR" secondAttribute="trailing" id="oIB-hI-Cnt"/>
-                            <constraint firstItem="S5B-eR-xkA" firstAttribute="bottom" secondItem="DOc-VP-oBR" secondAttribute="bottom" id="sPo-69-16B"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="S5B-eR-xkA"/>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="DOc-VP-oBR" id="iFW-pH-uyE"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e4p-6h-ncc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2610" y="-1664"/>
-        </scene>
-        <!--Pharmacy Table View Controller-->
-        <scene sceneID="rTF-0o-48j">
-            <objects>
-                <viewController id="XwZ-YF-4aJ" customClass="PharmacyTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rPL-MY-e3o">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="745"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VvP-ac-KhM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="701"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="VvP-ac-KhM" firstAttribute="leading" secondItem="EaI-oE-OOO" secondAttribute="leading" id="NME-Ln-72V"/>
-                            <constraint firstItem="VvP-ac-KhM" firstAttribute="top" secondItem="EaI-oE-OOO" secondAttribute="top" id="dZI-gL-SpJ"/>
-                            <constraint firstItem="VvP-ac-KhM" firstAttribute="bottom" secondItem="EaI-oE-OOO" secondAttribute="bottom" id="dx2-lv-Aq9"/>
-                            <constraint firstItem="VvP-ac-KhM" firstAttribute="trailing" secondItem="EaI-oE-OOO" secondAttribute="trailing" id="wGx-24-gbK"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="EaI-oE-OOO"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LKI-8M-cH9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2557.971014492754" y="-1049.6651785714284"/>
         </scene>
         <!--Item-->
         <scene sceneID="jeZ-YU-YQa">
