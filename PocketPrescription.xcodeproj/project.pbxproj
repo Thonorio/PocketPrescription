@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65374A9623919F8200152129 /* PharmacyViewController.swift */; };
-		6552D0FA2398456800B0AFFA /* PharmacyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6552D0F82398456800B0AFFA /* PharmacyCell.xib */; };
 		6552D0FC239852A600B0AFFA /* PharmacyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */; };
 		A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */; };
 		A615CCF0238874DD00E4EB4B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEF238874DD00E4EB4B /* Location.swift */; };
@@ -33,12 +32,12 @@
 		FD335CBF23B07EB800CFBBAB /* AlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD335CBD23B07EB800CFBBAB /* AlertTableViewCell.xib */; };
 		FD335CC223B0857800CFBBAB /* MedicationInclusionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD335CC023B0857800CFBBAB /* MedicationInclusionTableViewCell.swift */; };
 		FD335CC323B0857800CFBBAB /* MedicationInclusionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD335CC123B0857800CFBBAB /* MedicationInclusionTableViewCell.xib */; };
+		FD60A67B23CC30B500CC060B /* PharmacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD60A67A23CC30B500CC060B /* PharmacyTableViewCell.swift */; };
+		FD60A67D23CC30CB00CC060B /* PharmacyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD60A67C23CC30CB00CC060B /* PharmacyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		65374A9623919F8200152129 /* PharmacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyViewController.swift; sourceTree = "<group>"; };
-		6552D0F72398456800B0AFFA /* PharmacyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyCell.swift; sourceTree = "<group>"; };
-		6552D0F82398456800B0AFFA /* PharmacyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PharmacyCell.xib; sourceTree = "<group>"; };
 		6552D0FB239852A600B0AFFA /* PharmacyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyTableViewController.swift; sourceTree = "<group>"; };
 		A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionTableViewController.swift; sourceTree = "<group>"; };
 		A615CCEF238874DD00E4EB4B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -65,6 +64,8 @@
 		FD335CBD23B07EB800CFBBAB /* AlertTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertTableViewCell.xib; sourceTree = "<group>"; };
 		FD335CC023B0857800CFBBAB /* MedicationInclusionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionTableViewCell.swift; sourceTree = "<group>"; };
 		FD335CC123B0857800CFBBAB /* MedicationInclusionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicationInclusionTableViewCell.xib; sourceTree = "<group>"; };
+		FD60A67A23CC30B500CC060B /* PharmacyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PharmacyTableViewCell.swift; sourceTree = "<group>"; };
+		FD60A67C23CC30CB00CC060B /* PharmacyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PharmacyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +96,6 @@
 				FD335CAE23B0581300CFBBAB /* CustomViewXib */,
 				FD335CAD23B057E600CFBBAB /* CustomViewCellSwift */,
 				A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */,
-				6552D0F72398456800B0AFFA /* PharmacyCell.swift */,
-				6552D0F82398456800B0AFFA /* PharmacyCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,6 +167,7 @@
 				FD335CBC23B07EB800CFBBAB /* AlertTableViewCell.swift */,
 				FD335CB123B0591500CFBBAB /* MedicationTableViewCell.swift */,
 				FD335CC023B0857800CFBBAB /* MedicationInclusionTableViewCell.swift */,
+				FD60A67A23CC30B500CC060B /* PharmacyTableViewCell.swift */,
 			);
 			path = CustomViewCellSwift;
 			sourceTree = "<group>";
@@ -178,6 +178,7 @@
 				FD335CBD23B07EB800CFBBAB /* AlertTableViewCell.xib */,
 				FD335CB223B0591500CFBBAB /* MedicationTableViewCell.xib */,
 				FD335CC123B0857800CFBBAB /* MedicationInclusionTableViewCell.xib */,
+				FD60A67C23CC30CB00CC060B /* PharmacyTableViewCell.xib */,
 			);
 			path = CustomViewXib;
 			sourceTree = "<group>";
@@ -263,7 +264,7 @@
 				A63B09DE238708D200ED6F25 /* LaunchScreen.storyboard in Resources */,
 				A63B09DB238708D200ED6F25 /* Assets.xcassets in Resources */,
 				FD335CB423B0591500CFBBAB /* MedicationTableViewCell.xib in Resources */,
-				6552D0FA2398456800B0AFFA /* PharmacyCell.xib in Resources */,
+				FD60A67D23CC30CB00CC060B /* PharmacyTableViewCell.xib in Resources */,
 				FD335CBF23B07EB800CFBBAB /* AlertTableViewCell.xib in Resources */,
 				FD335CC323B0857800CFBBAB /* MedicationInclusionTableViewCell.xib in Resources */,
 				A63B09D6238708D000ED6F25 /* Main.storyboard in Resources */,
@@ -293,6 +294,7 @@
 				E5BE818B23998AB400F9E014 /* MapViewController.swift in Sources */,
 				A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */,
 				65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */,
+				FD60A67B23CC30B500CC060B /* PharmacyTableViewCell.swift in Sources */,
 				FD335CB323B0591500CFBBAB /* MedicationTableViewCell.swift in Sources */,
 				A63B09D9238708D000ED6F25 /* PocketPrescription.xcdatamodeld in Sources */,
 			);
