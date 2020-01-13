@@ -20,6 +20,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     @IBOutlet weak var addAlertStartDate: UILabel!
     @IBOutlet weak var addAlertEndDate: UILabel!
     @IBOutlet weak var addAlertMedicationList: UILabel!
+    @IBOutlet var addAlertOkButton: UIBarButtonItem!
     
     // Variables
     var selectedDate: Date!
@@ -73,7 +74,6 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
             }
     }
     
-    
      // MARK: - UIPikerView protocol implementacion
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -122,7 +122,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     
     // MARK: - Alert Functionalities
     
-    // Todo Shpuld be hours not hours of the day
+    // Todo Should be hours not hours of the day
     func alertEditRepeat ()  {
         // Create and configure view controller
         let viewController = UIViewController()
@@ -137,9 +137,9 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         let edditRadiusAlert = UIAlertController(title: "Repeat Interval", message: nil, preferredStyle: .alert)
         edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
         edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
-            self.addAlertRepeatInterval.text = self.repeatIntervalHours
+            //treat null
+            self.addAlertRepeatInterval.text = self.repeatIntervalHours == nil ? "1 Hours" : self.repeatIntervalHours
         }))
-           
         edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         // Present alert
@@ -279,13 +279,19 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
 
         // Configure Notification Content
         notificationContent.title = addAlertLabel.text ?? "Something went Wrong"
-        notificationContent.body = "Remeber to take: "
-
+        notificationContent.subtitle = self.addAlertRepeatInterval.text ?? "No interval Defined"
+        notificationContent.body = "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")"
+        
+        // Transform the string with the hours into hours in seconds
+        let delimiter = " ";
+        let numberOfHours = Int((self.addAlertRepeatInterval.text)?.components(separatedBy: delimiter)[0] ?? "1")!
+        let hoursInSeconds = numberOfHours * 60 * 60
+        
         // Add Trigger
-        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0, repeats: false)
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(hoursInSeconds), repeats: true)
 
         // Create Notification Request
-        let notificationRequest = UNNotificationRequest(identifier: "cocoacasts_local_notification", content: notificationContent, trigger: notificationTrigger)
+        let notificationRequest = UNNotificationRequest(identifier: "medication_alert_notification", content: notificationContent, trigger: notificationTrigger)
 
         // Add Request to User Notification Center
         UNUserNotificationCenter.current().add(notificationRequest) { (error) in
@@ -294,9 +300,11 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
             }
         }
     }
+    
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert])
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.alert, .badge, .sound])
     }
     
     // MARK: - Core Data

@@ -28,6 +28,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
                
         // Load Alerts info
         alerts = self.loadData(ENTITIE)
+        
         // Cell registation
         let nibName = UINib(nibName: "AlertTableViewCell", bundle: nil)
         alertTableView.dataSource = self
@@ -78,8 +79,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         
         let alert = alerts[indexPath.row]
         cell.alertViewInit(alert.value(forKey: "name") as? String, true)
-        //print("id \(alerts[indexPath.row].objectID)")
-
+        
         return cell
     }
     
@@ -97,7 +97,9 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected cell \(indexPath.row)")
+        let cell = tableView.cellForRow(at: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "edditAlertViewControllerSegue", sender: self)
     }
     
     // MARK: - Interactions

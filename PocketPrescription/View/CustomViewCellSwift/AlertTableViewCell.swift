@@ -28,4 +28,9 @@ class AlertTableViewCell: UITableViewCell {
         alertLabel.text = name
         //alertState.state = state
     }
+    @IBAction func switchNotification(_ sender: Any) {
+        if(!alertState.isOn){
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["medication_alert_notification"])
+        }
+    }
 }

@@ -582,6 +582,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="dQQ-es-twU" kind="show" identifier="edditAlertViewControllerSegue" id="wpB-Ou-Gmv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -765,7 +768,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="eTr-zO-w4A">
-                        <barButtonItem key="rightBarButtonItem" title="OK" id="CXw-j0-R6y">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="OK" id="CXw-j0-R6y">
                             <connections>
                                 <segue destination="ix7-DK-355" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="6p6-N1-BGE"/>
                             </connections>
@@ -776,6 +779,7 @@
                         <outlet property="addAlertEndDate" destination="lG1-ep-VCi" id="Iin-mC-AEa"/>
                         <outlet property="addAlertLabel" destination="FsJ-X5-DM4" id="tl5-xJ-32C"/>
                         <outlet property="addAlertMedicationList" destination="lbq-3b-mii" id="PT5-Dz-ivg"/>
+                        <outlet property="addAlertOkButton" destination="CXw-j0-R6y" id="n9o-rQ-pkm"/>
                         <outlet property="addAlertRepeatInterval" destination="shZ-30-GK7" id="LXR-cJ-mku"/>
                         <outlet property="addAlertStartDate" destination="Zez-Ch-hnj" id="Sb3-Pv-liU"/>
                     </connections>
@@ -927,4 +931,7 @@
         <image name="gear" catalog="system" width="64" height="58"/>
         <image name="house.fill" catalog="system" width="64" height="52"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wpB-Ou-Gmv"/>
+    </inferredMetricsTieBreakers>
 </document>
