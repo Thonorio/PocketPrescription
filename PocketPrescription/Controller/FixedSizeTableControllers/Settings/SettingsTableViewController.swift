@@ -18,5 +18,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    
+    // MARK: - Interactions
+    @IBAction func unwindToThisViewController(sender: UIStoryboardSegue) {}
 }

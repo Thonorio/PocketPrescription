@@ -16,6 +16,11 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="PersonOfTrust" representedClassName="PersonOfTrust" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Pharmacy" representedClassName="Pharmacy" syncable="YES" codeGenerationType="class">
         <attribute name="countryCode" optional="YES" attributeType="String"/>
         <attribute name="isCurrentLocation" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -32,5 +37,6 @@
         <element name="Medication" positionX="-18" positionY="27" width="128" height="103"/>
         <element name="Person" positionX="-18" positionY="54" width="128" height="88"/>
         <element name="Pharmacy" positionX="-9" positionY="72" width="128" height="178"/>
+        <element name="PersonOfTrust" positionX="-9" positionY="117" width="128" height="88"/>
     </elements>
 </model>

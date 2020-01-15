@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="1650.7246376811595" y="274.55357142857139"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Person Of Trust Table View Controller-->
         <scene sceneID="xEC-Ni-isn">
             <objects>
-                <tableViewController id="ubR-f3-eo3" customClass="SettingsTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ubR-f3-eo3" customClass="PersonOfTrustTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1gB-Xi-XBx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,12 +172,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="uTR-yx-T9D">
-                        <barButtonItem key="rightBarButtonItem" title="OK" id="zfR-qz-kGc">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="OK" id="zfR-qz-kGc">
                             <connections>
-                                <segue destination="NOq-F6-YZV" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="2Tm-VA-QOU"/>
+                                <action selector="submitOk:" destination="ubR-f3-eo3" id="JgQ-uS-che"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="personOfTrustName" destination="MDE-z5-55n" id="uuu-dM-6NH"/>
+                        <outlet property="personOfTrustOKButton" destination="zfR-qz-kGc" id="fhm-ZZ-pcg"/>
+                        <outlet property="personOfTrustPhoneNumber" destination="P0L-fG-b7I" id="jxR-RS-2S0"/>
+                        <segue destination="NOq-F6-YZV" kind="unwind" identifier="unwindFromPersonOfTrustToSettings" unwindAction="unwindToThisViewControllerWithSender:" id="PXx-VZ-juH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAQ-Rq-G0d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="NOq-F6-YZV" userLabel="Exit" sceneMemberID="exit"/>
@@ -278,10 +284,16 @@
                     <navigationItem key="navigationItem" id="acC-Up-JTf">
                         <barButtonItem key="rightBarButtonItem" title="OK" id="hmY-l7-Jju">
                             <connections>
-                                <segue destination="6f9-iH-Cbg" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="sHc-l4-fUM"/>
+                                <action selector="submitOk:" destination="XYm-a6-wLf" id="pCM-C6-YLX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="edditProfileEmail" destination="AsD-DR-7e8" id="rdd-eU-UNU"/>
+                        <outlet property="edditProfileName" destination="COe-4N-y5z" id="9rB-D4-g9c"/>
+                        <outlet property="edditProfileOKButton" destination="hmY-l7-Jju" id="yZZ-at-m2L"/>
+                        <segue destination="6f9-iH-Cbg" kind="unwind" identifier="unwindFromEdditProfileToSettings" unwindAction="unwindToThisViewControllerWithSender:" id="eQZ-hE-aaW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4j-Hv-Kwm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="6f9-iH-Cbg" userLabel="Exit" sceneMemberID="exit"/>
