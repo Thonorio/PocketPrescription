@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65374A9623919F8200152129 /* PharmacyViewController.swift */; };
 		A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */; };
-		A615CCF0238874DD00E4EB4B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCEF238874DD00E4EB4B /* Location.swift */; };
 		A615CCF2238877BD00E4EB4B /* LevelOfImportance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCF1238877BD00E4EB4B /* LevelOfImportance.swift */; };
 		A61B0E9D238EE5D8002DC8FA /* MedicationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */; };
 		A61DA41C23A1847E0018CCDE /* AddAlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61DA41B23A1847E0018CCDE /* AddAlertTableViewController.swift */; };
@@ -42,7 +41,6 @@
 /* Begin PBXFileReference section */
 		65374A9623919F8200152129 /* PharmacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyViewController.swift; sourceTree = "<group>"; };
 		A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionTableViewController.swift; sourceTree = "<group>"; };
-		A615CCEF238874DD00E4EB4B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A615CCF1238877BD00E4EB4B /* LevelOfImportance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelOfImportance.swift; sourceTree = "<group>"; };
 		A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationTableViewController.swift; sourceTree = "<group>"; };
 		A61DA41B23A1847E0018CCDE /* AddAlertTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertTableViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				A63B09D7238708D000ED6F25 /* PocketPrescription.xcdatamodeld */,
-				A615CCEF238874DD00E4EB4B /* Location.swift */,
 				A615CCF1238877BD00E4EB4B /* LevelOfImportance.swift */,
 			);
 			path = Model;
@@ -298,7 +295,6 @@
 				A6B9729F239057EE003BBF48 /* AddMedicationTableViewController.swift in Sources */,
 				A6F2065523984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift in Sources */,
 				A615CCF2238877BD00E4EB4B /* LevelOfImportance.swift in Sources */,
-				A615CCF0238874DD00E4EB4B /* Location.swift in Sources */,
 				FD335CBE23B07EB800CFBBAB /* AlertTableViewCell.swift in Sources */,
 				A62C4F4323AD3E8E00BB7972 /* AlertTableViewController.swift in Sources */,
 				A63B09CF238708D000ED6F25 /* AppDelegate.swift in Sources */,
