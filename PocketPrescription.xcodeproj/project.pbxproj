@@ -41,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		65157D8023D0E6A900B1BD72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		65157D8323D0F7BB00B1BD72 /* PocketPrescription.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PocketPrescription.entitlements; sourceTree = "<group>"; };
 		65374A9623919F8200152129 /* PharmacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyViewController.swift; sourceTree = "<group>"; };
 		A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionTableViewController.swift; sourceTree = "<group>"; };
 		A615CCF1238877BD00E4EB4B /* LevelOfImportance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelOfImportance.swift; sourceTree = "<group>"; };
@@ -146,6 +147,7 @@
 		A63B09CD238708D000ED6F25 /* PocketPrescription */ = {
 			isa = PBXGroup;
 			children = (
+				65157D8323D0F7BB00B1BD72 /* PocketPrescription.entitlements */,
 				A63B09DF238708D200ED6F25 /* Info.plist */,
 				E5BE818A23998AB400F9E014 /* MapViewController.swift */,
 				A615CCE62388713400E4EB4B /* Resources */,
@@ -460,6 +462,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PocketPrescription/PocketPrescription.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PocketPrescription/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -477,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PocketPrescription/PocketPrescription.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PocketPrescription/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

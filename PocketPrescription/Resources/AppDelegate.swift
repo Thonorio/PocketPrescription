@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.locationManager = CLLocationManager()
         self.locationManager!.delegate = self
         
-        //self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
         
         // get the singleton object
         self.notificationCenter = UNUserNotificationCenter.current()
@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // define what do you need permission to use
         let options: UNAuthorizationOptions = [.alert, .sound]
+        
+        //request to use notifications pop up
+        //let notifications: UNAuthorizationOptions = [.alert, .sound]
         
         // request permission
         notificationCenter.requestAuthorization(options: options) { (granted, error) in
