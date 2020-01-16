@@ -28,9 +28,6 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load Medication info
-        medications = self.loadData(ENTITIE)
-        
         // Cell registation
         let nibName = UINib(nibName: "MedicationTableViewCell", bundle: nil)
         medicationTableView.dataSource = self
@@ -43,7 +40,7 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
     
     override func viewDidAppear(_ animated: Bool) {
         // Refresh
-        medications = self.loadData(ENTITIE)
+        medications = self.loadData(ENTITIE, "name")
         tableView.reloadData()
     }
     
@@ -68,7 +65,7 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
         cell.editingAccessoryType = UITableViewCell.AccessoryType.disclosureIndicator
        
         let medication = medications[indexPath.row]
-        cell.medicationViewInit("testing", medication.value(forKey: "name") as? String, "ola")
+        cell.medicationViewInit(medication)
 
         return cell
     }
@@ -108,7 +105,9 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! AddMedicationTableViewController
         destinationVC.edditMode = self.isEditing
-        destinationVC.edditRowId = self.rowSelected
+        if(self.isEditing){
+            destinationVC.medicationInfo = self.medications[rowSelected]
+        }
     }
     
     @IBAction func unwindToThisViewController(sender: UIStoryboardSegue) {}

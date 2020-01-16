@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class AddAlertTableViewController: TableViewControllerWithNotifications, UIPickerViewDelegate, UIPickerViewDataSource {
-       
+    
     //Outlets
     @IBOutlet weak var addAlertDatePicker: UIDatePicker!
     @IBOutlet weak var addAlertRepeatInterval: UILabel!
@@ -65,7 +65,7 @@ class AddAlertTableViewController: TableViewControllerWithNotifications, UIPicke
     
     // Variables
     let ENTITIE: String = "Alert"
-    var alertInformation: NSManagedObject?
+    var alertInfo: NSManagedObject?
     var medications: [NSManagedObject] = []
     
     var selectedDate: Date!
@@ -84,21 +84,19 @@ class AddAlertTableViewController: TableViewControllerWithNotifications, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if (self.edditMode){
+            self.inicializeFields()
+        }
+        
         // Inicialize Date
         selectedDate = self.addAlertDatePicker.date
         addAlertOkButton.isEnabled = true
+        
         // Add Listener to the Date Picker
         addAlertDatePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
 
         // Limit Amount of Colls
         tableView.tableFooterView = UIView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if (self.edditMode){
-            self.inicializeFields()
-        }
-        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -270,49 +268,18 @@ class AddAlertTableViewController: TableViewControllerWithNotifications, UIPicke
     }
         
     // MARK: - Functionality
-    @IBAction func okAddAlert(_ sender: Any) {
-        // Eddit
-        if(self.edditMode){
-            alertInformation!.setValue(true, forKey: "state")
-            alertInformation!.setValue(self.addAlertLabelText, forKey: "name")
-            alertInformation!.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
-            alertInformation!.setValue(self.addAlertStartDateText, forKey: "startDate")
-            alertInformation!.setValue(self.addAlertEndDateText, forKey: "endDate")
-            alertInformation!.setValue(NSSet(array: self.medications), forKey: "medications")
-            
-            self.saveToCoreData()
-            return
-        }
-        
-        // Add New
-        let newAlert = NSManagedObject(entity: entity!, insertInto: context)
-        
-        // Create Notification
-        self.createNotification(addAlertLabel.text ?? "Something went Wrong", self.addAlertRepeatInterval.text ?? "No interval Defined", "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")")
-        
-        //Save info to Core Data
-        newAlert.setValue(true, forKey: "state")
-        newAlert.setValue(self.addAlertLabelText, forKey: "name")
-        newAlert.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
-        newAlert.setValue(self.addAlertStartDateText, forKey: "startDate")
-        newAlert.setValue(self.addAlertEndDateText, forKey: "endDate")
-        newAlert.setValue(NSSet(array: self.medications), forKey: "medications")
-        
-        self.saveToCoreData()
-    }
-    
     func inicializeFields(){
-        self.addAlertLabel.text = self.alertInformation!.value(forKey: "name") as? String ?? "Detail"
-        self.addAlertLabelText = self.alertInformation!.value(forKey: "name") as? String ?? "Detail"
-        self.addAlertRepeatInterval.text = self.alertInformation!.value(forKey: "repeatInterval") as? String ?? "1 Hours(s)"
-        self.addAlertRepeatIntervalText = self.alertInformation!.value(forKey: "repeatInterval") as? String ?? "1 Hour(s)"
-        self.addAlertStartDate.text = self.getDataFormatedAsString(alertInformation!.value(forKey: "startDate") as! Date, "dd/MM/yyyy")
-        self.addAlertStartDateText = self.alertInformation!.value(forKey: "startDate") as! Date
-        self.addAlertEndDate.text = self.getDataFormatedAsString(alertInformation!.value(forKey: "endDate") as! Date, "dd/MM/yyyy")
-        self.addAlertEndDateText = self.alertInformation!.value(forKey: "endDate") as! Date
+        self.addAlertLabel.text = self.alertInfo!.value(forKey: "name") as? String ?? "Detail"
+        self.addAlertLabelText = self.alertInfo!.value(forKey: "name") as? String ?? "Detail"
+        self.addAlertRepeatInterval.text = self.alertInfo!.value(forKey: "repeatInterval") as? String ?? "1 Hours(s)"
+        self.addAlertRepeatIntervalText = self.alertInfo!.value(forKey: "repeatInterval") as? String ?? "1 Hour(s)"
+        self.addAlertStartDate.text = self.getDataFormatedAsString(alertInfo!.value(forKey: "startDate") as! Date, "dd/MM/yyyy")
+        self.addAlertStartDateText = self.alertInfo!.value(forKey: "startDate") as! Date
+        self.addAlertEndDate.text = self.getDataFormatedAsString(alertInfo!.value(forKey: "endDate") as! Date, "dd/MM/yyyy")
+        self.addAlertEndDateText = self.alertInfo!.value(forKey: "endDate") as! Date
         
         var medicationString = ""
-        let medications = self.alertInformation!.value(forKey: "medications") as! NSSet
+        let medications = self.alertInfo!.value(forKey: "medications") as! NSSet
         for medication in medications {
             self.medications.append(medication as! NSManagedObject)
             medicationString += ((medication as AnyObject).value(forKey: "name") as? String  ?? "") + " "
@@ -331,6 +298,37 @@ class AddAlertTableViewController: TableViewControllerWithNotifications, UIPicke
     }
     
     // MARK: - Interactions
+    @IBAction func okAddAlert(_ sender: Any) {
+        // Eddit
+        if(self.edditMode){
+            alertInfo!.setValue(true, forKey: "state")
+            alertInfo!.setValue(self.addAlertLabelText, forKey: "name")
+            alertInfo!.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
+            alertInfo!.setValue(self.addAlertStartDateText, forKey: "startDate")
+            alertInfo!.setValue(self.addAlertEndDateText, forKey: "endDate")
+            alertInfo!.setValue(NSSet(array: self.medications), forKey: "medications")
+            
+            self.saveToCoreData()
+            return
+        }
+        
+        // Create Notification
+        self.createNotification(addAlertLabel.text ?? "Something went Wrong", self.addAlertRepeatInterval.text ?? "No interval Defined", "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")")
+        
+
+        let newAlert = NSManagedObject(entity: entity!, insertInto: context)
+        
+        //Save info to Core Data
+        newAlert.setValue(true, forKey: "state")
+        newAlert.setValue(self.addAlertLabelText, forKey: "name")
+        newAlert.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
+        newAlert.setValue(self.addAlertStartDateText, forKey: "startDate")
+        newAlert.setValue(self.addAlertEndDateText, forKey: "endDate")
+        newAlert.setValue(NSSet(array: self.medications), forKey: "medications")
+        
+        self.saveToCoreData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         

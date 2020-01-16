@@ -15,9 +15,6 @@ class MedicationTableViewCell: UITableViewCell {
     @IBOutlet weak var medicationLabel: UILabel!
     @IBOutlet weak var medicationInformation: UIButton!
     
-    var coreDataContext: NSManagedObjectContext?
-    var medication: NSManagedObject?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,19 +24,11 @@ class MedicationTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func medicationViewInit(_ imgName: String, _ name: String?, _ information: String){
-        //medicationImg.image = UIImage(named: imgName)
-        medicationLabel.text = name
+    func medicationViewInit(_ medication: NSManagedObject){
+        self.medicationLabel.text = medication.value(forKey: "name") as? String
     }
     
-    func saveToCoreData(){
-       /* medication!.setValue(alertLabel.text, forKey: "name")
-        medication!.setValue(alertState.isOn, forKey: "state")*/
-        
-        do {
-            try coreDataContext!.save()
-        } catch {
-            print("Failed saving")
-        }
+    @IBAction func medicationShowInfo(_ sender: Any) {
     }
+    
 }

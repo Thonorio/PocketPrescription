@@ -562,7 +562,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addMedicationOkButton" destination="lhU-Bb-HPi" id="SDJ-eq-HTZ"/>
-                        <outlet property="categoryAddMedication" destination="9Tw-AO-eNc" id="aX4-I5-QF5"/>
+                        <outlet property="categoryAddMedication" destination="9Tw-AO-eNc" id="b12-Dx-O8S"/>
                         <outlet property="nameAddMedication" destination="RyD-ww-4fY" id="W0P-Y0-eqw"/>
                     </connections>
                 </tableViewController>

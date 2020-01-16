@@ -62,9 +62,13 @@ class ListOfItemsTableViewController: UITableViewController {
        
     // MARK: - Core Data
        
-    func loadData(_ entityName: String) -> [NSManagedObject] {
+    func loadData(_ entityName: String, _ sortBy: String) -> [NSManagedObject] {
         var information: [NSManagedObject] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        if(sortBy != nil){
+            let sort = NSSortDescriptor(key: sortBy, ascending: true)
+            request.sortDescriptors = [sort]
+        }
         request.returnsObjectsAsFaults = false
         
         do {

@@ -23,8 +23,6 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
 
     override func viewDidLoad() {
        super.viewDidLoad()
-       // Load Alerts info
-       medications = self.loadData(ENTITIE)
 
        // Cell registation
        let nibName = UINib(nibName: "MedicationInclusionTableViewCell", bundle: nil)
@@ -38,7 +36,7 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
 
     override func viewDidAppear(_ animated: Bool) {
         // Refresh
-        self.medications = self.loadData(ENTITIE)
+        self.medications = self.loadData(ENTITIE, "name")
         tableView.reloadData()
     }
     
@@ -69,13 +67,10 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
         
         // Atributes medication based on the inde
         let medication = medications[indexPath.row]
-        cell.medicationViewInit("testing", medication.value(forKey: "name") as? String)
+        cell.medicationViewInit(medication, medicationsSelected)
         
         // Change cellSwitch tag to know row
         cell.medicationState.tag = indexPath.row;
-        
-        cell.medicationsSelected = medicationsSelected
-        cell.medication = medication
         
         // Make a reponse when it switches
         cell.medicationState.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)

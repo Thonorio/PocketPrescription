@@ -25,9 +25,10 @@ class AlertTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func alertViewInit(_ name: String?, _ state: Bool){
-        alertLabel.text = name
-        alertState.isOn = state
+    func alertViewInit(_ alert: NSManagedObject){
+        self.alert = alert
+        self.alertLabel.text = alert.value(forKey: "name") as? String
+        self.alertState.isOn = alert.value(forKey: "state") as! Bool
     }
     
     @IBAction func switchNotification(_ sender: Any) {

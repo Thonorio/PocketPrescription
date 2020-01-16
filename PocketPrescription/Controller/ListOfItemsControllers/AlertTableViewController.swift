@@ -26,9 +26,6 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
     // MARK: - Life Cicle
     override func viewDidLoad() {
         super.viewDidLoad()
-               
-        // Load Alerts info
-        alerts = self.loadData(ENTITIE)
         
         // Cell registation
         let nibName = UINib(nibName: "AlertTableViewCell", bundle: nil)
@@ -43,7 +40,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
     
     override func viewDidAppear(_ animated: Bool) {
         // Refresh
-        alerts = self.loadData(ENTITIE)
+        alerts = self.loadData(ENTITIE, "name")
         tableView.reloadData()
     }
     
@@ -67,7 +64,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         cell.editingAccessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         
         let alert = alerts[indexPath.row]
-        cell.alertViewInit(alert.value(forKey: "name") as? String, alert.value(forKey: "state") as! Bool) 
+        cell.alertViewInit(alert) 
         cell.coreDataContext = self.context
         cell.alert = alert
         
@@ -110,7 +107,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         destinationVC.edditMode = self.isEditing
         
         if(self.isEditing){
-            destinationVC.alertInformation = self.alerts[rowSelected]
+            destinationVC.alertInfo = self.alerts[rowSelected]
         }
     }
     
