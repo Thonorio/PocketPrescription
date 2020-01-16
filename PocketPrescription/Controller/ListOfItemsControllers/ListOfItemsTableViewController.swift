@@ -66,12 +66,12 @@ class ListOfItemsTableViewController: UITableViewController {
         var information: [NSManagedObject] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         request.returnsObjectsAsFaults = false
-
+        
         do {
-           let result = try context.fetch(request)
-           information = (result as? [NSManagedObject])!
+            let result = try context.fetch(request)            
+            information = (result as? [NSManagedObject])!
         } catch {
-           print("Failed")
+            print("Failed")
         }
         return information
     }

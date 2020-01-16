@@ -12,17 +12,18 @@ import CoreData
 
 class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
+    // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var alertTableView: UITableView!
     @IBOutlet var alertEditMode: UIBarButtonItem!
+    @IBOutlet var alertAddMode: UIBarButtonItem!
     
     // Variables
     let ENTITIE: String = "Alert"
     var alerts: [NSManagedObject] = []
-    
+    var rowSelected: Int = -1
     
     // MARK: - Life Cicle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
                
@@ -46,19 +47,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         tableView.reloadData()
     }
     
-    // MARK: - Functionality
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-        alerts = self.searchInformation(textDidChange: searchText, ENTITIE)
-        tableView.reloadData()
-    }
-    
-    @IBAction func alertEditMode(_ sender: Any) {
-        super.setEditing(!self.isEditing , animated: true)
-    }
-    
     // MARK: - UICollectionViewDataSource
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return alerts.count
@@ -78,7 +67,9 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         cell.editingAccessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         
         let alert = alerts[indexPath.row]
-        cell.alertViewInit(alert.value(forKey: "name") as? String, true)
+        cell.alertViewInit(alert.value(forKey: "name") as? String, alert.value(forKey: "state") as! Bool) 
+        cell.coreDataContext = self.context
+        cell.alert = alert
         
         return cell
     }
@@ -97,11 +88,31 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        self.rowSelected = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "edditAlertViewControllerSegue", sender: self)
     }
     
+    // MARK: - Functionality
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        alerts = self.searchInformation(textDidChange: searchText, ENTITIE)
+        tableView.reloadData()
+    }
+    
+    @IBAction func alertEditMode(_ sender: Any) {
+        super.setEditing(!self.isEditing , animated: true)
+        self.alertAddMode.isEnabled = !self.isEditing
+    }
+    
     // MARK: - Interactions
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! AddAlertTableViewController
+        destinationVC.edditMode = self.isEditing
+        
+        if(self.isEditing){
+            destinationVC.alertInformation = self.alerts[rowSelected]
+        }
+    }
+    
     @IBAction func unwindToThisViewController(sender: UIStoryboardSegue) {}
 }

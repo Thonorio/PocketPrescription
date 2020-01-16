@@ -129,7 +129,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MDE-z5-55n">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MDE-z5-55n">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -153,7 +153,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P0L-fG-b7I">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P0L-fG-b7I">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -215,7 +215,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="COe-4N-y5z">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="COe-4N-y5z">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -239,7 +239,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AsD-DR-7e8">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AsD-DR-7e8">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -263,7 +263,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UG9-6V-xYx">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UG9-6V-xYx">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -433,6 +433,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="QFT-oH-4Rx" kind="show" identifier="edditMedicationViewControllerSegue" id="isd-16-9zS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -441,6 +444,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Medication" id="Crb-vt-T4I">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="9dY-LY-uTX">
+                            <connections>
+                                <action selector="medicationEditMode:" destination="CoH-GA-CVY" id="b45-u9-do1"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZQ7-TX-9TU">
                             <connections>
                                 <segue destination="QFT-oH-4Rx" kind="show" id="UsK-wW-vPK"/>
@@ -448,6 +456,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="medicationAddMode" destination="ZQ7-TX-9TU" id="bSC-VB-YZn"/>
+                        <outlet property="medicationEditMode" destination="9dY-LY-uTX" id="8eZ-3r-dvI"/>
                         <outlet property="medicationTableView" destination="8mB-kj-hK5" id="CJI-Nj-JRC"/>
                         <outlet property="searchBar" destination="R9Z-Fl-7g8" id="xSH-oO-a0i"/>
                     </connections>
@@ -546,12 +556,12 @@
                     <navigationItem key="navigationItem" id="OKI-bo-Hg5">
                         <barButtonItem key="rightBarButtonItem" title="OK" id="lhU-Bb-HPi">
                             <connections>
-                                <action selector="okAddMedication:" destination="QFT-oH-4Rx" id="Pfs-J5-xyf"/>
-                                <segue destination="kVd-gC-Uct" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="crM-gC-WzK"/>
+                                <segue destination="kVd-gC-Uct" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="Rn4-WJ-axw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addMedicationOkButton" destination="lhU-Bb-HPi" id="SDJ-eq-HTZ"/>
                         <outlet property="categoryAddMedication" destination="9Tw-AO-eNc" id="aX4-I5-QF5"/>
                         <outlet property="nameAddMedication" destination="RyD-ww-4fY" id="W0P-Y0-eqw"/>
                     </connections>
@@ -690,6 +700,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="alertAddMode" destination="CPf-3T-gCg" id="dhJ-Ul-Tl3"/>
                         <outlet property="alertEditMode" destination="Joo-uf-jkN" id="ZKM-oI-Ju5"/>
                         <outlet property="alertTableView" destination="0Hc-Mq-I0J" id="IN5-L8-z7h"/>
                         <outlet property="searchBar" destination="ZvW-15-0e1" id="ZRM-4z-p7O"/>
@@ -735,7 +746,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="shZ-30-GK7">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="shZ-30-GK7">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -759,7 +770,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FsJ-X5-DM4">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FsJ-X5-DM4">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -783,7 +794,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zez-Ch-hnj">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zez-Ch-hnj">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -807,7 +818,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lG1-ep-VCi">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lG1-ep-VCi">
                                                     <rect key="frame" x="331" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -831,7 +842,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lbq-3b-mii">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.5" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lbq-3b-mii">
                                                     <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -855,7 +866,7 @@
                     <navigationItem key="navigationItem" id="eTr-zO-w4A">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="OK" id="CXw-j0-R6y">
                             <connections>
-                                <segue destination="ix7-DK-355" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="6p6-N1-BGE"/>
+                                <segue destination="ix7-DK-355" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="E0j-2p-nCS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -864,9 +875,10 @@
                         <outlet property="addAlertEndDate" destination="lG1-ep-VCi" id="Iin-mC-AEa"/>
                         <outlet property="addAlertLabel" destination="FsJ-X5-DM4" id="tl5-xJ-32C"/>
                         <outlet property="addAlertMedicationList" destination="lbq-3b-mii" id="PT5-Dz-ivg"/>
-                        <outlet property="addAlertOkButton" destination="CXw-j0-R6y" id="n9o-rQ-pkm"/>
+                        <outlet property="addAlertOkButton" destination="CXw-j0-R6y" id="lWO-IX-0gw"/>
                         <outlet property="addAlertRepeatInterval" destination="shZ-30-GK7" id="LXR-cJ-mku"/>
                         <outlet property="addAlertStartDate" destination="Zez-Ch-hnj" id="Sb3-Pv-liU"/>
+                        <segue destination="ix7-DK-355" kind="unwind" identifier="unwindFromAddAlertTableToListAlert" unwindAction="unwindToThisViewControllerWithSender:" id="sEZ-3O-N8Z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sks-T5-BnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -961,5 +973,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wpB-Ou-Gmv"/>
+        <segue reference="isd-16-9zS"/>
     </inferredMetricsTieBreakers>
 </document>
