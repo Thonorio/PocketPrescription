@@ -9,11 +9,17 @@
 import UIKit
 import CoreData
 
+protocol AlertTableViewCellDelegate {
+    func cancelNotification(_ identifier: String)
+}
+
 class AlertTableViewCell: UITableViewCell {
 
     @IBOutlet weak var alertLabel: UILabel!
     @IBOutlet weak var alertState: UISwitch!
     
+    
+    var delegate: AlertTableViewCellDelegate?
     var coreDataContext: NSManagedObjectContext?
     var alert: NSManagedObject?
     
@@ -34,7 +40,7 @@ class AlertTableViewCell: UITableViewCell {
     @IBAction func switchNotification(_ sender: Any) {
         self.saveToCoreData()
         if(!alertState.isOn){
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["medication_alert_notification"])
+            self.delegate?.cancelNotification(self.alert!.value(forKey: "identifier") as! String)
         }
     }
     

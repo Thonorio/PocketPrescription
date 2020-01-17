@@ -311,20 +311,22 @@ class AddAlertTableViewController: TableViewControllerWithNotifications, UIPicke
             self.saveToCoreData()
             return
         }
-        
-        // Create Notification
-        self.createNotification(addAlertLabel.text ?? "Something went Wrong", self.addAlertRepeatInterval.text ?? "No interval Defined", "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")")
-        
 
         let newAlert = NSManagedObject(entity: entity!, insertInto: context)
+        let randomInt = Int.random(in: 0..<100)
+        let identefier = "alert_\(self.addAlertLabelText)_\(randomInt)"
         
         //Save info to Core Data
+        newAlert.setValue(identefier, forKey: "identifier")
         newAlert.setValue(true, forKey: "state")
         newAlert.setValue(self.addAlertLabelText, forKey: "name")
         newAlert.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
         newAlert.setValue(self.addAlertStartDateText, forKey: "startDate")
         newAlert.setValue(self.addAlertEndDateText, forKey: "endDate")
         newAlert.setValue(NSSet(array: self.medications), forKey: "medications")
+        
+        // Create Notification
+        self.createNotification(identefier,addAlertLabel.text ?? "Something went Wrong", self.addAlertRepeatInterval.text ?? "No interval Defined", "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")")
         
         self.saveToCoreData()
     }

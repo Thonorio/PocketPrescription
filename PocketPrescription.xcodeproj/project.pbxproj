@@ -58,6 +58,7 @@
 		A63B09DA238708D200ED6F25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A63B09DD238708D200ED6F25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A63B09DF238708D200ED6F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6728AE323D20F50000349FE /* PocketPrescription.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PocketPrescription.entitlements; sourceTree = "<group>"; };
 		A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationTableViewController.swift; sourceTree = "<group>"; };
 		A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddMedicationHeaderFooterView.swift; path = PocketPrescription/View/AddMedicationHeaderFooterView.swift; sourceTree = SOURCE_ROOT; };
 		E5BE818A23998AB400F9E014 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 		A63B09CD238708D000ED6F25 /* PocketPrescription */ = {
 			isa = PBXGroup;
 			children = (
+				A6728AE323D20F50000349FE /* PocketPrescription.entitlements */,
 				A63B09DF238708D200ED6F25 /* Info.plist */,
 				E5BE818A23998AB400F9E014 /* MapViewController.swift */,
 				A615CCE62388713400E4EB4B /* Resources */,
@@ -476,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PocketPrescription/PocketPrescription.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PocketPrescription/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -493,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PocketPrescription/PocketPrescription.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PocketPrescription/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

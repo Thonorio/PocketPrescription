@@ -86,6 +86,7 @@ class AddMedicationTableViewController: UITableViewController {
         let newMedication = NSManagedObject(entity: entity!, insertInto: context)
         
         //default is wrong
+        newMedication.setValue("testing", forKey: "infoDescription")
         newMedication.setValue(nameAddMedication.text , forKey: "name")
         newMedication.setValue(categoryAddMedication.text , forKey: "category")
         

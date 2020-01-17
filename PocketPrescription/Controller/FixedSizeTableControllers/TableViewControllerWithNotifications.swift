@@ -19,7 +19,7 @@ class TableViewControllerWithNotifications: UITableViewController, UNUserNotific
 
     // MARK: - Notifications
 
-    internal func createNotification(_ title: String, _ interval : String,_ medicationList : String ){
+    internal func createNotification(_ identifier: String, _ title: String, _ interval : String,_ medicationList : String ){
         UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
             switch notificationSettings.authorizationStatus {
                 case .notDetermined:
@@ -27,11 +27,11 @@ class TableViewControllerWithNotifications: UITableViewController, UNUserNotific
                     guard success else { return}
 
                     // Schedule Local Notification
-                    self.scheduleLocalNotification(title, interval, medicationList)
+                    self.scheduleLocalNotification(identifier, title, interval, medicationList)
                     })
                 case .authorized:
                     // Schedule Local Notification
-                    self.scheduleLocalNotification(title, interval, medicationList)
+                    self.scheduleLocalNotification(identifier, title, interval, medicationList)
                 case .denied:
                     print("Application Not Allowed to Display Notifications")
                     default: break
@@ -50,7 +50,7 @@ class TableViewControllerWithNotifications: UITableViewController, UNUserNotific
         }
     }
 
-    private func scheduleLocalNotification(_ title: String, _ interval : String,_ medicationList : String ) {
+    private func scheduleLocalNotification(_ identifier: String,_ title: String, _ interval : String,_ medicationList : String ) {
         // Create Notification Content
         let notificationContent = UNMutableNotificationContent()
 
@@ -62,12 +62,12 @@ class TableViewControllerWithNotifications: UITableViewController, UNUserNotific
         // Transform the string with the hours into hours in seconds
         let delimiter = " ";
         let numberOfHours = Int((interval.components(separatedBy: delimiter)[0] ))!
-        let hoursInSeconds = numberOfHours * 60 * 60
+        let hoursInSeconds = 10 //numberOfHours * 60 * 60
         // Add Trigger
         let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(hoursInSeconds), repeats: false)
 
         // Create Notification Request
-        let notificationRequest = UNNotificationRequest(identifier: "medication_alert_notification", content: notificationContent, trigger: notificationTrigger)
+        let notificationRequest = UNNotificationRequest(identifier: identifier, content: notificationContent, trigger: notificationTrigger)
 
         // Add Request to User Notification Center
         UNUserNotificationCenter.current().add(notificationRequest) { (error) in
@@ -77,6 +77,17 @@ class TableViewControllerWithNotifications: UITableViewController, UNUserNotific
         }
     }
     
+    private func cancelLocalNotification (_ identifier: String) {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifiers: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if notification.identifier == identifier {
+                    identifiers.append(notification.identifier)
+                }
+            }
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
+    }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
