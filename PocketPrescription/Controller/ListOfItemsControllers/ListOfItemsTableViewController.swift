@@ -10,7 +10,7 @@ import os
 import UIKit
 import CoreData
 
-class ListOfItemsTableViewController: UITableViewController {
+class ListOfItemsTableViewController: UITableViewController  {
     
     // Core Data
     let appDelegate = UIApplication.shared.delegate as! AppDelegate

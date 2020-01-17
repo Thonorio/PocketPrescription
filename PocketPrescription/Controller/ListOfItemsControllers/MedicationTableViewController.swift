@@ -10,7 +10,7 @@ import os
 import UIKit
 import CoreData
 
-class MedicationTableViewController: ListOfItemsTableViewController, UISearchBarDelegate, UISearchDisplayDelegate, MedicationTableViewCellDelegate {
+class MedicationTableViewController: ListOfItemsTableViewController, MedicationTableViewCellDelegate, UISearchBarDelegate, UISearchDisplayDelegate {
     
     // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -108,7 +108,7 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
         infoController.preferredContentSize = CGSize(width: 350,height: 50)
         
         let description = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 50))
-        description.text = "I'm a test label"
+        description.text = medication.value(forKey: "infoDescription") as? String
         description.textAlignment = .natural
         infoController.view.addSubview(description)
         

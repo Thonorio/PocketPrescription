@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Alert" representedClassName=".Alert" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="identifier" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="repeatInterval" optional="YES" attributeType="String"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -10,6 +11,7 @@
     </entity>
     <entity name="Medication" representedClassName="Medication" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="infoDescription" optional="YES" attributeType="String"/>
         <attribute name="levelOfImportance" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="alerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Alert" inverseName="medications" inverseEntity="Alert"/>
@@ -23,6 +25,7 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="state" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="Pharmacy" representedClassName="Pharmacy" syncable="YES" codeGenerationType="class">
         <attribute name="countryCode" optional="YES" attributeType="String"/>
@@ -36,10 +39,10 @@
         <attribute name="url" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Alert" positionX="267.09375" positionY="-125.92578125" width="128" height="133"/>
-        <element name="Medication" positionX="-44.87890625" positionY="-94.234375" width="128" height="103"/>
+        <element name="Alert" positionX="267.09375" positionY="-125.92578125" width="128" height="148"/>
+        <element name="Medication" positionX="-44.87890625" positionY="-94.234375" width="128" height="118"/>
         <element name="Person" positionX="366.0234375" positionY="262.265625" width="128" height="88"/>
-        <element name="PersonOfTrust" positionX="167.015625" positionY="177.26953125" width="128" height="88"/>
+        <element name="PersonOfTrust" positionX="167.015625" positionY="177.26953125" width="128" height="103"/>
         <element name="Pharmacy" positionX="432.13671875" positionY="55.67578125" width="128" height="178"/>
     </elements>
 </model>

@@ -9,9 +9,10 @@
 import os
 import UIKit
 import CoreData
+import UserNotifications
 
-class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
-    
+class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCellDelegate, UISearchBarDelegate, UISearchDisplayDelegate  {
+      
     // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var alertTableView: UITableView!
@@ -62,6 +63,7 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         // Edit mode configs
         tableView.allowsSelectionDuringEditing = true
         cell.editingAccessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        cell.delegate = self
         
         let alert = alerts[indexPath.row]
         cell.alertViewInit(alert) 
@@ -101,6 +103,18 @@ class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDeleg
         self.alertAddMode.isEnabled = !self.isEditing
     }
     
+    func cancelNotification(_ identifier: String) {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+            var identifiers: [String] = []
+            for notification:UNNotificationRequest in notificationRequests {
+                if notification.identifier == identifier {
+                    identifiers.append(notification.identifier)
+                }
+            }
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
+    }
+      
     // MARK: - Interactions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! AddAlertTableViewController
