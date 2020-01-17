@@ -36,7 +36,7 @@ class DefineHomeViewController: UIViewController, MKMapViewDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         self.loadData()
-        self.populateMap((self.mapDataReponse as? Person)!)
+        self.populateMap((person as? Person)!) // o utilizador já tem casa defenida, tenho de desenhar no mapa, não sei se estou a usar a variável certa mas tem de ser do load data
         //fazer o circulo caso haja coordenadas
 
     }
