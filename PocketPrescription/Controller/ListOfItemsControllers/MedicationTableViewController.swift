@@ -124,10 +124,19 @@ class MedicationTableViewController: ListOfItemsTableViewController, MedicationT
     
     // MARK: - Interactions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! AddMedicationTableViewController
-        destinationVC.edditMode = self.isEditing
-        if(self.isEditing){
-            destinationVC.medicationInfo = self.medications[rowSelected]
+        if segue.destination is AddMedicationTableViewController {
+            let destinationVC = segue.destination as! AddMedicationTableViewController
+            destinationVC.edditMode = self.isEditing
+            if(self.isEditing){
+                destinationVC.medicationInfo = self.medications[rowSelected]
+            }
+        }
+        if segue.destination is AddMedicationTableViewController {
+            let destinationVC = segue.destination as! AddMedicationTableViewController
+            destinationVC.edditMode = self.isEditing
+            if(self.isEditing){
+                destinationVC.medicationInfo = self.medications[rowSelected]
+            }
         }
     }
     

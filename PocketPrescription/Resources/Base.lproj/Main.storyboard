@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mt9-qG-7y8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mt9-qG-7y8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -124,7 +124,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTA-Je-TQ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3483" y="-460"/>
+            <point key="canvasLocation" x="2625" y="-460"/>
         </scene>
         <!--Add Person Of Trust Table View Controller-->
         <scene sceneID="xEC-Ni-isn">
@@ -210,7 +210,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAQ-Rq-G0d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="NOq-F6-YZV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4633" y="-460"/>
+            <point key="canvasLocation" x="3483" y="-460"/>
         </scene>
         <!--Edit Profile Table View Controller-->
         <scene sceneID="X2R-u5-ToK">
@@ -601,7 +601,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZQ7-TX-9TU">
                             <connections>
-                                <segue destination="QFT-oH-4Rx" kind="show" id="UsK-wW-vPK"/>
+                                <segue destination="NKZ-Jk-Z0e" kind="show" id="w2B-Lt-ZAH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -614,7 +614,69 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVQ-cd-icM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1651" y="1044"/>
+            <point key="canvasLocation" x="3483" y="1044"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FDg-4T-Tip">
+            <objects>
+                <viewController id="NKZ-Jk-Z0e" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bPf-hm-Tfu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edu-K8-In2">
+                                <rect key="frame" x="46" y="597" width="322" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.43264958260000003" green="0.43924942610000001" blue="0.44757360219999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P78-co-KeU">
+                                <rect key="frame" x="46" y="683" width="322" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.43264958260000003" green="0.43924942610000001" blue="0.44757360219999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Manual Creation">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="QFT-oH-4Rx" kind="show" id="rND-44-tGV"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AbY-TJ-Ufz">
+                                <rect key="frame" x="146" y="169" width="122" height="136"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.32549019610000002" green="0.3411764706" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="bandage.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XvD-ta-Czc">
+                                <rect key="frame" x="180" y="213" width="55" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dSt-SS-g53">
+                                <rect key="frame" x="46" y="385" width="322" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="dismissKeyboard:" destination="QFT-oH-4Rx" eventType="editingDidEnd" id="XOl-f0-bSI"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="5xF-J6-Muf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oBe-89-a6K"/>
+                    <connections>
+                        <segue destination="gbe-5C-kpz" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="Phf-nh-Tfh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZuH-AB-sqd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="gbe-5C-kpz" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4862" y="563"/>
         </scene>
         <!--Add Medication Table View Controller-->
         <scene sceneID="akd-WP-2yD">
@@ -728,7 +790,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KY5-eB-aRj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="kVd-gC-Uct" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2530.434782608696" y="1043.9732142857142"/>
+            <point key="canvasLocation" x="6281" y="1044"/>
         </scene>
         <!--Pharmacy-->
         <scene sceneID="FBR-PN-Wiy">
@@ -1111,7 +1173,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mai-7N-ga9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3541" y="1872"/>
+            <point key="canvasLocation" x="3483" y="1872"/>
         </scene>
         <!--Alerts-->
         <scene sceneID="zVQ-x1-3Iy">
@@ -1167,6 +1229,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wpB-Ou-Gmv"/>
-        <segue reference="isd-16-9zS"/>
+        <segue reference="rND-44-tGV"/>
     </inferredMetricsTieBreakers>
 </document>
