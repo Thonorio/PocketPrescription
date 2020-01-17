@@ -30,6 +30,7 @@
 		FD335CBF23B07EB800CFBBAB /* AlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD335CBD23B07EB800CFBBAB /* AlertTableViewCell.xib */; };
 		FD335CC223B0857800CFBBAB /* MedicationInclusionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD335CC023B0857800CFBBAB /* MedicationInclusionTableViewCell.swift */; };
 		FD335CC323B0857800CFBBAB /* MedicationInclusionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD335CC123B0857800CFBBAB /* MedicationInclusionTableViewCell.xib */; };
+		FD35A32023D165FE00146A2C /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35A31F23D165FE00146A2C /* HomePageViewController.swift */; };
 		FD3D4C2323CEEB47008DDEDC /* TableViewControllerWithNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3D4C2223CEEB47008DDEDC /* TableViewControllerWithNotifications.swift */; };
 		FD60A67B23CC30B500CC060B /* PharmacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD60A67A23CC30B500CC060B /* PharmacyTableViewCell.swift */; };
 		FD60A67D23CC30CB00CC060B /* PharmacyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD60A67C23CC30CB00CC060B /* PharmacyTableViewCell.xib */; };
@@ -65,6 +66,7 @@
 		FD335CBD23B07EB800CFBBAB /* AlertTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertTableViewCell.xib; sourceTree = "<group>"; };
 		FD335CC023B0857800CFBBAB /* MedicationInclusionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionTableViewCell.swift; sourceTree = "<group>"; };
 		FD335CC123B0857800CFBBAB /* MedicationInclusionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicationInclusionTableViewCell.xib; sourceTree = "<group>"; };
+		FD35A31F23D165FE00146A2C /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		FD3D4C2223CEEB47008DDEDC /* TableViewControllerWithNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerWithNotifications.swift; sourceTree = "<group>"; };
 		FD60A67A23CC30B500CC060B /* PharmacyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PharmacyTableViewCell.swift; sourceTree = "<group>"; };
 		FD60A67C23CC30CB00CC060B /* PharmacyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PharmacyTableViewCell.xib; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				FD335CB723B06E1F00CFBBAB /* ListOfItemsControllers */,
 				FD37B45523B1A22B0086C287 /* FixedSizeTableControllers */,
+				FD35A31F23D165FE00146A2C /* HomePageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				FD60A68323CC3FBD00CC060B /* EditProfileTableViewController.swift in Sources */,
 				FD335CB923B06EF800CFBBAB /* ListOfItemsTableViewController.swift in Sources */,
 				A63B09D1238708D000ED6F25 /* SceneDelegate.swift in Sources */,
+				FD35A32023D165FE00146A2C /* HomePageViewController.swift in Sources */,
 				FD60A68523CC3FDA00CC060B /* NotificationSettingsTableViewController.swift in Sources */,
 				FD60A68123CC3FA400CC060B /* PersonOfTrustTableViewController.swift in Sources */,
 				A61DA41C23A1847E0018CCDE /* AddAlertTableViewController.swift in Sources */,
