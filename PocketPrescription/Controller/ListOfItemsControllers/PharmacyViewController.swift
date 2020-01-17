@@ -104,8 +104,7 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
             try context.save()
 
         } catch {
-            // Error Handling
-            // ...
+            print("Error saving: \(error)")
         }
     }
 
