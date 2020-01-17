@@ -129,7 +129,6 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
 
         do {
             try context.save()
-            print("Success")
         } catch {
             print("Error saving: \(error)")
         }
@@ -210,19 +209,17 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
 }
 
 
-    extension PharmacyViewController: CLLocationManagerDelegate{
-        
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let location = locations.last else {return}
-            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters)
-            mapView.setRegion(region, animated: true)
-        }
-        
-        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            checkLocationAuthorization()
-        }
-
+extension PharmacyViewController: CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else {return}
+        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
     }
 
-
+}

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddAlertTableViewController: TableViewControllerWithNotifications, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddAlertTableViewController: UITableViewController, Notification, UIPickerViewDelegate, UIPickerViewDataSource{
     
     //Outlets
     @IBOutlet weak var addAlertDatePicker: UIDatePicker!
@@ -325,6 +325,7 @@ class AddAlertTableViewController: TableViewControllerWithNotifications, UIPicke
         newAlert.setValue(self.addAlertEndDateText, forKey: "endDate")
         newAlert.setValue(NSSet(array: self.medications), forKey: "medications")
         
+        
         // Create Notification
         self.createNotification(identefier,addAlertLabel.text ?? "Something went Wrong", self.addAlertRepeatInterval.text ?? "No interval Defined", "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")")
         
@@ -364,3 +365,5 @@ class AddAlertTableViewController: TableViewControllerWithNotifications, UIPicke
         }
     }
 }
+
+

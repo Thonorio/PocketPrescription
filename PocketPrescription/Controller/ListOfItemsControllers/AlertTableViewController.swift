@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import UserNotifications
 
-class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCellDelegate, UISearchBarDelegate, UISearchDisplayDelegate  {
+class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCellDelegate, Notification, UISearchBarDelegate, UISearchDisplayDelegate  {
       
     // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -104,15 +104,7 @@ class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCe
     }
     
     func cancelNotification(_ identifier: String) {
-        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
-            var identifiers: [String] = []
-            for notification:UNNotificationRequest in notificationRequests {
-                if notification.identifier == identifier {
-                    identifiers.append(notification.identifier)
-                }
-            }
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
-        }
+        self.cancelLocalNotification(identifier)
     }
       
     // MARK: - Interactions
