@@ -75,7 +75,7 @@ class EditProfileTableViewController: UITableViewController {
             textField.placeholder = "Name someone you trust"
             
             // Add listener to text field (when empty)
-            textField.addTarget(self, action: #selector(PersonOfTrustTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
+            textField.addTarget(self, action: #selector(AddPersonOfTrustTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
         }
         
         // Grab the value from the text field
@@ -105,7 +105,7 @@ class EditProfileTableViewController: UITableViewController {
         alertController.addTextField { (textField) in
             textField.placeholder = "What is the email"
             // Add listener to text field (when empty)
-            textField.addTarget(self, action: #selector(PersonOfTrustTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
+            textField.addTarget(self, action: #selector(AddPersonOfTrustTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
         }
         
         // Grab the value from the text field

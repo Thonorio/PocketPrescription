@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class PersonOfTrustTableViewController: UITableViewController {
+class AddPersonOfTrustTableViewController: UITableViewController {
 
     // Outlet
     @IBOutlet weak var personOfTrustName: UILabel!
@@ -37,8 +37,6 @@ class PersonOfTrustTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.loadData()
         tableView.tableFooterView = UIView()
     }
     
@@ -75,7 +73,7 @@ class PersonOfTrustTableViewController: UITableViewController {
             textField.placeholder = "Name someone you trust"
             
             // Add listener to text field (when empty)
-            textField.addTarget(self, action: #selector(PersonOfTrustTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
+            textField.addTarget(self, action: #selector(AddPersonOfTrustTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
         }
         
         // Grab the value from the text field
@@ -106,7 +104,7 @@ class PersonOfTrustTableViewController: UITableViewController {
             textField.placeholder = "What is the phone number"
             textField.keyboardType = .numberPad
             // Add listener to text field (when empty)
-            textField.addTarget(self, action: #selector(PersonOfTrustTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
+            textField.addTarget(self, action: #selector(AddPersonOfTrustTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
         }
         
         // Grab the value from the text field
@@ -131,37 +129,12 @@ class PersonOfTrustTableViewController: UITableViewController {
         
         newMedication.setValue(personOfTrustNameText , forKey: "name")
         newMedication.setValue(Int(personOfTrustPhoneNumberText) ?? 0, forKey: "phoneNumber")
+        newMedication.setValue(true, forKey: "state")
         
         // Unwind to previous page
         self.performSegue(withIdentifier: "unwindFromPersonOfTrustToSettings", sender: self)
 
         self.saveToCoreData()
-    }
-    
-    func loadData(){
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITIE)
-        request.returnsObjectsAsFaults = false
-        
-        do {
-            let result = try context.fetch(request)
-            
-            // Usefull on first Run
-            if(result.count == 0){
-                return
-            }
-            
-            let lastResult = result[result.count - 1] as! NSManagedObject
-            let name = lastResult.value(forKey: "name") as! String
-            let phoneNumber = String(describing:lastResult.value(forKey: "phoneNumber") as! Int)
-            
-            self.personOfTrustNameText = name
-            self.personOfTrustName.text = name
-            self.personOfTrustPhoneNumberText = phoneNumber
-            self.personOfTrustPhoneNumber.text = phoneNumber
-            
-        } catch {
-            print("Failed")
-        }
     }
     
     func saveToCoreData(){
