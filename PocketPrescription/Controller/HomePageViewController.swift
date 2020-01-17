@@ -70,10 +70,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
                 // primeiro campo é o valor podes meter uma variavel (eventualmente será dado pela pagina de "Lgin") e a segunda ver (forkey) é o nome dado o campo no Core Data
                 user!.setValue("Default Name", forKey: "name")
                 user!.setValue("Default Email", forKey: "email")
-                // add as you wish
-                // podes adicionar a localização onde quiseres
-                
-                // no fim de teres tudo adicionado, para gravar usas a função saveTocoreData
+
                 saveToCoreData()
                 
             }else{

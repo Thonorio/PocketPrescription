@@ -783,7 +783,7 @@
                         <viewLayoutGuide key="safeArea" id="Rqm-0p-VW1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Pharmacy" id="OFZ-nn-YuY">
-                        <barButtonItem key="rightBarButtonItem" title="Home" id="5YB-HO-0gw">
+                        <barButtonItem key="rightBarButtonItem" title="Home Zone" id="5YB-HO-0gw">
                             <connections>
                                 <segue destination="tpw-HI-pC8" kind="show" id="T94-cA-QDb"/>
                             </connections>

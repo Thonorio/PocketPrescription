@@ -175,7 +175,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let identifier = response.notification.request.identifier
         
         // do what you need to do
-        print(identifier)
+        print("ADSADASD")
         // ...
     }
 }
