@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import MapKit
 
-
 class HomePageViewController: UIViewController, CLLocationManagerDelegate {
 
     // Outlets
@@ -19,21 +18,20 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var homePersonOfTrustCount: UILabel!
     
     // Constant
+    var userInformation: NSManagedObject?
+    let locationManager = CLLocationManager()
     let ENTITIES: [String] = ["Alert", "Medication", "PersonOfTrust","Person"]
+    lazy var entity = NSEntityDescription.entity(forEntityName: ENTITIES[3], in: context)
     
     // Core Data
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
-    
-    let locationManager = CLLocationManager()
-    var utilizador: Person // é preciso inicializar?
-    let entity = NSEntityDescription.entityForName("Person", inManagedObjectContext: managedObjectContext)
-    let utilizador = Card(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
-// qual deles usar ?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadData()
+        self.loadOverviewInformation()
+        self.userInformation = manageUser()
         
         locationManager.delegate = self
         
@@ -43,11 +41,13 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
         
         locationManager.distanceFilter = 100
         
-        // fazer isto, mas há a hipótesse de o user n ter localização
-        if utilizador.latitude == 0 { //se n\ao existir este campo n precisa de monotorizar VER SE ISTO FUNCIONA
-            let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(utilizador.latitude, utilizador.longitude), radius: 100, identifier: "Geofence")
-            // aqui mudar pela localizaçao do utilizador
-            
+        // acedes a localização
+        let latitude = self.userInformation!.value(forKey: "latitude") as? Double ?? 0 // valor default caso não haja mete o que quiseres
+        let longitude = self.userInformation!.value(forKey: "longitude") as? Double ?? 0
+        
+        if latitude == 0 {
+            let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(latitude, longitude), radius: 100, identifier: "Geofence")
+           
             geoFenceRegion.notifyOnEntry = false
             geoFenceRegion.notifyOnExit = true
             
@@ -56,12 +56,37 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidLoad()
-        self.loadData()
+    func manageUser() -> NSManagedObject {
+        var user: NSManagedObject?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITIES[3])
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            
+            // Se não existe um utilizador cria
+            if(result.count == 0){
+                user = NSManagedObject(entity: entity!, insertInto: context)
+                // primeiro campo é o valor podes meter uma variavel (eventualmente será dado pela pagina de "Lgin") e a segunda ver (forkey) é o nome dado o campo no Core Data
+                user!.setValue("Default Name", forKey: "name")
+                user!.setValue("Default Email", forKey: "email")
+                // add as you wish
+                // podes adicionar a localização onde quiseres
+                
+                // no fim de teres tudo adicionado, para gravar usas a função saveTocoreData
+                saveToCoreData()
+                
+            }else{
+                user = result[result.count - 1] as? NSManagedObject
+            }
+            
+        } catch {
+            print("Failed")
+        }
+        return user!
     }
     
-    func loadData() {
+    func loadOverviewInformation() {
         var request: NSFetchRequest<NSFetchRequestResult>
         var result = [Int]()
         var i = 0
@@ -71,11 +96,6 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
             do {
                 result.append(try context.fetch(request).count)
                 i += 1
-                let resultPerson = try context.fetch(request)
-                //se for do tipo person, guardar os dados
-                if resultPerson. == "Person" {
-                    self.utilizador = (resultPerson as? [NSManagedObject])! // as? Person
-                }
             } catch {
                 print("Failed")
             }
@@ -83,5 +103,13 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
         self.homeAlertCount.text = "\(result[0])"
         self.homeMedicationCount.text = "\(result[1])"
         self.homePersonOfTrustCount.text = "\(result[2])"
+    }
+    
+    func saveToCoreData(){
+        do {
+          try context.save()
+         } catch {
+          print("Failed saving")
+        }
     }
 }
