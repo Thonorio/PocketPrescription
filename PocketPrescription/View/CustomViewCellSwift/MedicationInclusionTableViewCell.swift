@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class MedicationInclusionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var medicationImg: UIImageView!
     @IBOutlet weak var medicationLabel: UILabel!
     @IBOutlet weak var medicationState: UISwitch!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +26,8 @@ class MedicationInclusionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func medicationViewInit(_ imgName: String, _ name: String?, _ state: Bool){
-        //medicationImg.image = UIImage(named: imgName)
-        medicationLabel.text = name
-        medicationState.setOn(state, animated: false)
+    func medicationViewInit(_ medication: NSManagedObject, _ medicationsSelected: [NSManagedObject]){
+        medicationLabel.text = medication.value(forKey: "name") as? String
+        self.medicationState.isOn = medicationsSelected.contains(medication)
     }
 }
