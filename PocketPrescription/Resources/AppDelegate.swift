@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.locationManager = CLLocationManager()
         self.locationManager!.delegate = self
         
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager?.requestAlwaysAuthorization()
         
         // get the singleton object
         self.notificationCenter = UNUserNotificationCenter.current()
@@ -46,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
+        if launchOptions?[UIApplication.LaunchOptionsKey.location] != nil {
+
             print("I woke up thanks to geofencing")
         }
 
@@ -60,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let content = UNMutableNotificationContent()
         content.title = "Alerta"
         content.body = "Medicação"
-        content.sound = UNNotificationSound.default()
+        content.sound = UNNotificationSound.default
         
         // when the notification will be triggered
         let timeInSeconds: TimeInterval = 3 //em segundos

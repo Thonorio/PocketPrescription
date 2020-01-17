@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		65157D8123D0E6AA00B1BD72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65157D8023D0E6A900B1BD72 /* CoreLocation.framework */; };
 		65374A9723919F8200152129 /* PharmacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65374A9623919F8200152129 /* PharmacyViewController.swift */; };
+		659DA04423D234D900DDD164 /* DefineHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659DA04323D234D900DDD164 /* DefineHomeViewController.swift */; };
 		A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */; };
 		A615CCF2238877BD00E4EB4B /* LevelOfImportance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A615CCF1238877BD00E4EB4B /* LevelOfImportance.swift */; };
 		A61B0E9D238EE5D8002DC8FA /* MedicationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */; };
@@ -49,6 +50,7 @@
 		65157D8023D0E6A900B1BD72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		65157D8323D0F7BB00B1BD72 /* PocketPrescription.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PocketPrescription.entitlements; sourceTree = "<group>"; };
 		65374A9623919F8200152129 /* PharmacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyViewController.swift; sourceTree = "<group>"; };
+		659DA04323D234D900DDD164 /* DefineHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineHomeViewController.swift; sourceTree = "<group>"; };
 		A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationInclusionTableViewController.swift; sourceTree = "<group>"; };
 		A615CCF1238877BD00E4EB4B /* LevelOfImportance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelOfImportance.swift; sourceTree = "<group>"; };
 		A61B0E9C238EE5D8002DC8FA /* MedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationTableViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 		A63B09DA238708D200ED6F25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A63B09DD238708D200ED6F25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A63B09DF238708D200ED6F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A6728AE323D20F50000349FE /* PocketPrescription.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PocketPrescription.entitlements; sourceTree = "<group>"; };
 		A6728AE623D22041000349FE /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		A6B9729E239057EE003BBF48 /* AddMedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationTableViewController.swift; sourceTree = "<group>"; };
 		A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddMedicationHeaderFooterView.swift; path = PocketPrescription/View/AddMedicationHeaderFooterView.swift; sourceTree = SOURCE_ROOT; };
@@ -217,6 +218,7 @@
 				A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */,
 				65374A9623919F8200152129 /* PharmacyViewController.swift */,
 				FD35A32523D1774D00146A2C /* PersonOfTrustTableViewController.swift */,
+				659DA04323D234D900DDD164 /* DefineHomeViewController.swift */,
 			);
 			path = ListOfItemsControllers;
 			sourceTree = "<group>";
@@ -335,6 +337,7 @@
 				A61DA41C23A1847E0018CCDE /* AddAlertTableViewController.swift in Sources */,
 				A61B0E9D238EE5D8002DC8FA /* MedicationTableViewController.swift in Sources */,
 				FD3D4C2323CEEB47008DDEDC /* TableViewControllerWithNotifications.swift in Sources */,
+				659DA04423D234D900DDD164 /* DefineHomeViewController.swift in Sources */,
 				E5BE818B23998AB400F9E014 /* MapViewController.swift in Sources */,
 				A613509D23A438E2000DAC02 /* MedicationInclusionTableViewController.swift in Sources */,
 				FD35A32823D194AD00146A2C /* AlertService.swift in Sources */,
