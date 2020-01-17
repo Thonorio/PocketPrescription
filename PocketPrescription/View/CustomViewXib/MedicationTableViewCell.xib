@@ -25,6 +25,9 @@
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ct-tn-uAV">
                         <rect key="frame" x="279" y="9" width="25" height="24"/>
+                        <connections>
+                            <action selector="medicationShowInfo:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gsH-3k-hBc"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQt-89-zZK">
                         <rect key="frame" x="72" y="10" width="42" height="21"/>

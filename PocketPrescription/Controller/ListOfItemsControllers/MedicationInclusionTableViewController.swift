@@ -19,13 +19,10 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
     let ENTITIE: String = "Medication"
     var callback :((NSManagedObject, Bool)->())?
     var medications: [NSManagedObject] = []
-    var medications2: [NSManagedObject] = []
+    var medicationsSelected: [NSManagedObject] = []
 
     override func viewDidLoad() {
        super.viewDidLoad()
-              
-       // Load Alerts info
-       medications = self.loadData(ENTITIE)
 
        // Cell registation
        let nibName = UINib(nibName: "MedicationInclusionTableViewCell", bundle: nil)
@@ -38,9 +35,9 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
     }
 
     override func viewDidAppear(_ animated: Bool) {
-       // Refresh
-       medications = self.loadData(ENTITIE)
-       tableView.reloadData()
+        // Refresh
+        self.medications = self.loadData(ENTITIE, "name")
+        tableView.reloadData()
     }
     
     // MARK: - Functionality
@@ -49,6 +46,7 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
        medications = self.searchInformation(textDidChange: searchText, ENTITIE)
        tableView.reloadData()
     }
+    
     
     @objc func switchChanged (_ cellSwitch: UISwitch!){
         callback?(medications[cellSwitch.tag], cellSwitch.isOn)
@@ -69,13 +67,14 @@ class MedicationInclusionTableViewController: ListOfItemsTableViewController, UI
         
         // Atributes medication based on the inde
         let medication = medications[indexPath.row]
-        cell.medicationViewInit("testing", medication.value(forKey: "name") as? String, false)
+        cell.medicationViewInit(medication, medicationsSelected)
         
         // Change cellSwitch tag to know row
         cell.medicationState.tag = indexPath.row;
         
         // Make a reponse when it switches
         cell.medicationState.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        
         
         return cell
     }

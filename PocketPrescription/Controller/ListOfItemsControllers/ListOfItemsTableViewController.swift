@@ -10,7 +10,7 @@ import os
 import UIKit
 import CoreData
 
-class ListOfItemsTableViewController: UITableViewController {
+class ListOfItemsTableViewController: UITableViewController  {
     
     // Core Data
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -62,16 +62,20 @@ class ListOfItemsTableViewController: UITableViewController {
        
     // MARK: - Core Data
        
-    func loadData(_ entityName: String) -> [NSManagedObject] {
+    func loadData(_ entityName: String, _ sortBy: String) -> [NSManagedObject] {
         var information: [NSManagedObject] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        if(sortBy != nil){
+            let sort = NSSortDescriptor(key: sortBy, ascending: true)
+            request.sortDescriptors = [sort]
+        }
         request.returnsObjectsAsFaults = false
-
+        
         do {
-           let result = try context.fetch(request)
-           information = (result as? [NSManagedObject])!
+            let result = try context.fetch(request)            
+            information = (result as? [NSManagedObject])!
         } catch {
-           print("Failed")
+            print("Failed")
         }
         return information
     }

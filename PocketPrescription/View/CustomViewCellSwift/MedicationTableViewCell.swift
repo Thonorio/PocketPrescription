@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import CoreData
+
+protocol MedicationTableViewCellDelegate {
+    func medicationShowInfoForCell(_ medication: NSManagedObject)
+}
 
 class MedicationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var medicationImg: UIImageView!
     @IBOutlet weak var medicationLabel: UILabel!
     @IBOutlet weak var medicationInformation: UIButton!
+    
+    var delegate: MedicationTableViewCellDelegate?
+    var medication: NSManagedObject?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +31,13 @@ class MedicationTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func medicationViewInit(_ imgName: String, _ name: String?, _ information: String){
-        //medicationImg.image = UIImage(named: imgName)
-        medicationLabel.text = name
+    func medicationViewInit(_ medication: NSManagedObject){
+        self.medication = medication
+        self.medicationLabel.text = medication.value(forKey: "name") as? String
     }
+    
+    @IBAction func medicationShowInfo(_ sender: Any) {
+        self.delegate?.medicationShowInfoForCell(medication!)
+    }
+    
 }

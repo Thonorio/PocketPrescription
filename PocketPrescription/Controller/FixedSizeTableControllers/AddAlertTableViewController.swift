@@ -8,11 +8,9 @@
 
 import UIKit
 import CoreData
-import UserNotifications
 
-class AddAlertTableViewController: UITableViewController, UNUserNotificationCenterDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-       
-        
+class AddAlertTableViewController: UITableViewController, Notification, UIPickerViewDelegate, UIPickerViewDataSource{
+    
     //Outlets
     @IBOutlet weak var addAlertDatePicker: UIDatePicker!
     @IBOutlet weak var addAlertRepeatInterval: UILabel!
@@ -22,32 +20,80 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     @IBOutlet weak var addAlertMedicationList: UILabel!
     @IBOutlet var addAlertOkButton: UIBarButtonItem!
     
+    let referenceDate = Date()
+    // Fields to take into acount
+    var addAlertRepeatIntervalText: String = "" {
+        willSet(newValue) {
+            self.addAlertOkButton.isEnabled = ( !self.addAlertLabelText.isEmpty &&
+                !(self.addAlertStartDateText == referenceDate) &&
+                !(self.addAlertEndDateText == referenceDate) &&
+                !self.addAlertMedicationListText.isEmpty ) ? true : false
+        }
+    }
+    var addAlertLabelText: String = "" {
+        willSet(newValue) {
+            self.addAlertOkButton.isEnabled = (!self.addAlertRepeatIntervalText.isEmpty && !newValue.isEmpty &&
+                !(self.addAlertStartDateText == referenceDate) &&
+                !(self.addAlertEndDateText == referenceDate) &&
+                !self.addAlertMedicationListText.isEmpty ) ? true : false
+        }
+    }
+    var addAlertStartDateText: Date = Date() {
+        willSet(newValue) {
+            self.addAlertOkButton.isEnabled = (!self.addAlertRepeatIntervalText.isEmpty && !self.addAlertLabelText.isEmpty &&
+                !(newValue == referenceDate)  &&
+                !(self.addAlertEndDateText == referenceDate) &&
+                !self.addAlertMedicationListText.isEmpty ) ? true : false
+        }
+    }
+    var addAlertEndDateText: Date = Date() {
+        willSet(newValue) {
+            self.addAlertOkButton.isEnabled = (!self.addAlertRepeatIntervalText.isEmpty && !self.addAlertLabelText.isEmpty &&
+                !(self.addAlertStartDateText == referenceDate) &&
+                !(newValue == referenceDate) &&
+                !self.addAlertMedicationListText.isEmpty ) ? true : false
+        }
+    }
+    var addAlertMedicationListText: String = "" {
+        willSet(newValue) {
+            self.addAlertOkButton.isEnabled = (!self.addAlertRepeatIntervalText.isEmpty && !self.addAlertLabelText.isEmpty &&
+                !(self.addAlertStartDateText == referenceDate) &&
+                !(self.addAlertEndDateText == referenceDate) &&
+                !newValue.isEmpty ) ? true : false
+        }
+    }
+    
     // Variables
-    var selectedDate: Date!
     let ENTITIE: String = "Alert"
+    var alertInfo: NSManagedObject?
     var medications: [NSManagedObject] = []
+    
+    var selectedDate: Date!
     var alertSubmit: UIAlertAction?
     var repeatIntervalHours: String?
+    
+    // View will be used in what way
+    var edditMode: Bool = false
     
     // Core Data
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
-    lazy var entity = NSEntityDescription.entity(forEntityName: ENTITIE, in: context)    
-    
+    lazy var entity = NSEntityDescription.entity(forEntityName: ENTITIE, in: context)
     
     // MARK: - Life Cicle
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadData()
+        
+        if (self.edditMode){
+            self.inicializeFields()
+        }
+        
         // Inicialize Date
         selectedDate = self.addAlertDatePicker.date
-
+        addAlertOkButton.isEnabled = true
+        
         // Add Listener to the Date Picker
         addAlertDatePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-
-        // Configure User Notification Center
-        UNUserNotificationCenter.current().delegate = self
 
         // Limit Amount of Colls
         tableView.tableFooterView = UIView()
@@ -75,7 +121,6 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     }
     
      // MARK: - UIPikerView protocol implementacion
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -87,42 +132,14 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row + 1) Hours"
+        return "\(row + 1) Hour(s)"
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.repeatIntervalHours = "\(row + 1) Hours"
-    }
-     
-     // MARK: - Functionality
-     
-     @IBAction func okAddAlert(_ sender: Any) {
-         let newAlert = NSManagedObject(entity: entity!, insertInto: context)
-             
-         // Create Notification
-         self.createNotification()
-         
-         //Save info to Core Data
-         newAlert.setValue(addAlertLabel.text, forKey: "name")
-         for med in self.medications {
-             newAlert.setValue( NSSet(object: med), forKey: "medications")
-         }
-                
-         self.saveToCoreData()
-     }
-    
-    // When the text field dosn´t have anny text the Ok button is not available
-    @objc func textFieldDidChange(sender: UITextField){
-        if sender.text == "" {
-            alertSubmit!.isEnabled = false
-        }else{
-            alertSubmit!.isEnabled = true
-        }
+        self.repeatIntervalHours = "\(row + 1) Hour(s)"
     }
     
-    // MARK: - Alert Functionalities
-    
-    // Todo Should be hours not hours of the day
+    // MARK: - Fields
     func alertEditRepeat ()  {
         // Create and configure view controller
         let viewController = UIViewController()
@@ -138,6 +155,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
         edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
             //treat null
+            self.addAlertRepeatIntervalText = self.repeatIntervalHours == nil ? "1 Hours" : self.repeatIntervalHours ?? "1 Hours"
             self.addAlertRepeatInterval.text = self.repeatIntervalHours == nil ? "1 Hours" : self.repeatIntervalHours
         }))
         edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -151,6 +169,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         
         // Add Ok (Submit) Option and info destination
         alertSubmit = UIAlertAction(title: "Done", style: .default, handler: { [weak alertController] (_) in
+            self.addAlertLabelText = alertController?.textFields![0].text ?? "error"
             self.addAlertLabel.text = alertController?.textFields![0].text
         })
         
@@ -190,6 +209,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         let edditRadiusAlert = UIAlertController(title: "Starting Date", message: nil, preferredStyle: .alert)
         edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
         edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
+            self.addAlertStartDateText = datePicker.date
             self.addAlertStartDate.text = self.getDataFormatedAsString(datePicker.date, "dd/MM/yyyy")
         }))
             
@@ -213,6 +233,7 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         let edditRadiusAlert = UIAlertController(title: "Ending Date", message: nil, preferredStyle: .alert)
         edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
         edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
+            self.addAlertEndDateText = datePicker.date
             self.addAlertEndDate.text = self.getDataFormatedAsString(datePicker.date, "dd/MM/yyyy")
         }))
           
@@ -222,10 +243,16 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         self.present(edditRadiusAlert, animated: true)
     }
     
+    // When the text field dosn´t have anny text the Ok button is not available
+    @objc func textFieldDidChange(sender: UITextField){
+        if sender.text == "" {
+            alertSubmit!.isEnabled = false
+        }else{
+            alertSubmit!.isEnabled = true
+        }
+    }
     
-    // MARK: - Data Picker
-    
-    // Function executed by the listener
+    // MARK: - Data Pickers
     @objc func dateChanged (){
         selectedDate = self.addAlertDatePicker.date
     }
@@ -239,96 +266,29 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
         // Return the Date
         return dateFormatter.string(from: origianalDate)
     }
-    
-    // MARK: - Notifications
-
-    private func createNotification(){
-        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
-            switch notificationSettings.authorizationStatus {
-                case .notDetermined:
-                    self.requestAuthorization(completionHandler: { (success) in
-                    guard success else { return}
-
-                    // Schedule Local Notification
-                    self.scheduleLocalNotification()
-                    })
-                case .authorized:
-                    // Schedule Local Notification
-                    self.scheduleLocalNotification()
-                case .denied:
-                    print("Application Not Allowed to Display Notifications")
-                    default: break
-            }
-        }
-    }
-
-    // Notification Center
-    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
-        // Request Authorization
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
-            if let error = error {
-                print("Request Authorization Failed (\(error), \(error.localizedDescription))")
-            }
-            completionHandler(success)
-        }
-    }
-
-    private func scheduleLocalNotification() {
-        // Create Notification Content
-        let notificationContent = UNMutableNotificationContent()
-
-        // Configure Notification Content
-        notificationContent.title = addAlertLabel.text ?? "Something went Wrong"
-        notificationContent.subtitle = self.addAlertRepeatInterval.text ?? "No interval Defined"
-        notificationContent.body = "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")"
         
-        // Transform the string with the hours into hours in seconds
-        let delimiter = " ";
-        let numberOfHours = Int((self.addAlertRepeatInterval.text)?.components(separatedBy: delimiter)[0] ?? "1")!
-        let hoursInSeconds = numberOfHours * 60 * 60
+    // MARK: - Functionality
+    func inicializeFields(){
+        self.addAlertLabel.text = self.alertInfo!.value(forKey: "name") as? String ?? "Detail"
+        self.addAlertLabelText = self.alertInfo!.value(forKey: "name") as? String ?? "Detail"
+        self.addAlertRepeatInterval.text = self.alertInfo!.value(forKey: "repeatInterval") as? String ?? "1 Hours(s)"
+        self.addAlertRepeatIntervalText = self.alertInfo!.value(forKey: "repeatInterval") as? String ?? "1 Hour(s)"
+        self.addAlertStartDate.text = self.getDataFormatedAsString(alertInfo!.value(forKey: "startDate") as! Date, "dd/MM/yyyy")
+        self.addAlertStartDateText = self.alertInfo!.value(forKey: "startDate") as! Date
+        self.addAlertEndDate.text = self.getDataFormatedAsString(alertInfo!.value(forKey: "endDate") as! Date, "dd/MM/yyyy")
+        self.addAlertEndDateText = self.alertInfo!.value(forKey: "endDate") as! Date
         
-        // Add Trigger
-        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(hoursInSeconds), repeats: true)
-
-        // Create Notification Request
-        let notificationRequest = UNNotificationRequest(identifier: "medication_alert_notification", content: notificationContent, trigger: notificationTrigger)
-
-        // Add Request to User Notification Center
-        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
-            if let error = error {
-                print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
-            }
+        var medicationString = ""
+        let medications = self.alertInfo!.value(forKey: "medications") as! NSSet
+        for medication in medications {
+            self.medications.append(medication as! NSManagedObject)
+            medicationString += ((medication as AnyObject).value(forKey: "name") as? String  ?? "") + " "
         }
+        
+        self.addAlertMedicationList.text = medicationString
+        self.addAlertMedicationListText = medicationString
     }
     
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-    {
-        completionHandler([.alert, .badge, .sound])
-    }
-    
-    // MARK: - Core Data
-    
-    func loadData() {
-        
-       // Create Fetch Request
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITIE)
-
-        request.predicate = NSPredicate(format: "name = %@", "Detail")
-        request.returnsObjectsAsFaults = false
-        
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-             //  print(data.value(forKey: "id") as! Int)
-          }
-            
-        } catch {
-            
-            print("Failed")
-        }
-    }
-       
     func saveToCoreData(){
        do {
           try context.save()
@@ -338,33 +298,72 @@ class AddAlertTableViewController: UITableViewController, UNUserNotificationCent
     }
     
     // MARK: - Interactions
+    @IBAction func okAddAlert(_ sender: Any) {
+        // Eddit
+        if(self.edditMode){
+            alertInfo!.setValue(true, forKey: "state")
+            alertInfo!.setValue(self.addAlertLabelText, forKey: "name")
+            alertInfo!.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
+            alertInfo!.setValue(self.addAlertStartDateText, forKey: "startDate")
+            alertInfo!.setValue(self.addAlertEndDateText, forKey: "endDate")
+            alertInfo!.setValue(NSSet(array: self.medications), forKey: "medications")
+            
+            self.saveToCoreData()
+            return
+        }
+
+        let newAlert = NSManagedObject(entity: entity!, insertInto: context)
+        let randomInt = Int.random(in: 0..<100)
+        let identefier = "alert_\(self.addAlertLabelText)_\(randomInt)"
+        
+        //Save info to Core Data
+        newAlert.setValue(identefier, forKey: "identifier")
+        newAlert.setValue(true, forKey: "state")
+        newAlert.setValue(self.addAlertLabelText, forKey: "name")
+        newAlert.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
+        newAlert.setValue(self.addAlertStartDateText, forKey: "startDate")
+        newAlert.setValue(self.addAlertEndDateText, forKey: "endDate")
+        newAlert.setValue(NSSet(array: self.medications), forKey: "medications")
+        
+        
+        // Create Notification
+        self.createNotification(identefier,addAlertLabel.text ?? "Something went Wrong", self.addAlertRepeatInterval.text ?? "No interval Defined", "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")")
+        
+        self.saveToCoreData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
         if segue.destination is MedicationInclusionTableViewController
         {
-            let vc = segue.destination as? MedicationInclusionTableViewController
-            vc?.medications2 = self.medications
-            
-            let addOrSubtractMoneyVC = segue.destination as! MedicationInclusionTableViewController
-                   addOrSubtractMoneyVC.callback = { (medication, state) in
-                       let currentMedicationText = self.addAlertMedicationList.text ?? ""
-                       let medicationName = medication.value(forKey: "name") as? String  ?? ""
-                       
-                       // Easier to read (Note: medication is an optional)
-                       if state == true {
-                           // Append to last spot
-                           self.medications.append(medication)
-                           self.addAlertMedicationList.text = currentMedicationText + " " + medicationName
-                       }else{
-                           // Remove filterd object
-                           self.medications = self.medications.filter{ $0 != medication }
-                           self.addAlertMedicationList.text = currentMedicationText.replacingOccurrences(of: medicationName, with: "")
-                       }
-                   }
+            let addOrSubtractMedicationVC = segue.destination as! MedicationInclusionTableViewController
+            addOrSubtractMedicationVC.medicationsSelected = self.medications
+            addOrSubtractMedicationVC.callback = { (medication, state) in
+                let currentMedicationText = self.addAlertMedicationList.text ?? ""
+                let medicationName = medication.value(forKey: "name") as? String  ?? ""
+                
+                if state == true {
+                    // Append to last spot
+                    self.medications.append(medication)
+                    self.addAlertMedicationListText = currentMedicationText + " " + medicationName
+                    self.addAlertMedicationList.text = currentMedicationText + " " + medicationName
+                }else{
+                    // Remove filterd object
+                    self.medications = self.medications.filter{ $0 != medication }
+                    self.addAlertMedicationListText = currentMedicationText.replacingOccurrences(of: medicationName, with: "")
+                    self.addAlertMedicationList.text = currentMedicationText.replacingOccurrences(of: medicationName, with: "")
+                }
+            }
             return
         }
         
-        okAddAlert(sender as Any)
+        if segue.destination is AlertTableViewController
+        {
+            self.okAddAlert(sender as Any)
+            return
+        }
     }
 }
+
+
