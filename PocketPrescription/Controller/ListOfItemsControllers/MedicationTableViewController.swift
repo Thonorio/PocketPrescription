@@ -10,7 +10,7 @@ import os
 import UIKit
 import CoreData
 
-class MedicationTableViewController: ListOfItemsTableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
+class MedicationTableViewController: ListOfItemsTableViewController, UISearchBarDelegate, UISearchDisplayDelegate, MedicationTableViewCellDelegate {
     
     // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -44,7 +44,6 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
         tableView.reloadData()
     }
     
-    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -63,6 +62,7 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
         // Edit mode configs
         tableView.allowsSelectionDuringEditing = true
         cell.editingAccessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        cell.delegate = self
        
         let medication = medications[indexPath.row]
         cell.medicationViewInit(medication)
@@ -99,6 +99,27 @@ class MedicationTableViewController: ListOfItemsTableViewController, UISearchBar
     @IBAction func medicationEditMode(_ sender: Any) {
         super.setEditing(!self.isEditing , animated: true)
         self.medicationAddMode.isEnabled = !self.isEditing
+    }
+    
+    // MARK: - Delegate
+    func medicationShowInfoForCell(_ medication: NSManagedObject) {
+        
+        let infoController = UIViewController()
+        infoController.preferredContentSize = CGSize(width: 350,height: 50)
+        
+        let description = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 50))
+        description.text = "I'm a test label"
+        description.textAlignment = .natural
+        infoController.view.addSubview(description)
+        
+        let descriptionRadiusAlert = UIAlertController(title: medication.value(forKey: "name") as? String, message: nil, preferredStyle: .alert)
+        descriptionRadiusAlert.setValue(infoController, forKey: "contentViewController")
+        
+        // Add Done
+        descriptionRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default))
+        
+        // Show allert
+        self.present(descriptionRadiusAlert, animated: true)
     }
     
     // MARK: - Interactions
