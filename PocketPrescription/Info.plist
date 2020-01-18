@@ -22,6 +22,10 @@
 	<true/>
 	<key>MKDirectionsApplicationSupportedModes</key>
 	<array/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Precisamos da sua autorização para controlar a saída de região</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Precisamos da sua autorização para controlar a saída de região</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Precisamos da sua autorização para o bom funcionamento da aplicação</string>
 	<key>UIApplicationSceneManifest</key>
@@ -43,6 +47,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

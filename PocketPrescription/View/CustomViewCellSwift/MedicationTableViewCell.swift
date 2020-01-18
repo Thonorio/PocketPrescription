@@ -32,6 +32,12 @@ class MedicationTableViewCell: UITableViewCell {
     }
     
     func medicationViewInit(_ medication: NSManagedObject){
+        let imageData = medication.value(forKey: "image") as? Data
+        
+        if(imageData != nil){
+            self.medicationImg.image = UIImage(data:imageData!,scale:1.0)
+        }
+        
         self.medication = medication
         self.medicationLabel.text = medication.value(forKey: "name") as? String
     }
