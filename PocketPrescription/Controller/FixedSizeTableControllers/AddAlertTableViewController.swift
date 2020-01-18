@@ -12,10 +12,10 @@ import CoreData
 class AddAlertTableViewController: UITableViewController, Notification, UIPickerViewDelegate, UIPickerViewDataSource{
     
     //Outlets
-    @IBOutlet weak var addAlertDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var addAlertImportanceLevel: UILabel!
     @IBOutlet weak var addAlertRepeatInterval: UILabel!
-    @IBOutlet weak var addAlertLabel: UILabel!
-    @IBOutlet weak var addAlertStartDate: UILabel!
+    @IBOutlet weak var addAlertLabel: UITextField!
     @IBOutlet weak var addAlertEndDate: UILabel!
     @IBOutlet weak var addAlertMedicationList: UILabel!
     @IBOutlet var addAlertOkButton: UIBarButtonItem!
@@ -25,7 +25,6 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
     var addAlertRepeatIntervalText: String = "" {
         willSet(newValue) {
             self.addAlertOkButton.isEnabled = ( !self.addAlertLabelText.isEmpty &&
-                !(self.addAlertStartDateText == referenceDate) &&
                 !(self.addAlertEndDateText == referenceDate) &&
                 !self.addAlertMedicationListText.isEmpty ) ? true : false
         }
@@ -33,15 +32,6 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
     var addAlertLabelText: String = "" {
         willSet(newValue) {
             self.addAlertOkButton.isEnabled = (!self.addAlertRepeatIntervalText.isEmpty && !newValue.isEmpty &&
-                !(self.addAlertStartDateText == referenceDate) &&
-                !(self.addAlertEndDateText == referenceDate) &&
-                !self.addAlertMedicationListText.isEmpty ) ? true : false
-        }
-    }
-    var addAlertStartDateText: Date = Date() {
-        willSet(newValue) {
-            self.addAlertOkButton.isEnabled = (!self.addAlertRepeatIntervalText.isEmpty && !self.addAlertLabelText.isEmpty &&
-                !(newValue == referenceDate)  &&
                 !(self.addAlertEndDateText == referenceDate) &&
                 !self.addAlertMedicationListText.isEmpty ) ? true : false
         }
@@ -49,7 +39,6 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
     var addAlertEndDateText: Date = Date() {
         willSet(newValue) {
             self.addAlertOkButton.isEnabled = (!self.addAlertRepeatIntervalText.isEmpty && !self.addAlertLabelText.isEmpty &&
-                !(self.addAlertStartDateText == referenceDate) &&
                 !(newValue == referenceDate) &&
                 !self.addAlertMedicationListText.isEmpty ) ? true : false
         }
@@ -57,20 +46,22 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
     var addAlertMedicationListText: String = "" {
         willSet(newValue) {
             self.addAlertOkButton.isEnabled = (!self.addAlertRepeatIntervalText.isEmpty && !self.addAlertLabelText.isEmpty &&
-                !(self.addAlertStartDateText == referenceDate) &&
                 !(self.addAlertEndDateText == referenceDate) &&
                 !newValue.isEmpty ) ? true : false
         }
     }
+    var addAlertImportanceLevelText: Int = 1
     
     // Variables
     let ENTITIE: String = "Alert"
     var alertInfo: NSManagedObject?
     var medications: [NSManagedObject] = []
     
-    var selectedDate: Date!
-    var alertSubmit: UIAlertAction?
+    // Data Piker
+    var importanceLevel: Int = 1
     var repeatIntervalHours: String?
+    var numberOfHoursPicker: UIPickerView!
+    var importanceLevelPiker: UIPickerView!
     
     // View will be used in what way
     var edditMode: Bool = false
@@ -88,36 +79,32 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
             self.inicializeFields()
         }
         
-        // Inicialize Date
-        selectedDate = self.addAlertDatePicker.date
-        addAlertOkButton.isEnabled = true
+        addAlertLabel.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         
-        // Add Listener to the Date Picker
-        addAlertDatePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-
         // Limit Amount of Colls
         tableView.tableFooterView = UIView()
     }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        switch indexPath.row {
-            // Repeat
-            case 0:
-                // Create alert controller.
-                self.alertEditRepeat()
-            // Label
+
+        switch indexPath.section{
             case 1:
-                self.alertEditLabel()
-            // Starts
+                switch indexPath.row {
+                // Repeat
+                case 0:
+                    self.alertEditRepeat()
+                // Label
+                case 1:
+                    self.alertEditEndDate()
+                default:
+                    return
+                }
             case 2:
-                self.alertEditStartDate()
-            // Ends
-            case 3:
-                self.alertEditEndDate()
+                self.alertEditImportanceLevel()
             default:
                 return
-            }
+        }
     }
     
      // MARK: - UIPikerView protocol implementacion
@@ -127,16 +114,29 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // Easier to read
-        let numberOfHoursInADay = 24
-        return numberOfHoursInADay
+        if(pickerView == numberOfHoursPicker){
+            let numberOfHoursInADay = 24
+            return numberOfHoursInADay
+        }else{
+            let levelsOfImportance = 5
+            return levelsOfImportance
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row + 1) Hour(s)"
+        if(pickerView == numberOfHoursPicker){
+            return "\(row + 1) Hour(s)"
+        }else{
+            return "\(row + 1)"
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.repeatIntervalHours = "\(row + 1) Hour(s)"
+        if(pickerView == numberOfHoursPicker){
+            self.repeatIntervalHours = "\(row + 1) Hour(s)"
+        }else{
+            self.importanceLevel = row + 1
+        }
     }
     
     // MARK: - Fields
@@ -146,7 +146,7 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         viewController.preferredContentSize = CGSize(width: 250,height: 250)
 
         // Create and add data picker to view controller
-        let numberOfHoursPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
+        numberOfHoursPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
         numberOfHoursPicker.delegate = self
         viewController.view.addSubview(numberOfHoursPicker)
 
@@ -160,61 +160,6 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         }))
         edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
-        // Present alert
-        self.present(edditRadiusAlert, animated: true)
-    }
-    
-    func alertEditLabel ()  {
-        let alertController = UIAlertController(title: "Label this Alert", message: nil, preferredStyle: .alert)
-        
-        // Add Ok (Submit) Option and info destination
-        alertSubmit = UIAlertAction(title: "Done", style: .default, handler: { [weak alertController] (_) in
-            self.addAlertLabelText = alertController?.textFields![0].text ?? "error"
-            self.addAlertLabel.text = alertController?.textFields![0].text
-        })
-        
-        // Add Cancel option
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        // Ok button starts as not enabled
-        alertSubmit!.isEnabled = false
-        
-        // Add the text field to the alert
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Add a Custom Label"
-            
-            // Add listener to text field (when empty)
-            textField.addTarget(self, action: #selector(AddAlertTableViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
-        }
-        
-        // Grab the value from the text field
-        alertController.addAction(alertSubmit!)
-        alertController.addAction(cancelAction)
-        
-        // Show allert
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func alertEditStartDate ()  {
-        // Create and configure view controller
-        let viewController = UIViewController()
-        viewController.preferredContentSize = CGSize(width: 250,height: 250)
-        
-        // Create and add data picker to view controller
-        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
-        datePicker.datePickerMode = .date
-        viewController.view.addSubview(datePicker)
-        
-        // Add options
-        let edditRadiusAlert = UIAlertController(title: "Starting Date", message: nil, preferredStyle: .alert)
-        edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
-        edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
-            self.addAlertStartDateText = datePicker.date
-            self.addAlertStartDate.text = self.getDataFormatedAsString(datePicker.date, "dd/MM/yyyy")
-        }))
-            
-        edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         // Present alert
         self.present(edditRadiusAlert, animated: true)
     }
@@ -243,20 +188,34 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         self.present(edditRadiusAlert, animated: true)
     }
     
-    // When the text field dosn´t have anny text the Ok button is not available
-    @objc func textFieldDidChange(sender: UITextField){
-        if sender.text == "" {
-            alertSubmit!.isEnabled = false
-        }else{
-            alertSubmit!.isEnabled = true
-        }
+    func alertEditImportanceLevel (){
+        // Create and configure view controller
+        let viewController = UIViewController()
+        viewController.preferredContentSize = CGSize(width: 250,height: 250)
+
+        // Create and add data picker to view controller
+        importanceLevelPiker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
+        importanceLevelPiker.delegate = self
+        viewController.view.addSubview(importanceLevelPiker)
+
+        // Add options
+        let edditRadiusAlert = UIAlertController(title: "Level of Importance", message: nil, preferredStyle: .alert)
+        edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
+        edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
+            self.addAlertImportanceLevelText = self.importanceLevel
+            self.addAlertImportanceLevel.text = "\(self.importanceLevel)"
+        }))
+        edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        // Present alert
+        self.present(edditRadiusAlert, animated: true)
+    }
+    
+    @objc func textFieldChanged(_ sender: Any) {
+        self.addAlertLabelText = self.addAlertLabel.text!
     }
     
     // MARK: - Data Pickers
-    @objc func dateChanged (){
-        selectedDate = self.addAlertDatePicker.date
-    }
-    
     // Translate UIDataPiker into  Date
     func  getDataFormatedAsString(_ origianalDate: Date, _ format: String) -> String {
         // Format to usable format
@@ -273,8 +232,10 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         self.addAlertLabelText = self.alertInfo!.value(forKey: "name") as? String ?? "Detail"
         self.addAlertRepeatInterval.text = self.alertInfo!.value(forKey: "repeatInterval") as? String ?? "1 Hours(s)"
         self.addAlertRepeatIntervalText = self.alertInfo!.value(forKey: "repeatInterval") as? String ?? "1 Hour(s)"
-        self.addAlertStartDate.text = self.getDataFormatedAsString(alertInfo!.value(forKey: "startDate") as! Date, "dd/MM/yyyy")
-        self.addAlertStartDateText = self.alertInfo!.value(forKey: "startDate") as! Date
+        
+        self.addAlertImportanceLevel.text = "\(self.alertInfo!.value(forKey: "importanceLevel") as? Int ?? 0)"
+        self.addAlertImportanceLevelText = self.alertInfo!.value(forKey: "importanceLevel") as? Int ?? 0
+        
         self.addAlertEndDate.text = self.getDataFormatedAsString(alertInfo!.value(forKey: "endDate") as! Date, "dd/MM/yyyy")
         self.addAlertEndDateText = self.alertInfo!.value(forKey: "endDate") as! Date
         
@@ -293,7 +254,7 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         alertInfo!.setValue(true, forKey: "state")
         alertInfo!.setValue(self.addAlertLabelText, forKey: "name")
         alertInfo!.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
-        alertInfo!.setValue(self.addAlertStartDateText, forKey: "startDate")
+        alertInfo!.setValue(self.addAlertImportanceLevelText as Int, forKey: "importanceLevel")
         alertInfo!.setValue(self.addAlertEndDateText, forKey: "endDate")
         alertInfo!.setValue(NSSet(array: self.medications), forKey: "medications")
         
@@ -311,7 +272,7 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         newAlert.setValue(true, forKey: "state")
         newAlert.setValue(self.addAlertLabelText, forKey: "name")
         newAlert.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
-        newAlert.setValue(self.addAlertStartDateText, forKey: "startDate")
+        newAlert.setValue(self.addAlertImportanceLevelText, forKey: "importanceLevel")
         newAlert.setValue(self.addAlertEndDateText, forKey: "endDate")
         newAlert.setValue(NSSet(array: self.medications), forKey: "medications")
         
