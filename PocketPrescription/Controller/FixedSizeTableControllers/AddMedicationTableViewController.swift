@@ -19,6 +19,8 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
     @IBOutlet var medicationRecommendedInterval: UILabel!
     @IBOutlet var medicationDescription: UITextView!
     @IBOutlet var medicationImgButton: UIView!
+    @IBOutlet var medicationAddImgButon: UIButton!
+    
     @IBOutlet weak var addMedicationOkButton: UIBarButtonItem!
     
     // Fields to take into acount
@@ -33,7 +35,7 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         }
     }
     var repeatIntervalHours: String?
-    var levelOfImportante: Int?
+    var levelOfImportante: Int = 0
     
     var profileImageViewWidth: CGFloat = 100
     
@@ -104,6 +106,14 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         self.nameAddMedicationText = self.medicationInfo!.value(forKey: "name") as? String ?? "Detail"
         self.categoryAddMedication.text = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
         self.categoryAddMedicationText = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
+        
+        self.medicationLevelOfImportance.text = String(self.medicationInfo!.value(forKey: "importanceLevel") as! Int)
+        self.repeatIntervalHours = self.medicationInfo!.value(forKey: "repeatIntervalHours") as? String ?? "Detail"
+        self.medicationRecommendedInterval.text = self.medicationInfo!.value(forKey: "repeatIntervalHours") as? String ?? "Detail"
+        self.medicationDescription.text = self.medicationInfo!.value(forKey: "infoDescription") as? String ?? "No Description Found"
+        
+        
+      //  self.medicationAddImgButon = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
     }
     
     func levelOfImportanceTapped(){
@@ -120,7 +130,7 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         let edditRadiusAlert = UIAlertController(title: "Level of Importance", message: nil, preferredStyle: .alert)
         edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
         edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
-            self.medicationLevelOfImportance.text = String(self.levelOfImportante == nil ? 1 : self.levelOfImportante!)
+            self.medicationLevelOfImportance.text = String(self.levelOfImportante)
         }))
         edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -168,13 +178,16 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
     
     // MARK: - Interactions
     @IBAction func okAddMedication(_ sender: Any) {
+        
+        let description = self.medicationDescription.text.isEmpty ? "No Description Found" : self.medicationDescription.text
+        
         if(self.edditMode){
-            //medicationInfo!.setValue(self.medicationImgButton, forKey: "image")
+            medicationInfo!.setValue((medicationAddImgButon.currentImage)!.pngData(), forKey: "image")
             medicationInfo!.setValue(self.nameAddMedicationText, forKey: "name")
             medicationInfo!.setValue(self.categoryAddMedicationText, forKey: "category")
             medicationInfo!.setValue(self.repeatIntervalHours, forKey: "repeatIntervalHours")
-            medicationInfo!.setValue(self.medicationLevelOfImportance.text, forKey: "levelOfImportance")
-            medicationInfo!.setValue(self.medicationDescription.text, forKey: "infoDescription")
+            medicationInfo!.setValue(self.levelOfImportante, forKey: "importanceLevel")
+            medicationInfo!.setValue(description, forKey: "infoDescription")
             
             self.saveToCoreData()
             return
@@ -182,10 +195,12 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         
         let newMedication = NSManagedObject(entity: entity!, insertInto: context)
         
-        //default is wrong
-        newMedication.setValue("testing", forKey: "infoDescription")
-        newMedication.setValue(nameAddMedication.text , forKey: "name")
-        newMedication.setValue(categoryAddMedication.text , forKey: "category")
+        newMedication.setValue((medicationAddImgButon.currentImage)!.pngData(), forKey: "image")
+        newMedication.setValue(self.nameAddMedicationText, forKey: "name")
+        newMedication.setValue(self.categoryAddMedicationText, forKey: "category")
+        newMedication.setValue(self.repeatIntervalHours, forKey: "repeatIntervalHours")
+        newMedication.setValue(self.levelOfImportante, forKey: "importanceLevel")
+        newMedication.setValue(description, forKey: "infoDescription")
         
         saveToCoreData()
     }
@@ -223,17 +238,12 @@ extension AddMedicationTableViewController: UIImagePickerControllerDelegate, UIN
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-       /* if let editImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            var bgImage: UIImageView?
-            var image: UIImage = editImage
-            bgImage = UIImageView(image: image)
-            medicationImgButton.addSubview(bgImage!)
+       if let editImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            medicationAddImgButon.setImage(editImage, for: UIControl.State.normal)
         }else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage  {
-            var bgImage: UIImageView?
-            var image: UIImage = originalImage
-            bgImage = UIImageView(image: image)
-            medicationImgButton.addSubview(bgImage!)
-        }*/
+        
+            medicationAddImgButon.setImage(originalImage, for: UIControl.State.normal)
+        }
         dismiss(animated: true, completion: nil)
     }
     

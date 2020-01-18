@@ -633,7 +633,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="1"/>
                                     <color key="tintColor" red="0.32549019610000002" green="0.3411764706" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <state key="normal" title="Button" image="plus.circle.fill" catalog="system">
+                                    <state key="normal" title="Button" image="bandage.fill" catalog="system">
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="81"/>
                                     </state>
                                     <connections>
@@ -747,11 +747,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YrW-mX-SLN">
-                                                    <rect key="frame" x="20" y="19" width="374" height="115"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="No Description Found" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YrW-mX-SLN">
+                                                    <rect key="frame" x="20" y="30" width="374" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" smartDashesType="yes" smartInsertDeleteType="yes"/>
@@ -777,6 +776,7 @@
                     <connections>
                         <outlet property="addMedicationOkButton" destination="lhU-Bb-HPi" id="SDJ-eq-HTZ"/>
                         <outlet property="categoryAddMedication" destination="9Tw-AO-eNc" id="b12-Dx-O8S"/>
+                        <outlet property="medicationAddImgButon" destination="NoM-Ob-NJZ" id="gwo-zP-B0S"/>
                         <outlet property="medicationDescription" destination="YrW-mX-SLN" id="2jl-jf-Aad"/>
                         <outlet property="medicationImgButton" destination="NoM-Ob-NJZ" id="taA-Ck-wge"/>
                         <outlet property="medicationLevelOfImportance" destination="uKr-xz-ttK" id="0Hy-bz-kOu"/>
@@ -1233,7 +1233,6 @@
         <image name="logo_transparent" width="1200" height="1200"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
         <image name="plus" catalog="system" width="64" height="56"/>
-        <image name="plus.circle.fill" catalog="system" width="64" height="60"/>
         <image name="square" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
