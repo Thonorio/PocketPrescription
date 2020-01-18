@@ -45,14 +45,12 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
         let latitude = self.userInformation!.value(forKey: "latitude") as? Double ?? 0
         let longitude = self.userInformation!.value(forKey: "longitude") as? Double ?? 0
         
-        if latitude == 0 {
-            let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(latitude, longitude), radius: 100, identifier: "Geofence")
-           
-            geoFenceRegion.notifyOnEntry = false
-            geoFenceRegion.notifyOnExit = true
-            
-            locationManager.startMonitoring(for: geoFenceRegion)
-        }
+        let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(latitude, longitude), radius: 100, identifier: "Geofence")
+       
+        geoFenceRegion.notifyOnEntry = true
+        geoFenceRegion.notifyOnExit = true
+        
+        locationManager.startMonitoring(for: geoFenceRegion)
         
     }
     

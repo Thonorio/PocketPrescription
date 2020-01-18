@@ -17,10 +17,11 @@ class AppDelegate: UIResponder, Notification, UIApplicationDelegate {
     var locationManager: CLLocationManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         self.locationManager = CLLocationManager()
         self.locationManager!.delegate = self
         
-        self.locationManager?.requestAlwaysAuthorization()
+        self.locationManager!.requestAlwaysAuthorization()
         
         return true
     }
@@ -94,6 +95,11 @@ extension AppDelegate: CLLocationManagerDelegate {
         if region is CLCircularRegion {
             createNotification(region.identifier, "lol", "", 3, "")
         }
+    }
+    
+    // called when user Enters a monitored region
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("Enter")
     }
 }
 
