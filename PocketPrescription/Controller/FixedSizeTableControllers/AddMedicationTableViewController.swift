@@ -11,10 +11,13 @@ import os
 import MessageUI
 import CoreData
 
-class AddMedicationTableViewController: UITableViewController {
+class AddMedicationTableViewController: UITableViewController,  UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var nameAddMedication: UITextField!
     @IBOutlet weak var categoryAddMedication: UITextField!
+    @IBOutlet var medicationLevelOfImportance: UILabel!
+    @IBOutlet var medicationRecommendedInterval: UILabel!
+    @IBOutlet var medicationDescription: UITextView!
     @IBOutlet var medicationImgButton: UIView!
     @IBOutlet weak var addMedicationOkButton: UIBarButtonItem!
     
@@ -29,16 +32,10 @@ class AddMedicationTableViewController: UITableViewController {
             self.addMedicationOkButton.isEnabled = (!self.nameAddMedicationText.isEmpty && !newValue.isEmpty ) ? true : false
         }
     }
+    var repeatIntervalHours: String?
+    var levelOfImportante: Int?
     
     var profileImageViewWidth: CGFloat = 100
-    
-    lazy var profileImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = profileImageViewWidth / 2
-        iv.layer.masksToBounds = true
-        return iv
-    }()
     
     // Variables
     let ENTITIE: String = "Medication"
@@ -56,8 +53,6 @@ class AddMedicationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(profileImageView)
-        
         if (edditMode){
             self.inicializeFields()
         }
@@ -72,32 +67,85 @@ class AddMedicationTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView()
     }
-    // MARK: - Functionality
     
-    @IBAction func okAddMedication(_ sender: Any) {
-        if(self.edditMode){
-            medicationInfo!.setValue(self.nameAddMedicationText, forKey: "name")
-            medicationInfo!.setValue(self.categoryAddMedicationText, forKey: "category")
-            
-            self.saveToCoreData()
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        switch indexPath.row {
+        case 0:
+            self.levelOfImportanceTapped()
+        case 1:
+            self.recommendedIntervalTapped()
+        default:
             return
         }
-        
-        let newMedication = NSManagedObject(entity: entity!, insertInto: context)
-        
-        //default is wrong
-        newMedication.setValue("testing", forKey: "infoDescription")
-        newMedication.setValue(nameAddMedication.text , forKey: "name")
-        newMedication.setValue(categoryAddMedication.text , forKey: "category")
-        
-        saveToCoreData()
     }
     
+    // MARK: - UIPikerView protocol implementacion
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        // Easier to read
+        let levelsOfImportance = 5
+        return levelsOfImportance
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(row + 1)"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.levelOfImportante = row + 1
+    }
+    
+    // MARK: - Functionality
     func inicializeFields(){
         self.nameAddMedication.text = self.medicationInfo!.value(forKey: "name") as? String ?? "Detail"
         self.nameAddMedicationText = self.medicationInfo!.value(forKey: "name") as? String ?? "Detail"
         self.categoryAddMedication.text = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
         self.categoryAddMedicationText = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
+    }
+    
+    func levelOfImportanceTapped(){
+        // Create and configure view controller
+        let viewController = UIViewController()
+        viewController.preferredContentSize = CGSize(width: 250,height: 250)
+        
+        // Create and add data picker to view controller
+        let numberOfHoursPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
+        numberOfHoursPicker.delegate = self
+        viewController.view.addSubview(numberOfHoursPicker)
+        
+        // Add options
+        let edditRadiusAlert = UIAlertController(title: "Level of Importance", message: nil, preferredStyle: .alert)
+        edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
+        edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
+            self.medicationLevelOfImportance.text = String(self.levelOfImportante == nil ? 1 : self.levelOfImportante!)
+        }))
+        edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Present alert
+        self.present(edditRadiusAlert, animated: true)
+    }
+    func recommendedIntervalTapped(){
+        let alertController = UIAlertController(title: "Label this Alert", message: nil, preferredStyle: .alert)
+        
+        // Add Ok (Submit) Option and info destination
+        let submit =  UIAlertAction(title: "Done", style: .default, handler: { [weak alertController] (_) in
+            self.repeatIntervalHours = alertController?.textFields![0].text ?? "1 Hour(s)"
+            self.medicationRecommendedInterval.text = alertController?.textFields![0].text ?? "1 Hour(s)"
+        })
+        
+        // Add the text field to the alert
+        alertController.addTextField { (textField) in
+            textField.placeholder = "10 Hour(s)"
+        }
+        
+        // Grab the value from the text field
+        alertController.addAction(submit)
+        
+        // Show allert
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func textFieldChanged(_ sender: Any) {
@@ -119,6 +167,29 @@ class AddMedicationTableViewController: UITableViewController {
     }
     
     // MARK: - Interactions
+    @IBAction func okAddMedication(_ sender: Any) {
+        if(self.edditMode){
+            //medicationInfo!.setValue(self.medicationImgButton, forKey: "image")
+            medicationInfo!.setValue(self.nameAddMedicationText, forKey: "name")
+            medicationInfo!.setValue(self.categoryAddMedicationText, forKey: "category")
+            medicationInfo!.setValue(self.repeatIntervalHours, forKey: "repeatIntervalHours")
+            medicationInfo!.setValue(self.medicationLevelOfImportance.text, forKey: "levelOfImportance")
+            medicationInfo!.setValue(self.medicationDescription.text, forKey: "infoDescription")
+            
+            self.saveToCoreData()
+            return
+        }
+        
+        let newMedication = NSManagedObject(entity: entity!, insertInto: context)
+        
+        //default is wrong
+        newMedication.setValue("testing", forKey: "infoDescription")
+        newMedication.setValue(nameAddMedication.text , forKey: "name")
+        newMedication.setValue(categoryAddMedication.text , forKey: "category")
+        
+        saveToCoreData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         self.okAddMedication(sender as Any)
@@ -152,11 +223,17 @@ extension AddMedicationTableViewController: UIImagePickerControllerDelegate, UIN
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let editImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            profileImageView.image = editImage
+       /* if let editImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            var bgImage: UIImageView?
+            var image: UIImage = editImage
+            bgImage = UIImageView(image: image)
+            medicationImgButton.addSubview(bgImage!)
         }else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage  {
-            profileImageView.image = originalImage
-        }
+            var bgImage: UIImageView?
+            var image: UIImage = originalImage
+            bgImage = UIImageView(image: image)
+            medicationImgButton.addSubview(bgImage!)
+        }*/
         dismiss(animated: true, completion: nil)
     }
     
