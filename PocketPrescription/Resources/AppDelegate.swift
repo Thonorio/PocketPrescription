@@ -8,17 +8,24 @@
 
 import UIKit
 import CoreData
+import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, Notification, UIApplicationDelegate {
+    
+    var locationManager: CLLocationManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-         print(urls[urls.count-1] as URL)
-
+        self.locationManager = CLLocationManager()
+        self.locationManager!.delegate = self
+        
+        self.locationManager!.requestAlwaysAuthorization()
+        
         return true
     }
+    
 
     // MARK: UISceneSession Lifecycle
 
@@ -80,5 +87,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
+extension AppDelegate: CLLocationManagerDelegate {
+    // called when user Exits a monitored region
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            createNotification(region.identifier, "lol", "", 3, "")
+        }
+    }
+}
+
  
 
