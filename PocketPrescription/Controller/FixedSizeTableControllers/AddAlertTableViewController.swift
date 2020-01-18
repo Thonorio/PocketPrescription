@@ -289,6 +289,43 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         self.addAlertMedicationListText = medicationString
     }
     
+    func editAlert() {
+        alertInfo!.setValue(true, forKey: "state")
+        alertInfo!.setValue(self.addAlertLabelText, forKey: "name")
+        alertInfo!.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
+        alertInfo!.setValue(self.addAlertStartDateText, forKey: "startDate")
+        alertInfo!.setValue(self.addAlertEndDateText, forKey: "endDate")
+        alertInfo!.setValue(NSSet(array: self.medications), forKey: "medications")
+        
+        self.saveToCoreData()
+    }
+    
+    func createAlert() {
+        let newAlert = NSManagedObject(entity: entity!, insertInto: context)
+        let randomInt = Int.random(in: 0..<100)
+        let identefier = "alert_\(self.addAlertLabelText)_\(randomInt)"
+        let description = "Remeber to take: \(self.addAlertMedicationListText)"
+        
+        //Save info to Core Data
+        newAlert.setValue(identefier, forKey: "identifier")
+        newAlert.setValue(true, forKey: "state")
+        newAlert.setValue(self.addAlertLabelText, forKey: "name")
+        newAlert.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
+        newAlert.setValue(self.addAlertStartDateText, forKey: "startDate")
+        newAlert.setValue(self.addAlertEndDateText, forKey: "endDate")
+        newAlert.setValue(NSSet(array: self.medications), forKey: "medications")
+        
+        // Transform the string with the hours into hours in seconds
+        let delimiter = " ";
+        let numberOfHours = Int((self.addAlertRepeatIntervalText.components(separatedBy: delimiter)[0] ))!
+        let hoursInSeconds = numberOfHours * 60 * 60
+        
+        // Create Notification
+        self.createNotification(identefier, self.addAlertLabelText, self.addAlertRepeatIntervalText, hoursInSeconds ,description)
+        
+        self.saveToCoreData()
+    }
+    
     func saveToCoreData(){
        do {
           try context.save()
@@ -301,35 +338,10 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
     @IBAction func okAddAlert(_ sender: Any) {
         // Eddit
         if(self.edditMode){
-            alertInfo!.setValue(true, forKey: "state")
-            alertInfo!.setValue(self.addAlertLabelText, forKey: "name")
-            alertInfo!.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
-            alertInfo!.setValue(self.addAlertStartDateText, forKey: "startDate")
-            alertInfo!.setValue(self.addAlertEndDateText, forKey: "endDate")
-            alertInfo!.setValue(NSSet(array: self.medications), forKey: "medications")
-            
-            self.saveToCoreData()
+            self.editAlert()
             return
         }
-
-        let newAlert = NSManagedObject(entity: entity!, insertInto: context)
-        let randomInt = Int.random(in: 0..<100)
-        let identefier = "alert_\(self.addAlertLabelText)_\(randomInt)"
-        
-        //Save info to Core Data
-        newAlert.setValue(identefier, forKey: "identifier")
-        newAlert.setValue(true, forKey: "state")
-        newAlert.setValue(self.addAlertLabelText, forKey: "name")
-        newAlert.setValue(self.addAlertRepeatIntervalText, forKey: "repeatInterval")
-        newAlert.setValue(self.addAlertStartDateText, forKey: "startDate")
-        newAlert.setValue(self.addAlertEndDateText, forKey: "endDate")
-        newAlert.setValue(NSSet(array: self.medications), forKey: "medications")
-        
-        
-        // Create Notification
-        self.createNotification(identefier,addAlertLabel.text ?? "Something went Wrong", self.addAlertRepeatInterval.text ?? "No interval Defined", "Remeber to take: \(addAlertMedicationList.text ?? "Medication Missing")")
-        
-        self.saveToCoreData()
+        self.createAlert()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -365,5 +377,3 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         }
     }
 }
-
-

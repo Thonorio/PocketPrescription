@@ -15,7 +15,8 @@ protocol Notification  {
 extension Notification {
     // MARK: - Notifications
     
-    internal func createNotification(_ identifier: String, _ title: String, _ interval : String,_ medicationList : String ){
+    // Create Base Notification
+    internal func createNotification(_ identifier: String,_ title: String, _ subTitle: String, _ interval : Int,_ description : String){
         UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
             switch notificationSettings.authorizationStatus {
                 case .notDetermined:
@@ -23,11 +24,11 @@ extension Notification {
                     guard success else { return}
                     
                     // Schedule Local Notification
-                    self.scheduleLocalNotification(identifier, title, interval, medicationList)
+                    self.scheduleLocalNotification(identifier, title, subTitle, interval, description)
                 })
                 case .authorized:
                 // Schedule Local Notification
-                self.scheduleLocalNotification(identifier, title, interval, medicationList)
+                self.scheduleLocalNotification(identifier, title, subTitle, interval, description)
                 case .denied:
                 print("Application Not Allowed to Display Notifications")
                 default: break
@@ -36,7 +37,7 @@ extension Notification {
     }
     
     // Notification Center
-    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
+    internal func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
         // Request Authorization
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
         if let error = error {
@@ -46,21 +47,16 @@ extension Notification {
         }
     }
     
-    private func scheduleLocalNotification(_ identifier: String,_ title: String, _ interval : String,_ medicationList : String ) {
+    private func scheduleLocalNotification(_ identifier: String,_ title: String, _ subTitle: String, _ interval : Int,_ description : String ) {
         // Create Notification Content
         let notificationContent = UNMutableNotificationContent()
-        
         // Configure Notification Content
         notificationContent.title = title
-        notificationContent.subtitle = interval
-        notificationContent.body = medicationList
+        notificationContent.subtitle = subTitle
+        notificationContent.body = description
         
-        // Transform the string with the hours into hours in seconds
-        let delimiter = " ";
-        let numberOfHours = Int((interval.components(separatedBy: delimiter)[0] ))!
-        let hoursInSeconds = 10 //numberOfHours * 60 * 60
         // Add Trigger
-        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(hoursInSeconds), repeats: false)
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(interval), repeats: false)
         
         // Create Notification Request
         let notificationRequest = UNNotificationRequest(identifier: identifier, content: notificationContent, trigger: notificationTrigger)
@@ -85,8 +81,15 @@ extension Notification {
         }
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {        
+        // get the notification identifier to respond accordingly
+        let identifier = response.notification.request.identifier
+        print(identifier)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+        
         completionHandler([.alert, .badge, .sound])
     }
 }

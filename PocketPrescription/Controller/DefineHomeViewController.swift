@@ -73,7 +73,6 @@ class DefineHomeViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func addRegion(_ sender: Any) {
-        
         guard let longPress = sender as? UILongPressGestureRecognizer else { return }
         let touchLocation = longPress.location(in: mapView)
         let coordinate = mapView.convert(touchLocation, toCoordinateFrom: mapView)
@@ -87,6 +86,8 @@ class DefineHomeViewController: UIViewController, MKMapViewDelegate {
         self.mapView.addOverlay(circle)
         
         locationManager.startMonitoring(for: region)
+        print(coordinate.latitude)
+        print(coordinate.longitude)
         self.saveUserHouse(coordinate.latitude,coordinate.longitude)
     }
     
