@@ -32,4 +32,5 @@ class MedicationInclusionTableViewCell: UITableViewCell {
         self.medicationLabel.text = medication.value(forKey: "name") as? String
         self.medicationState.isOn = medicationsSelected.contains(medication)
     }
+    
 }

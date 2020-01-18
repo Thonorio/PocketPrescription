@@ -12,7 +12,6 @@
     <entity name="Medication" representedClassName="Medication" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
-        <attribute name="importanceLevel" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="infoDescription" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="repeatIntervalHours" optional="YES" attributeType="String"/>
@@ -44,7 +43,7 @@
     </entity>
     <elements>
         <element name="Alert" positionX="267.09375" positionY="-125.92578125" width="128" height="148"/>
-        <element name="Medication" positionX="-44.87890625" positionY="-94.234375" width="128" height="148"/>
+        <element name="Medication" positionX="-44.87890625" positionY="-94.234375" width="128" height="133"/>
         <element name="Person" positionX="366.0234375" positionY="262.265625" width="128" height="118"/>
         <element name="PersonOfTrust" positionX="167.015625" positionY="177.26953125" width="128" height="103"/>
         <element name="Pharmacy" positionX="432.13671875" positionY="55.67578125" width="128" height="178"/>

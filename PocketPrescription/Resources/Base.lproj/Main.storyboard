@@ -625,17 +625,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edu-K8-In2">
-                                <rect key="frame" x="46" y="597" width="322" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.43264958260000003" green="0.43924942610000001" blue="0.44757360219999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                             <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P78-co-KeU">
-                                <rect key="frame" x="46" y="683" width="322" height="42"/>
+                                <rect key="frame" x="46" y="718" width="322" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.43264958260000003" green="0.43924942610000001" blue="0.44757360219999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -646,38 +637,22 @@
                                     <segue destination="QFT-oH-4Rx" kind="show" id="rND-44-tGV"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AbY-TJ-Ufz">
-                                <rect key="frame" x="146" y="169" width="122" height="136"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.32549019610000002" green="0.3411764706" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="bandage.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XvD-ta-Czc">
-                                <rect key="frame" x="180" y="213" width="55" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dSt-SS-g53">
-                                <rect key="frame" x="46" y="385" width="322" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" id="uaA-12-FI3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="608"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <action selector="dismissKeyboard:" destination="QFT-oH-4Rx" eventType="editingDidEnd" id="XOl-f0-bSI"/>
+                                    <segue destination="94F-Yh-bia" kind="embed" id="o91-N3-nyE"/>
                                 </connections>
-                            </textField>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="5xF-J6-Muf"/>
                     </view>
                     <navigationItem key="navigationItem" id="oBe-89-a6K"/>
-                    <connections>
-                        <segue destination="gbe-5C-kpz" kind="unwind" unwindAction="unwindToThisViewControllerWithSender:" id="Phf-nh-Tfh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZuH-AB-sqd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="gbe-5C-kpz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4862" y="563"/>
+            <point key="canvasLocation" x="4860.8695652173919" y="562.5"/>
         </scene>
         <!--Add Medication Table View Controller-->
         <scene sceneID="akd-WP-2yD">
@@ -751,32 +726,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Details" id="Imc-ca-Y7V">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="vh7-QB-7i9" detailTextLabel="uKr-xz-ttK" rowHeight="43" style="IBUITableViewCellStyleValue1" id="DMX-Rk-gdk">
-                                        <rect key="frame" x="0.0" y="332" width="414" height="43"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DMX-Rk-gdk" id="OS7-iM-QIN">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Level Of Importance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vh7-QB-7i9">
-                                                    <rect key="frame" x="20" y="12" width="155" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uKr-xz-ttK">
-                                                    <rect key="frame" x="331" y="12" width="44" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="mEM-Le-Vel" detailTextLabel="F8B-Se-yA0" rowHeight="43" style="IBUITableViewCellStyleValue1" id="dtf-Am-H3e">
-                                        <rect key="frame" x="0.0" y="375" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="332" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dtf-Am-H3e" id="35b-Km-Y3A">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="43"/>
@@ -804,7 +755,7 @@
                             <tableViewSection headerTitle="Description" id="utz-qo-S51">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="126" id="Sh6-vL-mn8">
-                                        <rect key="frame" x="0.0" y="474" width="414" height="126"/>
+                                        <rect key="frame" x="0.0" y="431" width="414" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sh6-vL-mn8" id="ZRV-Dd-G6J">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="126"/>
@@ -842,7 +793,6 @@
                         <outlet property="medicationAddImgButon" destination="NoM-Ob-NJZ" id="gwo-zP-B0S"/>
                         <outlet property="medicationDescription" destination="YrW-mX-SLN" id="2jl-jf-Aad"/>
                         <outlet property="medicationImgButton" destination="NoM-Ob-NJZ" id="taA-Ck-wge"/>
-                        <outlet property="medicationLevelOfImportance" destination="uKr-xz-ttK" id="0Hy-bz-kOu"/>
                         <outlet property="medicationRecommendedInterval" destination="F8B-Se-yA0" id="ZOp-Sn-ClC"/>
                         <outlet property="nameAddMedication" destination="RyD-ww-4fY" id="W0P-Y0-eqw"/>
                     </connections>
@@ -1284,6 +1234,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9Z-gl-9AV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="740.57971014492762" y="-1235.4910714285713"/>
+        </scene>
+        <!--Medication Table View Controller-->
+        <scene sceneID="ZQe-8n-oB0">
+            <objects>
+                <viewController id="94F-Yh-bia" customClass="APIMedicationTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bcr-Jj-EUI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="530"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="evA-4i-uGA">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MedicationTableViewCell" id="7Mf-Q0-Olz" customClass="APIMedicationTableViewCell" customModule="PocketPrescription" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Mf-Q0-Olz" id="JGj-Un-zSb">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <connections>
+                        <outlet property="medicationInclusionTableView" destination="bcr-Jj-EUI" id="5Uq-Uz-yBx"/>
+                        <outlet property="searchBar" destination="evA-4i-uGA" id="r7K-fp-l3g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xgy-cg-EOu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5679.7101449275369" y="426.89732142857139"/>
         </scene>
     </scenes>
     <resources>
