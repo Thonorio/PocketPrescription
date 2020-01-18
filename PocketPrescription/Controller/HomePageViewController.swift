@@ -47,7 +47,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
         
         let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(latitude, longitude), radius: 100, identifier: "Geofence")
        
-        geoFenceRegion.notifyOnEntry = true
+        geoFenceRegion.notifyOnEntry = false
         geoFenceRegion.notifyOnExit = true
         
         locationManager.startMonitoring(for: geoFenceRegion)

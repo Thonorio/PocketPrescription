@@ -91,15 +91,9 @@ class AppDelegate: UIResponder, Notification, UIApplicationDelegate {
 extension AppDelegate: CLLocationManagerDelegate {
     // called when user Exits a monitored region
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("Testing")
         if region is CLCircularRegion {
             createNotification(region.identifier, "lol", "", 3, "")
         }
-    }
-    
-    // called when user Enters a monitored region
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("Enter")
     }
 }
 
