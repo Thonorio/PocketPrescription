@@ -15,7 +15,6 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
     
     @IBOutlet weak var nameAddMedication: UITextField!
     @IBOutlet weak var categoryAddMedication: UITextField!
-    @IBOutlet var medicationLevelOfImportance: UILabel!
     @IBOutlet var medicationRecommendedInterval: UILabel!
     @IBOutlet var medicationDescription: UITextView!
     @IBOutlet var medicationImgButton: UIView!
@@ -35,7 +34,6 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         }
     }
     var repeatIntervalHours: String?
-    var levelOfImportante: Int = 0
     
     var profileImageViewWidth: CGFloat = 100
     
@@ -73,8 +71,6 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         switch indexPath.row {
         case 0:
-            self.levelOfImportanceTapped()
-        case 1:
             self.recommendedIntervalTapped()
         default:
             return
@@ -88,16 +84,16 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // Easier to read
-        let levelsOfImportance = 5
-        return levelsOfImportance
+        let hoursInADay = 24
+        return hoursInADay
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row + 1)"
+        return "\(row + 1) Hour(s)"
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.levelOfImportante = row + 1
+        self.repeatIntervalHours = "\(row + 1) Hour(s)"
     }
     
     // MARK: - Functionality
@@ -111,13 +107,14 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         self.categoryAddMedication.text = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
         self.categoryAddMedicationText = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
         
-        self.medicationLevelOfImportance.text = String(self.medicationInfo!.value(forKey: "importanceLevel") as! Int)
         self.repeatIntervalHours = self.medicationInfo!.value(forKey: "repeatIntervalHours") as? String ?? "Detail"
         self.medicationRecommendedInterval.text = self.medicationInfo!.value(forKey: "repeatIntervalHours") as? String ?? "Detail"
         self.medicationDescription.text = self.medicationInfo!.value(forKey: "infoDescription") as? String ?? "No Description Found"
     }
     
-    func levelOfImportanceTapped(){
+   
+    func recommendedIntervalTapped(){
+        
         // Create and configure view controller
         let viewController = UIViewController()
         viewController.preferredContentSize = CGSize(width: 250,height: 250)
@@ -128,35 +125,15 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         viewController.view.addSubview(numberOfHoursPicker)
         
         // Add options
-        let edditRadiusAlert = UIAlertController(title: "Level of Importance", message: nil, preferredStyle: .alert)
+        let edditRadiusAlert = UIAlertController(title: "Repeat Interval", message: nil, preferredStyle: .alert)
         edditRadiusAlert.setValue(viewController, forKey: "contentViewController")
         edditRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (_) in
-            self.medicationLevelOfImportance.text = String(self.levelOfImportante)
+            self.medicationRecommendedInterval.text = String(self.repeatIntervalHours!)
         }))
         edditRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
+
         // Present alert
         self.present(edditRadiusAlert, animated: true)
-    }
-    func recommendedIntervalTapped(){
-        let alertController = UIAlertController(title: "Label this Alert", message: nil, preferredStyle: .alert)
-        
-        // Add Ok (Submit) Option and info destination
-        let submit =  UIAlertAction(title: "Done", style: .default, handler: { [weak alertController] (_) in
-            self.repeatIntervalHours = alertController?.textFields![0].text ?? "1 Hour(s)"
-            self.medicationRecommendedInterval.text = alertController?.textFields![0].text ?? "1 Hour(s)"
-        })
-        
-        // Add the text field to the alert
-        alertController.addTextField { (textField) in
-            textField.placeholder = "10 Hour(s)"
-        }
-        
-        // Grab the value from the text field
-        alertController.addAction(submit)
-        
-        // Show allert
-        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func textFieldChanged(_ sender: Any) {
@@ -187,7 +164,6 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
             medicationInfo!.setValue(self.nameAddMedicationText, forKey: "name")
             medicationInfo!.setValue(self.categoryAddMedicationText, forKey: "category")
             medicationInfo!.setValue(self.repeatIntervalHours, forKey: "repeatIntervalHours")
-            medicationInfo!.setValue(self.levelOfImportante, forKey: "importanceLevel")
             medicationInfo!.setValue(description, forKey: "infoDescription")
             
             self.saveToCoreData()
@@ -200,7 +176,6 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         newMedication.setValue(self.nameAddMedicationText, forKey: "name")
         newMedication.setValue(self.categoryAddMedicationText, forKey: "category")
         newMedication.setValue(self.repeatIntervalHours, forKey: "repeatIntervalHours")
-        newMedication.setValue(self.levelOfImportante, forKey: "importanceLevel")
         newMedication.setValue(description, forKey: "infoDescription")
         
         saveToCoreData()

@@ -28,8 +28,11 @@ class MedicationInclusionTableViewCell: UITableViewCell {
     
     func medicationViewInit(_ medication: NSManagedObject, _ medicationsSelected: [NSManagedObject]){
         let imageData = medication.value(forKey: "image") as? Data
-        self.medicationImg.image = UIImage(data:imageData!,scale:1.0)
+        if(imageData != nil) {
+            self.medicationImg.image = UIImage(data:imageData!,scale:1.0)
+        }
         self.medicationLabel.text = medication.value(forKey: "name") as? String
         self.medicationState.isOn = medicationsSelected.contains(medication)
     }
+    
 }
