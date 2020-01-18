@@ -42,7 +42,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.distanceFilter = 100
         
         // acedes a localização
-        let latitude = self.userInformation!.value(forKey: "latitude") as? Double ?? 0 // valor default caso não haja mete o que quiseres
+        let latitude = self.userInformation!.value(forKey: "latitude") as? Double ?? 0
         let longitude = self.userInformation!.value(forKey: "longitude") as? Double ?? 0
         
         if latitude == 0 {
@@ -67,7 +67,6 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
             // Se não existe um utilizador cria
             if(result.count == 0){
                 user = NSManagedObject(entity: entity!, insertInto: context)
-                // primeiro campo é o valor podes meter uma variavel (eventualmente será dado pela pagina de "Lgin") e a segunda ver (forkey) é o nome dado o campo no Core Data
                 user!.setValue("Default Name", forKey: "name")
                 user!.setValue("Default Email", forKey: "email")
 

@@ -126,6 +126,7 @@
 			children = (
 				FD335CB723B06E1F00CFBBAB /* ListOfItemsControllers */,
 				FD37B45523B1A22B0086C287 /* FixedSizeTableControllers */,
+				659DA04323D234D900DDD164 /* DefineHomeViewController.swift */,
 				FD35A31F23D165FE00146A2C /* HomePageViewController.swift */,
 			);
 			path = Controller;
@@ -218,7 +219,6 @@
 				A613509C23A438E2000DAC02 /* MedicationInclusionTableViewController.swift */,
 				65374A9623919F8200152129 /* PharmacyViewController.swift */,
 				FD35A32523D1774D00146A2C /* PersonOfTrustTableViewController.swift */,
-				659DA04323D234D900DDD164 /* DefineHomeViewController.swift */,
 			);
 			path = ListOfItemsControllers;
 			sourceTree = "<group>";
