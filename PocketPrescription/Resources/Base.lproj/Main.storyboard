@@ -89,7 +89,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="nOF-MD-anv">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="453" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -392,8 +392,7 @@
                                 <rect key="frame" x="58" y="97" width="298" height="309"/>
                                 <color key="tintColor" red="0.37058424829999997" green="0.16862745100000001" blue="0.34901960780000002" alpha="0.80581121580000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="298" id="5kF-B8-F0b"/>
-                                    <constraint firstAttribute="height" constant="309" id="Ecc-0W-Anv"/>
+                                    <constraint firstAttribute="height" constant="309" id="v3z-Jd-u6F"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="bell.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rzT-8x-gby">
@@ -407,7 +406,6 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="g1u-3g-jPW" firstAttribute="leading" secondItem="MIF-g8-He9" secondAttribute="leading" constant="58" id="2Us-Fu-07t"/>
                             <constraint firstItem="e4q-qg-jU3" firstAttribute="leading" secondItem="uvg-ga-ObR" secondAttribute="trailing" constant="-90" id="55G-Ra-OC3"/>
                             <constraint firstItem="16x-i7-sEc" firstAttribute="top" secondItem="rzT-8x-gby" secondAttribute="bottom" constant="-89.5" id="6KG-Jy-2N2"/>
                             <constraint firstItem="dda-XV-Ws5" firstAttribute="top" secondItem="lTl-Da-iKY" secondAttribute="bottom" constant="32" id="7mP-jE-vgy"/>
@@ -416,7 +414,6 @@
                             <constraint firstItem="uvg-ga-ObR" firstAttribute="top" secondItem="e4q-qg-jU3" secondAttribute="bottom" constant="-87" id="FSM-ik-dMW"/>
                             <constraint firstItem="MIF-g8-He9" firstAttribute="bottom" secondItem="dda-XV-Ws5" secondAttribute="bottom" constant="26" id="G0V-oV-JV6"/>
                             <constraint firstItem="MIF-g8-He9" firstAttribute="bottom" secondItem="TqO-0f-iG0" secondAttribute="bottom" constant="26" id="GZ8-Ky-Ptz"/>
-                            <constraint firstItem="g1u-3g-jPW" firstAttribute="top" secondItem="MIF-g8-He9" secondAttribute="top" constant="53" id="Giv-Mt-zsn"/>
                             <constraint firstItem="TqO-0f-iG0" firstAttribute="top" secondItem="VAc-tl-Rmo" secondAttribute="bottom" constant="32" id="IYO-K8-NLH"/>
                             <constraint firstItem="AfR-IQ-ZMF" firstAttribute="top" secondItem="sq6-ni-1VH" secondAttribute="bottom" constant="-92.5" id="Imp-7B-YHk"/>
                             <constraint firstItem="MIF-g8-He9" firstAttribute="bottom" secondItem="BRi-tx-mYd" secondAttribute="bottom" constant="27" id="KbN-Kf-Cf0"/>
@@ -430,11 +427,15 @@
                             <constraint firstItem="TKA-Je-1MB" firstAttribute="trailing" secondItem="MIF-g8-He9" secondAttribute="trailing" id="cO7-Ch-CNC"/>
                             <constraint firstItem="sq6-ni-1VH" firstAttribute="leading" secondItem="MIF-g8-He9" secondAttribute="leading" constant="9" id="gS5-aW-S6o"/>
                             <constraint firstItem="CKG-Zb-eDB" firstAttribute="top" secondItem="16x-i7-sEc" secondAttribute="bottom" constant="5.5" id="j1Z-ip-ZBC"/>
+                            <constraint firstItem="MIF-g8-He9" firstAttribute="trailing" secondItem="g1u-3g-jPW" secondAttribute="trailing" constant="58" id="l9W-Ay-KGM"/>
                             <constraint firstItem="lTl-Da-iKY" firstAttribute="top" secondItem="sq6-ni-1VH" secondAttribute="bottom" constant="5.5" id="lyE-K5-zba"/>
                             <constraint firstItem="CKG-Zb-eDB" firstAttribute="centerX" secondItem="MIF-g8-He9" secondAttribute="centerX" id="n6i-dx-7uq"/>
                             <constraint firstItem="MIF-g8-He9" firstAttribute="trailing" secondItem="uvg-ga-ObR" secondAttribute="trailing" constant="10" id="nYz-wK-KkJ"/>
                             <constraint firstItem="VAc-tl-Rmo" firstAttribute="top" secondItem="uvg-ga-ObR" secondAttribute="bottom" constant="5.5" id="pMU-Uf-uha"/>
                             <constraint firstItem="BRi-tx-mYd" firstAttribute="centerX" secondItem="MIF-g8-He9" secondAttribute="centerX" id="qI0-em-v4c"/>
+                            <constraint firstItem="g1u-3g-jPW" firstAttribute="top" secondItem="TKA-Je-1MB" secondAttribute="bottom" constant="9" id="qMW-dr-dn4"/>
+                            <constraint firstItem="g1u-3g-jPW" firstAttribute="centerX" secondItem="TKA-Je-1MB" secondAttribute="centerX" id="rqa-SI-EVN"/>
+                            <constraint firstItem="g1u-3g-jPW" firstAttribute="leading" secondItem="MIF-g8-He9" secondAttribute="leading" constant="58" id="t5z-gk-KEi"/>
                             <constraint firstItem="TKA-Je-1MB" firstAttribute="leading" secondItem="MIF-g8-He9" secondAttribute="leading" id="xR9-Cr-1vX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MIF-g8-He9"/>
@@ -569,7 +570,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="R9Z-Fl-7g8">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="453" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -921,7 +922,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="ZvW-15-0e1">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="453" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1153,7 +1154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="dAy-WR-WQk">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="453" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
