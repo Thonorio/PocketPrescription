@@ -131,6 +131,13 @@ class MedicationTableViewController: ListOfItemsTableViewController, MedicationT
                 destinationVC.medicationInfo = self.medications[rowSelected]
             }
         }
+        if segue.destination is AddMedicationTableViewController {
+            let destinationVC = segue.destination as! AddMedicationTableViewController
+            destinationVC.edditMode = self.isEditing
+            if(self.isEditing){
+                destinationVC.medicationInfo = self.medications[rowSelected]
+            }
+        }
     }
     
     @IBAction func unwindToThisViewController(sender: UIStoryboardSegue) {}
