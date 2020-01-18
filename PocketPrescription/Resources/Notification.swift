@@ -82,9 +82,10 @@ extension Notification {
     }
     
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {        
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // get the notification identifier to respond accordingly
         let identifier = response.notification.request.identifier
+        
         print(identifier)
     }
     

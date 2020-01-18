@@ -102,6 +102,10 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
     
     // MARK: - Functionality
     func inicializeFields(){
+        
+        let imageData = self.medicationInfo!.value(forKey: "image") as? Data
+        
+        self.medicationAddImgButon.setImage(UIImage(data:imageData!,scale:1.0), for: UIControl.State.normal)
         self.nameAddMedication.text = self.medicationInfo!.value(forKey: "name") as? String ?? "Detail"
         self.nameAddMedicationText = self.medicationInfo!.value(forKey: "name") as? String ?? "Detail"
         self.categoryAddMedication.text = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
@@ -111,9 +115,6 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
         self.repeatIntervalHours = self.medicationInfo!.value(forKey: "repeatIntervalHours") as? String ?? "Detail"
         self.medicationRecommendedInterval.text = self.medicationInfo!.value(forKey: "repeatIntervalHours") as? String ?? "Detail"
         self.medicationDescription.text = self.medicationInfo!.value(forKey: "infoDescription") as? String ?? "No Description Found"
-        
-        
-      //  self.medicationAddImgButon = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"
     }
     
     func levelOfImportanceTapped(){
