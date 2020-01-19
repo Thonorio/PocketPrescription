@@ -9,8 +9,9 @@
 import UIKit
 import CoreData
 import MapKit
+import MessageUI
 
-class HomePageViewController: UIViewController, CLLocationManagerDelegate {
+class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMessageComposeViewControllerDelegate  {
 
     // Outlets
     @IBOutlet var homeMedicationCount: UILabel!
@@ -32,7 +33,6 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         self.loadOverviewInformation()
         self.userInformation = manageUser()
-        
         locationManager.delegate = self
         
         locationManager.requestAlwaysAuthorization()
@@ -51,7 +51,24 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
         geoFenceRegion.notifyOnExit = true
         
         locationManager.startMonitoring(for: geoFenceRegion)
-        
+    }
+    
+    func messageUsers(){
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Message Body"
+            controller.recipients = ["964338318"]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func manageUser() -> NSManagedObject {

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddAlertTableViewController: UITableViewController, Notification, UIPickerViewDelegate, UIPickerViewDataSource{
+class AddAlertTableViewController: UITableViewController,  UIPickerViewDelegate, UIPickerViewDataSource{
     
     //Outlets
     
@@ -282,7 +282,7 @@ class AddAlertTableViewController: UITableViewController, Notification, UIPicker
         let hoursInSeconds = numberOfHours * 60 * 60
         
         // Create Notification
-        self.createNotification(identefier, self.addAlertLabelText, self.addAlertRepeatIntervalText, hoursInSeconds ,description)
+        Notification.shared.createNotification(identefier, self.addAlertLabelText, self.addAlertRepeatIntervalText, hoursInSeconds ,description)
         
         self.saveToCoreData()
     }
