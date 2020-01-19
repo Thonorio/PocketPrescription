@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mt9-qG-7y8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tsq-IL-MWn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -303,17 +303,17 @@
             <objects>
                 <viewController title="Pocket Prescription" id="7IH-1T-GpN" customClass="HomePageViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Qo-cT-UB9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TKA-Je-1MB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="Pocket Presciption" id="oHI-6C-F7F"/>
                                 </items>
                             </navigationBar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sq6-ni-1VH">
-                                <rect key="frame" x="9" y="570" width="122" height="136"/>
+                                <rect key="frame" x="9" y="516" width="122" height="136"/>
                                 <color key="tintColor" red="0.32549019610000002" green="0.3411764706" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="122" id="Y2L-Ph-y9s"/>
@@ -321,7 +321,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="16x-i7-sEc">
-                                <rect key="frame" x="146" y="570" width="122" height="136"/>
+                                <rect key="frame" x="146" y="516" width="122" height="136"/>
                                 <color key="tintColor" red="0.32549019610000002" green="0.3411764706" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="138.5" id="9KV-sD-r77"/>
@@ -329,7 +329,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uvg-ga-ObR">
-                                <rect key="frame" x="282" y="570" width="122" height="136"/>
+                                <rect key="frame" x="282" y="516" width="122" height="136"/>
                                 <color key="tintColor" red="0.32549019610000002" green="0.3411764706" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="138.5" id="7RV-TG-c94"/>
@@ -337,25 +337,25 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTl-Da-iKY">
-                                <rect key="frame" x="21" y="713" width="94" height="21"/>
+                                <rect key="frame" x="21" y="659" width="94" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alerts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKG-Zb-eDB">
-                                <rect key="frame" x="184.5" y="713" width="45" height="21"/>
+                                <rect key="frame" x="184.5" y="659" width="45" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Persons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAc-tl-Rmo">
-                                <rect key="frame" x="310" y="713" width="62" height="21"/>
+                                <rect key="frame" x="310" y="659" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="bandage.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AfR-IQ-ZMF">
-                                <rect key="frame" x="43" y="614.5" width="55" height="47"/>
+                                <rect key="frame" x="43" y="560.5" width="55" height="47"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46.5" id="Zom-o4-gFL"/>
@@ -363,7 +363,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="e4q-qg-jU3">
-                                <rect key="frame" x="314" y="620.5" width="58" height="34"/>
+                                <rect key="frame" x="314" y="566.5" width="58" height="34"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="58" id="27q-rx-R3e"/>
@@ -371,32 +371,32 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dda-XV-Ws5">
-                                <rect key="frame" x="63" y="766" width="11" height="21"/>
+                                <rect key="frame" x="63" y="712" width="11" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRi-tx-mYd">
-                                <rect key="frame" x="201.5" y="765" width="11" height="21"/>
+                                <rect key="frame" x="201.5" y="711" width="11" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqO-0f-iG0">
-                                <rect key="frame" x="336" y="766" width="11" height="21"/>
+                                <rect key="frame" x="336" y="712" width="11" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="g1u-3g-jPW">
-                                <rect key="frame" x="58" y="97" width="298" height="309"/>
+                                <rect key="frame" x="58" y="65" width="298" height="309"/>
                                 <color key="tintColor" red="0.37058424829999997" green="0.16862745100000001" blue="0.34901960780000002" alpha="0.80581121580000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="309" id="v3z-Jd-u6F"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="bell.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rzT-8x-gby">
-                                <rect key="frame" x="187" y="616.5" width="42" height="43"/>
+                                <rect key="frame" x="187" y="565.5" width="42" height="43"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="Pzk-BN-uCu"/>
@@ -445,16 +445,17 @@
                         <outlet property="homeAlertCount" destination="BRi-tx-mYd" id="4kB-bp-Vqy"/>
                         <outlet property="homeMedicationCount" destination="dda-XV-Ws5" id="A2E-sw-huj"/>
                         <outlet property="homePersonOfTrustCount" destination="TqO-0f-iG0" id="yD9-Rg-NR1"/>
+                        <outlet property="homeView" destination="3Qo-cT-UB9" id="pCi-I1-elm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmn-81-NWk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="753.62318840579712" y="-460.04464285714283"/>
         </scene>
-        <!--View Controller-->
+        <!--Identification View Controller-->
         <scene sceneID="rrb-LQ-EjC">
             <objects>
-                <viewController id="tsq-IL-MWn" sceneMemberID="viewController">
+                <viewController id="tsq-IL-MWn" customClass="IdentificationViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pcn-bI-Wpf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -497,6 +498,9 @@
                                 <state key="normal" title="Skip">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Mt9-qG-7y8" kind="show" id="uYy-8l-b3j"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="3Qs-UR-WkR">
                                 <rect key="frame" x="58" y="74" width="298" height="309"/>
@@ -515,15 +519,16 @@
                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="Lgd-MR-YMJ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="a35-sM-2an"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A1p-7H-OzE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2477" y="-60"/>
+            <point key="canvasLocation" x="-2651" y="-60"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="e1g-oo-pic">
             <objects>
-                <tabBarController id="Mt9-qG-7y8" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" id="Mt9-qG-7y8" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Zdw-AT-rTl"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fit-L5-8XZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -540,7 +545,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pod-r8-PoW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1516" y="-60"/>
+            <point key="canvasLocation" x="-1561" y="-60"/>
         </scene>
         <!--Settings-->
         <scene sceneID="4yG-K2-tEa">
@@ -567,7 +572,7 @@
             <objects>
                 <tableViewController id="CoH-GA-CVY" customClass="MedicationTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8mB-kj-hK5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="R9Z-Fl-7g8">
@@ -623,7 +628,7 @@
             <objects>
                 <viewController id="NKZ-Jk-Z0e" customClass="ApiAddMedicationViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bPf-hm-Tfu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P78-co-KeU">
@@ -639,7 +644,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" id="uaA-12-FI3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="608"/>
+                                <rect key="frame" x="0.0" y="34" width="414" height="608"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="94F-Yh-bia" kind="embed" id="o91-N3-nyE"/>
@@ -660,16 +665,19 @@
             <objects>
                 <tableViewController id="QFT-oH-4Rx" customClass="AddMedicationTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zRB-Y7-Q05">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="dQS-kX-Klz">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="162"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoM-Ob-NJZ">
+                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoM-Ob-NJZ">
                                     <rect key="frame" x="8" y="8" width="398" height="146"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="146" id="lfW-0S-eaq"/>
+                                        <constraint firstAttribute="width" constant="398" id="qbL-BG-zOi"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="1"/>
                                     <color key="tintColor" red="0.32549019610000002" green="0.3411764706" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button" image="bandage.fill" catalog="system">
@@ -679,8 +687,20 @@
                                         <action selector="profileImageButtonTapped:" destination="QFT-oH-4Rx" eventType="touchUpInside" id="v1h-b4-4qi"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Press To Add Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxm-WO-XYh">
+                                    <rect key="frame" x="8" y="0.0" width="398" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="Kxm-WO-XYh" firstAttribute="centerX" secondItem="dQS-kX-Klz" secondAttribute="centerX" id="7wR-YY-VX9"/>
+                                <constraint firstItem="Kxm-WO-XYh" firstAttribute="top" secondItem="dQS-kX-Klz" secondAttribute="top" constant="8" id="FNz-1x-hXI"/>
+                                <constraint firstItem="NoM-Ob-NJZ" firstAttribute="top" secondItem="dQS-kX-Klz" secondAttribute="top" constant="8" id="UTA-TS-ECd"/>
+                                <constraint firstItem="NoM-Ob-NJZ" firstAttribute="centerX" secondItem="dQS-kX-Klz" secondAttribute="centerX" id="ZHE-SY-kGl"/>
+                            </constraints>
                         </view>
                         <sections>
                             <tableViewSection headerTitle="Mandatory" id="xzE-hU-58i">
@@ -801,7 +821,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KY5-eB-aRj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="kVd-gC-Uct" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6281" y="1044"/>
+            <point key="canvasLocation" x="6279.7101449275369" y="1043.9732142857142"/>
         </scene>
         <!--Pharmacy-->
         <scene sceneID="FBR-PN-Wiy">
@@ -914,7 +934,7 @@
                     <tabBarItem key="tabBarItem" title="Medication" image="bandage" catalog="system" landscapeImage="bandage" id="DZT-wB-zI1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="brt-C7-r3d">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -931,7 +951,7 @@
             <objects>
                 <tableViewController id="9qJ-Yo-Us9" customClass="AlertTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Hc-Mq-I0J">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="ZvW-15-0e1">
@@ -987,7 +1007,7 @@
             <objects>
                 <tableViewController id="dQQ-es-twU" customClass="AddAlertTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Biv-FW-5ty">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="lB5-NO-G3p">
@@ -1160,7 +1180,7 @@
             <objects>
                 <tableViewController id="had-gJ-MYe" customClass="MedicationInclusionTableViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DyN-tj-5pe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" id="dAy-WR-WQk">
@@ -1202,7 +1222,7 @@
                     <tabBarItem key="tabBarItem" title="Alerts" image="bell.fill" catalog="system" landscapeImage="bell.fill" id="D4f-er-rOw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qS9-5f-ipp">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1221,7 +1241,7 @@
                     <tabBarItem key="tabBarItem" title="Pharmacy" image="cart" catalog="system" landscapeImage="cart" id="yhJ-WT-BZn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1lT-sP-Uvf">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

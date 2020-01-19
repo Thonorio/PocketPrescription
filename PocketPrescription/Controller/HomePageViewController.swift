@@ -17,6 +17,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
     @IBOutlet var homeMedicationCount: UILabel!
     @IBOutlet var homeAlertCount: UILabel!
     @IBOutlet var homePersonOfTrustCount: UILabel!
+    @IBOutlet var homeView: UIView!
     
     // Constant
     var userInformation: NSManagedObject?
@@ -33,6 +34,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
         super.viewDidLoad()
         self.loadOverviewInformation()
         self.userInformation = manageUser()
+        
         locationManager.delegate = self
         
         locationManager.requestAlwaysAuthorization()

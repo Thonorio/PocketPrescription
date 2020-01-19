@@ -100,8 +100,9 @@ class AddMedicationTableViewController: UITableViewController,  UIPickerViewDele
     func inicializeFields(){
         
         let imageData = self.medicationInfo!.value(forKey: "image") as? Data
-        
-        self.medicationAddImgButon.setImage(UIImage(data:imageData!,scale:1.0), for: UIControl.State.normal)
+        if(imageData != nil){
+            self.medicationAddImgButon.setImage(UIImage(data:imageData!,scale:1.0), for: UIControl.State.normal)
+        }
         self.nameAddMedication.text = self.medicationInfo!.value(forKey: "name") as? String ?? "Detail"
         self.nameAddMedicationText = self.medicationInfo!.value(forKey: "name") as? String ?? "Detail"
         self.categoryAddMedication.text = self.medicationInfo!.value(forKey: "category") as? String ?? "Error"

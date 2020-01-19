@@ -40,6 +40,7 @@
 		FD4F603C23D38B5A009557D3 /* APIMedicationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4F603B23D38B5A009557D3 /* APIMedicationTableViewController.swift */; };
 		FD4F603F23D397FE009557D3 /* APIMedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4F603D23D397FE009557D3 /* APIMedicationTableViewCell.swift */; };
 		FD4F604023D397FE009557D3 /* APIMedicationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD4F603E23D397FE009557D3 /* APIMedicationTableViewCell.xib */; };
+		FD4F604423D41CE9009557D3 /* IdentificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4F604323D41CE9009557D3 /* IdentificationViewController.swift */; };
 		FD60A67B23CC30B500CC060B /* PharmacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD60A67A23CC30B500CC060B /* PharmacyTableViewCell.swift */; };
 		FD60A67D23CC30CB00CC060B /* PharmacyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD60A67C23CC30CB00CC060B /* PharmacyTableViewCell.xib */; };
 		FD60A67F23CC352F00CC060B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD60A67E23CC352F00CC060B /* SettingsTableViewController.swift */; };
@@ -84,6 +85,7 @@
 		FD4F603B23D38B5A009557D3 /* APIMedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMedicationTableViewController.swift; sourceTree = "<group>"; };
 		FD4F603D23D397FE009557D3 /* APIMedicationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMedicationTableViewCell.swift; sourceTree = "<group>"; };
 		FD4F603E23D397FE009557D3 /* APIMedicationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APIMedicationTableViewCell.xib; sourceTree = "<group>"; };
+		FD4F604323D41CE9009557D3 /* IdentificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationViewController.swift; sourceTree = "<group>"; };
 		FD60A67A23CC30B500CC060B /* PharmacyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PharmacyTableViewCell.swift; sourceTree = "<group>"; };
 		FD60A67C23CC30CB00CC060B /* PharmacyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PharmacyTableViewCell.xib; sourceTree = "<group>"; };
 		FD60A67E23CC352F00CC060B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				FD335CB723B06E1F00CFBBAB /* ListOfItemsControllers */,
 				FD37B45523B1A22B0086C287 /* FixedSizeTableControllers */,
 				659DA04323D234D900DDD164 /* DefineHomeViewController.swift */,
+				FD4F604323D41CE9009557D3 /* IdentificationViewController.swift */,
 				FD35A31F23D165FE00146A2C /* HomePageViewController.swift */,
 			);
 			path = Controller;
@@ -350,6 +353,7 @@
 				FD60A67F23CC352F00CC060B /* SettingsTableViewController.swift in Sources */,
 				FD4F603F23D397FE009557D3 /* APIMedicationTableViewCell.swift in Sources */,
 				FD335CB323B0591500CFBBAB /* MedicationTableViewCell.swift in Sources */,
+				FD4F604423D41CE9009557D3 /* IdentificationViewController.swift in Sources */,
 				A63B09D9238708D000ED6F25 /* PocketPrescription.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
