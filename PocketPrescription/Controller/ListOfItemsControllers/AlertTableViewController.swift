@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import UserNotifications
 
-class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCellDelegate, Notification, UISearchBarDelegate, UISearchDisplayDelegate  {
+class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCellDelegate,  UISearchBarDelegate, UISearchDisplayDelegate  {
       
     // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -41,7 +41,7 @@ class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCe
     
     override func viewDidAppear(_ animated: Bool) {
         // Refresh
-        alerts = self.loadData(ENTITIE, "name")
+        self.alerts = self.loadData(ENTITIE, "name")
         tableView.reloadData()
     }
     
@@ -69,7 +69,6 @@ class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCe
         cell.alertViewInit(alert) 
         cell.coreDataContext = self.context
         cell.alert = alert
-        
         return cell
     }
     
@@ -104,7 +103,7 @@ class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCe
     }
     
     func cancelNotification(_ identifier: String) {
-        self.cancelLocalNotification(identifier)
+        Notification.shared.cancelLocalNotification(identifier)
     }
       
     // MARK: - Interactions

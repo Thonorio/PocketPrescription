@@ -12,7 +12,7 @@ import CoreLocation
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, Notification, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var locationManager: CLLocationManager?
 
@@ -23,9 +23,62 @@ class AppDelegate: UIResponder, Notification, UIApplicationDelegate {
         
         self.locationManager!.requestAlwaysAuthorization()
         
+        UNUserNotificationCenter.current().delegate = self 
+        
         return true
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // get the notification identifier to respond accordingly
+        let request = response.notification.request
+        let identifier = request.identifier
+        let title = request.content.title
+        let description = request.content.body
+        let info = loadNotificationInfo("Alert", identifier)
+        let time = info.value(forKey: "repeatInterval") as! String
+        
+        let currentDate = Date()
+        let endDate = info.value(forKey: "endDate") as! Date
+        
+        if(currentDate < endDate){
+            let hoursInSeconds = timeToSeconds(time)
+            
+            var medicationString = ""
+            let medications = info.value(forKey: "medications") as! NSSet
+            for medication in medications {
+                medicationString += ((medication as AnyObject).value(forKey: "name") as? String  ?? "") + " "
+            }
+            
+            Notification.shared.createNotification(identifier, title, info.value(forKey: "repeatInterval") as! String, hoursInSeconds, description)
+        }
+    }
+    
+    
+    func timeToSeconds(_ time: String) -> Int{
+        let delimiter = " ";
+        let numberOfHours = Int(time.components(separatedBy: delimiter)[0] )!
+        let hoursInSeconds = numberOfHours * 60 * 60
+        return hoursInSeconds
+    }
+    
+    func loadNotificationInfo(_ entityName: String, _ identifier: String) -> NSManagedObject {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
+        
+        var information: NSManagedObject?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        let predicate = NSPredicate(format: "identifier = %@", identifier)
+        request.predicate = predicate
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            information = result[0] as? NSManagedObject
+        } catch {
+            print("Failed")
+        }
+        return information!
+    }
 
     // MARK: UISceneSession Lifecycle
 
@@ -92,7 +145,7 @@ extension AppDelegate: CLLocationManagerDelegate {
     // called when user Exits a monitored region
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         if region is CLCircularRegion {
-            createNotification(region.identifier, "lol", "", 3, "")
+            Notification.shared.createNotification(region.identifier, "lol", "", 3, "")
         }
     }
 }

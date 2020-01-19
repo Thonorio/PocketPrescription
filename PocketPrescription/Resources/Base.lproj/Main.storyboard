@@ -518,12 +518,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A1p-7H-OzE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664" y="-460"/>
+            <point key="canvasLocation" x="-2477" y="-60"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="e1g-oo-pic">
             <objects>
                 <tabBarController id="Mt9-qG-7y8" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Zdw-AT-rTl"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fit-L5-8XZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
