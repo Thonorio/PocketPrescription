@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import UserNotifications
 
-class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCellDelegate,  UISearchBarDelegate, UISearchDisplayDelegate  {
+class AlertTableViewController: ListOfItemsTableViewController, UISearchBarDelegate, UISearchDisplayDelegate  {
       
     // Outlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -63,7 +63,6 @@ class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCe
         // Edit mode configs
         tableView.allowsSelectionDuringEditing = true
         cell.editingAccessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-        cell.delegate = self
         
         let alert = alerts[indexPath.row]
         cell.alertViewInit(alert) 
@@ -103,7 +102,6 @@ class AlertTableViewController: ListOfItemsTableViewController, AlertTableViewCe
     }
     
     func cancelNotification(_ identifier: String) {
-        Notification.shared.cancelLocalNotification(identifier)
     }
       
     // MARK: - Interactions

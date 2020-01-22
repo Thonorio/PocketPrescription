@@ -37,6 +37,8 @@
 		FD35A32423D1748300146A2C /* PersonOfTrustTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD35A32223D1748300146A2C /* PersonOfTrustTableViewCell.xib */; };
 		FD35A32623D1774D00146A2C /* PersonOfTrustTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35A32523D1774D00146A2C /* PersonOfTrustTableViewController.swift */; };
 		FD35A32823D194AD00146A2C /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD35A32723D194AD00146A2C /* AlertService.swift */; };
+		FD37017323D7F51B006983B2 /* MainUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD37017223D7F51B006983B2 /* MainUIViewController.swift */; };
+		FD37017523D82665006983B2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD37017423D82665006983B2 /* Message.swift */; };
 		FD4F603C23D38B5A009557D3 /* APIMedicationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4F603B23D38B5A009557D3 /* APIMedicationTableViewController.swift */; };
 		FD4F603F23D397FE009557D3 /* APIMedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4F603D23D397FE009557D3 /* APIMedicationTableViewCell.swift */; };
 		FD4F604023D397FE009557D3 /* APIMedicationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD4F603E23D397FE009557D3 /* APIMedicationTableViewCell.xib */; };
@@ -82,6 +84,8 @@
 		FD35A32223D1748300146A2C /* PersonOfTrustTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonOfTrustTableViewCell.xib; sourceTree = "<group>"; };
 		FD35A32523D1774D00146A2C /* PersonOfTrustTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonOfTrustTableViewController.swift; sourceTree = "<group>"; };
 		FD35A32723D194AD00146A2C /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		FD37017223D7F51B006983B2 /* MainUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUIViewController.swift; sourceTree = "<group>"; };
+		FD37017423D82665006983B2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FD4F603B23D38B5A009557D3 /* APIMedicationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMedicationTableViewController.swift; sourceTree = "<group>"; };
 		FD4F603D23D397FE009557D3 /* APIMedicationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMedicationTableViewCell.swift; sourceTree = "<group>"; };
 		FD4F603E23D397FE009557D3 /* APIMedicationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = APIMedicationTableViewCell.xib; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 				FD335CAE23B0581300CFBBAB /* CustomViewXib */,
 				FD335CAD23B057E600CFBBAB /* CustomViewCellSwift */,
 				A6F2065423984A9A00CDFF46 /* AddMedicationHeaderFooterView.swift */,
+				A63B09D4238708D000ED6F25 /* Main.storyboard */,
+				A63B09DC238708D200ED6F25 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -132,6 +138,7 @@
 				659DA04323D234D900DDD164 /* DefineHomeViewController.swift */,
 				FD4F604323D41CE9009557D3 /* IdentificationViewController.swift */,
 				FD35A31F23D165FE00146A2C /* HomePageViewController.swift */,
+				FD37017223D7F51B006983B2 /* MainUIViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -141,10 +148,9 @@
 			children = (
 				A63B09CE238708D000ED6F25 /* AppDelegate.swift */,
 				A63B09D0238708D000ED6F25 /* SceneDelegate.swift */,
-				A63B09D4238708D000ED6F25 /* Main.storyboard */,
-				A63B09DC238708D200ED6F25 /* LaunchScreen.storyboard */,
 				FD35A32723D194AD00146A2C /* AlertService.swift */,
 				A6728AE623D22041000349FE /* Notification.swift */,
+				FD37017423D82665006983B2 /* Message.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 				FD335CBE23B07EB800CFBBAB /* AlertTableViewCell.swift in Sources */,
 				A62C4F4323AD3E8E00BB7972 /* AlertTableViewController.swift in Sources */,
 				A63B09CF238708D000ED6F25 /* AppDelegate.swift in Sources */,
+				FD37017323D7F51B006983B2 /* MainUIViewController.swift in Sources */,
 				FD335CC223B0857800CFBBAB /* MedicationInclusionTableViewCell.swift in Sources */,
 				FD60A68323CC3FBD00CC060B /* EditProfileTableViewController.swift in Sources */,
 				FD335CB923B06EF800CFBBAB /* ListOfItemsTableViewController.swift in Sources */,
@@ -353,6 +360,7 @@
 				FD60A67F23CC352F00CC060B /* SettingsTableViewController.swift in Sources */,
 				FD4F603F23D397FE009557D3 /* APIMedicationTableViewCell.swift in Sources */,
 				FD335CB323B0591500CFBBAB /* MedicationTableViewCell.swift in Sources */,
+				FD37017523D82665006983B2 /* Message.swift in Sources */,
 				FD4F604423D41CE9009557D3 /* IdentificationViewController.swift in Sources */,
 				A63B09D9238708D000ED6F25 /* PocketPrescription.xcdatamodeld in Sources */,
 			);
