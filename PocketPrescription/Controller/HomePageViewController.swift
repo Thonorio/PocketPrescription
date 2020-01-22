@@ -32,6 +32,11 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        inicializeTrackin()
+    }
+    
+    func inicializeTrackin(){
+        
         self.loadOverviewInformation()
         self.userInformation = manageUser()
         
@@ -43,12 +48,12 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
         
         locationManager.distanceFilter = 100
         
-        // acedes a localização
+        // access home location
         let latitude = self.userInformation!.value(forKey: "latitude") as? Double ?? 0
         let longitude = self.userInformation!.value(forKey: "longitude") as? Double ?? 0
         
         let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(latitude, longitude), radius: 100, identifier: "Geofence")
-       
+        
         geoFenceRegion.notifyOnEntry = false
         geoFenceRegion.notifyOnExit = true
         

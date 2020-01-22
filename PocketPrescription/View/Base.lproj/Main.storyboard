@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tsq-IL-MWn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mt9-qG-7y8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -455,7 +455,7 @@
         <!--Identification View Controller-->
         <scene sceneID="rrb-LQ-EjC">
             <objects>
-                <viewController id="tsq-IL-MWn" customClass="IdentificationViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IdentificationView" id="tsq-IL-MWn" customClass="IdentificationViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pcn-bI-Wpf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -481,7 +481,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-zn-yaP">
+                            <button alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tW8-zn-yaP">
                                 <rect key="frame" x="46" y="714" width="322" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.43264958260000003" green="0.43924942610000001" blue="0.44757360219999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -489,6 +489,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="identificationSubmit:" destination="tsq-IL-MWn" eventType="touchUpInside" id="XVv-Qe-IYa"/>
+                                </connections>
                             </button>
                             <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNr-p2-MFu">
                                 <rect key="frame" x="46" y="772" width="322" height="42"/>
@@ -499,7 +502,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Mt9-qG-7y8" kind="show" id="uYy-8l-b3j"/>
+                                    <segue destination="Mt9-qG-7y8" kind="show" identifier="homePageViewControllerSegue" id="uYy-8l-b3j"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="3Qs-UR-WkR">
@@ -520,15 +523,20 @@
                         <viewLayoutGuide key="safeArea" id="Lgd-MR-YMJ"/>
                     </view>
                     <navigationItem key="navigationItem" id="a35-sM-2an"/>
+                    <connections>
+                        <outlet property="identificationEmail" destination="TJS-8K-IKx" id="APG-z9-3iT"/>
+                        <outlet property="identificationName" destination="icc-cf-hZ1" id="yAa-3R-8iV"/>
+                        <outlet property="identificationSubmitButton" destination="tW8-zn-yaP" id="TCF-zZ-KOL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A1p-7H-OzE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2651" y="-60"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MainUI View Controller-->
         <scene sceneID="e1g-oo-pic">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="Mt9-qG-7y8" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomePageView" modalPresentationStyle="fullScreen" id="Mt9-qG-7y8" customClass="MainUIViewController" customModule="PocketPrescription" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Zdw-AT-rTl"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fit-L5-8XZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -536,6 +544,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <outlet property="homeAlertCount" destination="Fit-L5-8XZ" id="McD-LG-4PV"/>
                         <segue destination="QRO-hR-9Bc" kind="relationship" relationship="viewControllers" id="9zH-sG-lBc"/>
                         <segue destination="hHe-bU-V33" kind="relationship" relationship="viewControllers" id="i0j-97-krw"/>
                         <segue destination="7IH-1T-GpN" kind="relationship" relationship="viewControllers" id="evo-ci-wuU"/>
@@ -1298,7 +1307,7 @@
         <image name="house.fill" catalog="system" width="64" height="52"/>
         <image name="logo_transparent" width="1200" height="1200"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
-        <image name="plus" catalog="system" width="32" height="32"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
         <image name="square" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
