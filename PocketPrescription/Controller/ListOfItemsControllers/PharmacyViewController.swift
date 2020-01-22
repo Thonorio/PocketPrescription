@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import CoreData
+import CoreLocation
 
 class PharmacyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate{
     
@@ -199,9 +200,15 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "pharmacyTableViewCell", for: indexPath) as? PharmacyTableViewCell else {
             fatalError("The dequeued cell is not an instance of PharmacyTableViewCell.")
         }
-
+        
         let pharmacy = pharmacys[indexPath.row]
-        cell.pharmacyInit(pharmacy.value(forKey: "name") as? String ?? "No Name Found", pharmacy.value(forKey: "locality") as? String ?? "No Locality Found", pharmacy.value(forKey: "phoneNumber") as? String ?? "No Number Found", 0.0 )
+        
+        // Final fix befou delivery
+        let locValue: CLLocationCoordinate2D = locationManager.location!.coordinate
+        let coordinate₀ = CLLocation(latitude: Double(pharmacy.value(forKey: "latitude") as! Float), longitude: Double(pharmacy.value(forKey: "longitude") as! Float))
+        let coordinate₁ = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+
+        cell.pharmacyInit(pharmacy.value(forKey: "name") as? String ?? "No Name Found", pharmacy.value(forKey: "locality") as? String ?? "No Locality Found", pharmacy.value(forKey: "phoneNumber") as? String ?? "No Number Found", coordinate₀.distance(from: coordinate₁) )
 
         return cell
     }
