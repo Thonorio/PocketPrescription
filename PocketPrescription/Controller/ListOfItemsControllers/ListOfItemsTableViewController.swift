@@ -40,7 +40,6 @@ class ListOfItemsTableViewController: UITableViewController  {
 
         if !searchText.isEmpty {
            predicate = NSPredicate(format: "name contains[c] '\(searchText)'")
-            print(predicate)
         }else {
            predicate = NSPredicate(value: true)
         }

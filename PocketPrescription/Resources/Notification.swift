@@ -53,6 +53,7 @@ class Notification: NSObject, UNUserNotificationCenterDelegate  {
          notificationContent.subtitle = subTitle
          notificationContent.body = description
          // Add Trigger
+        print(description)
          let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(interval), repeats: false)
          // Create Notification Request
          let notificationRequest = UNNotificationRequest(identifier: identifier, content: notificationContent, trigger: notificationTrigger)

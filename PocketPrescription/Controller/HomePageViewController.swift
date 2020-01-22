@@ -11,7 +11,7 @@ import CoreData
 import MapKit
 import MessageUI
 
-class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMessageComposeViewControllerDelegate  {
+class HomePageViewController: UIViewController, CLLocationManagerDelegate {
 
     // Outlets
     @IBOutlet var homeMedicationCount: UILabel!
@@ -22,8 +22,10 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
     // Constant
     var userInformation: NSManagedObject?
     let locationManager = CLLocationManager()
-    let ENTITIES: [String] = ["Alert", "Medication", "PersonOfTrust","Person"]
-    lazy var entity = NSEntityDescription.entity(forEntityName: ENTITIES[3], in: context)
+    let ENTITIES: [String] = ["Alert", "PersonOfTrust"]
+    let ENTITIE_MEDICATION = "Medication"
+    let ENTITIE_PERSON = "Person"
+    lazy var entitie = NSEntityDescription.entity(forEntityName: ENTITIE_PERSON, in: context)
     
     // Core Data
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -32,13 +34,20 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Not at all optimized (path before delivery)
+        self.loadMedicationInformation()
+        self.loadOverviewInformation()
+        self.userInformation = manageUser()
         inicializeTrackin()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        // Not at all optimized (path before delivery)
+        self.loadMedicationInformation()
+        self.loadOverviewInformation()
     }
     
     func inicializeTrackin(){
-        
-        self.loadOverviewInformation()
-        self.userInformation = manageUser()
         
         locationManager.delegate = self
         
@@ -59,20 +68,6 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
         
         locationManager.startMonitoring(for: geoFenceRegion)
     }
-    
-    func messageUsers(){
-        if (MFMessageComposeViewController.canSendText()) {
-            let controller = MFMessageComposeViewController()
-            controller.body = "Message Body"
-            controller.recipients = ["964338318"]
-            controller.messageComposeDelegate = self
-            self.present(controller, animated: true, completion: nil)
-        }
-    }
-    
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        self.dismiss(animated: true, completion: nil)
-    }
 
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -80,7 +75,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
     
     func manageUser() -> NSManagedObject {
         var user: NSManagedObject?
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITIES[3])
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITIE_PERSON)
         request.returnsObjectsAsFaults = false
         
         do {
@@ -88,7 +83,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
             
             // Se não existe um utilizador cria
             if(result.count == 0){
-                user = NSManagedObject(entity: entity!, insertInto: context)
+                user = NSManagedObject(entity: entitie!, insertInto: context)
                 user!.setValue("Default Name", forKey: "name")
                 user!.setValue("Default Email", forKey: "email")
 
@@ -104,13 +99,28 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
         return user!
     }
     
+    func loadMedicationInformation() {
+        var request: NSFetchRequest<NSFetchRequestResult>
+        var result = 0
+            request = NSFetchRequest<NSFetchRequestResult>(entityName: ENTITIE_MEDICATION)
+            request.returnsObjectsAsFaults = false
+            do {
+                result = try context.fetch(request).count
+            } catch {
+                print("Failed")
+            }
+        self.homeMedicationCount.text = "\(result)"
+    }
+    
     func loadOverviewInformation() {
         var request: NSFetchRequest<NSFetchRequestResult>
         var result = [Int]()
         var i = 0
+        let predicate = NSPredicate(format: "state != %@", "true")
         for entitie in ENTITIES {
             request = NSFetchRequest<NSFetchRequestResult>(entityName: entitie)
             request.returnsObjectsAsFaults = false
+            request.predicate = predicate
             do {
                 result.append(try context.fetch(request).count)
                 i += 1
@@ -119,8 +129,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate, MFMes
             }
         }
         self.homeAlertCount.text = "\(result[0])"
-        self.homeMedicationCount.text = "\(result[1])"
-        self.homePersonOfTrustCount.text = "\(result[2])"
+        self.homePersonOfTrustCount.text = "\(result[1])"
     }
     
     func saveToCoreData(){
