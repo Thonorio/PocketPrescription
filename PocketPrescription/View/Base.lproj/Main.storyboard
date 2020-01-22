@@ -964,13 +964,22 @@
                                     <constraint firstAttribute="width" secondItem="HZb-J2-v9M" secondAttribute="height" multiplier="207:355" id="KPo-eB-hnN"/>
                                 </constraints>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press for over a second to mark" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-Pl-F9C">
+                                <rect key="frame" x="0.0" y="96" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="HZb-J2-v9M" firstAttribute="height" secondItem="9my-K9-l2D" secondAttribute="height" multiplier="0.792411" id="D07-rB-OKb"/>
+                            <constraint firstItem="QmD-Pl-F9C" firstAttribute="centerX" secondItem="xZg-3d-EYB" secondAttribute="centerX" id="GoY-gS-kR6"/>
+                            <constraint firstItem="QmD-Pl-F9C" firstAttribute="width" secondItem="9my-K9-l2D" secondAttribute="width" id="OCs-Lo-HiA"/>
                             <constraint firstItem="HZb-J2-v9M" firstAttribute="width" secondItem="9my-K9-l2D" secondAttribute="width" id="PLB-Ms-unv"/>
                             <constraint firstItem="HZb-J2-v9M" firstAttribute="centerX" secondItem="xZg-3d-EYB" secondAttribute="centerX" id="W0v-lw-j9z"/>
+                            <constraint firstItem="QmD-Pl-F9C" firstAttribute="top" secondItem="xZg-3d-EYB" secondAttribute="top" constant="8" id="u5N-pX-Pbe"/>
                             <constraint firstItem="HZb-J2-v9M" firstAttribute="centerY" secondItem="xZg-3d-EYB" secondAttribute="centerY" id="wbV-yS-02f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xZg-3d-EYB"/>

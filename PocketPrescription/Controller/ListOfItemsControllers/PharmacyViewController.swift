@@ -27,12 +27,13 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
     let searchRadius: CLLocationDistance = 3000
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var mapDataReponse: Any?
+    var locValue: CLLocationCoordinate2D?
     
     // Life Cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTable()
-
+        locValue = locationManager.location!.coordinate
         // Tratar erro
         self.checkLocationServices()
         
@@ -204,11 +205,10 @@ class PharmacyViewController: UIViewController, UITableViewDataSource, UITableVi
         let pharmacy = pharmacys[indexPath.row]
         
         // Final fix befou delivery
-        let locValue: CLLocationCoordinate2D = locationManager.location!.coordinate
-        let coordinate₀ = CLLocation(latitude: Double(pharmacy.value(forKey: "latitude") as! Float), longitude: Double(pharmacy.value(forKey: "longitude") as! Float))
-        let coordinate₁ = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        let pointOfInterestCoordinate = CLLocation(latitude: Double(pharmacy.value(forKey: "latitude") as! Float), longitude: Double(pharmacy.value(forKey: "longitude") as! Float))
+        let localCoordinate = CLLocation(latitude: locValue!.latitude, longitude: locValue!.longitude)
 
-        cell.pharmacyInit(pharmacy.value(forKey: "name") as? String ?? "No Name Found", pharmacy.value(forKey: "locality") as? String ?? "No Locality Found", pharmacy.value(forKey: "phoneNumber") as? String ?? "No Number Found", coordinate₀.distance(from: coordinate₁) )
+        cell.pharmacyInit(pharmacy.value(forKey: "name") as? String ?? "No Name Found", pharmacy.value(forKey: "locality") as? String ?? "No Locality Found", pharmacy.value(forKey: "phoneNumber") as? String ?? "No Number Found", "\(Double(round(10000*localCoordinate.distance(from: pointOfInterestCoordinate))/10000) / 1000) Km" )
 
         return cell
     }

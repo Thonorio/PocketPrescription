@@ -26,10 +26,10 @@ class PharmacyTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func pharmacyInit(_ name: String, _ street: String, _ phoneNumber: String, _ distance: Double) {
+    func pharmacyInit(_ name: String, _ street: String, _ phoneNumber: String, _ distance: String) {
         self.pharmacyName?.text = name
         self.pharmacyLocation.text = street
         self.pharmacyPhoneNumber.text = phoneNumber
-        self.pharmacyDistance.text = String(distance)
+        self.pharmacyDistance.text = distance
     }
 }
